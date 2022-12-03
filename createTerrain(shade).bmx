@@ -2,7 +2,7 @@
 
 Strict
 
-Framework openb3dmax.b3dglgraphics
+Framework openb3d.b3dglgraphics
 
 Graphics3D 800,600
 
@@ -68,7 +68,7 @@ Else
 	fpsTicks = fpsTicks + 1
 EndIf
 
-'MouseLook(pivot,camera,time,elapsed)
+MouseLook(pivot,camera,time,elapsed)
 
 	If KeyDown( KEY_RIGHT )=True Then TurnEntity camera,0,-1,0
 	If KeyDown( KEY_LEFT )=True Then TurnEntity camera,0,1,0

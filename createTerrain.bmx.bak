@@ -6,25 +6,27 @@ Framework openb3d.b3dglgraphics
 
 Graphics3D 800,600
 
-
 Local camera:TCamera=CreateCamera()
 PositionEntity camera,130,1,-130
 
 Local light:TLight=CreateLight()
 RotateEntity light,90,0,0
-
 ' Load terrain
-Local terrain:TTerrain=LoadTerrain( "media/terrain_hmap.bmp" )
+Local terrain:TTerrain=LoadTerrain( "Media/Zone/terrain_hmap.bmp" )
+' player mesh
+Local player:TMesh=LoadAnimMesh("Media/models/Player/player.b3d")
 
 ' Set terrain detail, enable vertex morphing
-TerrainDetail(terrain,4000,True)
+'TerrainDetail terrain,4000,True
 
 ' Scale terrain
-ScaleEntity terrain,0.50,0.50,0.50
+'ScaleEntity terrain,1,1,1
+ScaleEntity player,1,1,1
 
 ' Texture terrain
-Local grass_tex:TTexture=LoadTexture( "terrain_colormap.bmp" )
-EntityTexture terrain,grass_tex,0,1
+Local grass_tex:TTexture=LoadTexture( "Media/Zone/terrain_colormap.bmp" )
+EntityTexture terrain,grass_tex
+ScaleTexture grass_tex,1,1
 
 While Not KeyDown( KEY_ESCAPE )
 
