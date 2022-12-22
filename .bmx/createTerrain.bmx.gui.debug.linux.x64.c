@@ -107,20 +107,23 @@ int _bb_main(){
 		struct BBDebugStm __stmt_6 = {0x1302e4b9354befcf, 17, 0};
 		bbOnDebugEnterStm(&__stmt_6);
 		bbt_player=(struct openb3d_openb3dcore_TMesh_obj*)openb3d_openb3dcore_LoadAnimMesh((BBOBJECT)((BBString*)&_s1),(struct openb3d_openb3dcore_TEntity_obj*)&bbNullObject,-1);
-		struct BBDebugStm __stmt_7 = {0x1302e4b9354befcf, 24, 0};
+		struct BBDebugStm __stmt_7 = {0x1302e4b9354befcf, 23, 0};
 		bbOnDebugEnterStm(&__stmt_7);
-		openb3d_openb3dcore_ScaleEntity((struct openb3d_openb3dcore_TEntity_obj*)((struct openb3d_openb3dcore_TEntity_obj*)bbObjectDowncast((BBOBJECT)bbt_player,(BBClass*)&openb3d_openb3dcore_TEntity)),1.00000000f,1.00000000f,1.00000000f,0);
-		struct BBDebugStm __stmt_8 = {0x1302e4b9354befcf, 27, 0};
+		openb3d_openb3dcore_ScaleEntity((struct openb3d_openb3dcore_TEntity_obj*)((struct openb3d_openb3dcore_TEntity_obj*)bbObjectDowncast((BBOBJECT)bbt_terrain,(BBClass*)&openb3d_openb3dcore_TEntity)),1.00000000f,1.00000000f,1.00000000f,0);
+		struct BBDebugStm __stmt_8 = {0x1302e4b9354befcf, 24, 0};
 		bbOnDebugEnterStm(&__stmt_8);
-		bbt_grass_tex=(struct openb3d_openb3dcore_TTexture_obj*)openb3d_openb3dcore_LoadTexture(((BBString*)&_s2),9,(struct openb3d_openb3dcore_TTexture_obj*)&bbNullObject);
-		struct BBDebugStm __stmt_9 = {0x1302e4b9354befcf, 28, 0};
+		openb3d_openb3dcore_ScaleEntity((struct openb3d_openb3dcore_TEntity_obj*)((struct openb3d_openb3dcore_TEntity_obj*)bbObjectDowncast((BBOBJECT)bbt_player,(BBClass*)&openb3d_openb3dcore_TEntity)),1.00000000f,1.00000000f,1.00000000f,0);
+		struct BBDebugStm __stmt_9 = {0x1302e4b9354befcf, 27, 0};
 		bbOnDebugEnterStm(&__stmt_9);
-		openb3d_openb3dcore_EntityTexture((struct openb3d_openb3dcore_TEntity_obj*)((struct openb3d_openb3dcore_TEntity_obj*)bbObjectDowncast((BBOBJECT)bbt_terrain,(BBClass*)&openb3d_openb3dcore_TEntity)),(struct openb3d_openb3dcore_TTexture_obj*)bbt_grass_tex,0,0);
-		struct BBDebugStm __stmt_10 = {0x1302e4b9354befcf, 29, 0};
+		bbt_grass_tex=(struct openb3d_openb3dcore_TTexture_obj*)openb3d_openb3dcore_LoadTexture(((BBString*)&_s2),9,(struct openb3d_openb3dcore_TTexture_obj*)&bbNullObject);
+		struct BBDebugStm __stmt_10 = {0x1302e4b9354befcf, 28, 0};
 		bbOnDebugEnterStm(&__stmt_10);
-		openb3d_openb3dcore_ScaleTexture((struct openb3d_openb3dcore_TTexture_obj*)bbt_grass_tex,1.00000000f,1.00000000f);
-		struct BBDebugStm __stmt_11 = {0x1302e4b9354befcf, 31, 0};
+		openb3d_openb3dcore_EntityTexture((struct openb3d_openb3dcore_TEntity_obj*)((struct openb3d_openb3dcore_TEntity_obj*)bbObjectDowncast((BBOBJECT)bbt_terrain,(BBClass*)&openb3d_openb3dcore_TEntity)),(struct openb3d_openb3dcore_TTexture_obj*)bbt_grass_tex,0,0);
+		struct BBDebugStm __stmt_11 = {0x1302e4b9354befcf, 29, 0};
 		bbOnDebugEnterStm(&__stmt_11);
+		openb3d_openb3dcore_ScaleTexture((struct openb3d_openb3dcore_TTexture_obj*)bbt_grass_tex,1.00000000f,1.00000000f);
+		struct BBDebugStm __stmt_12 = {0x1302e4b9354befcf, 31, 0};
+		bbOnDebugEnterStm(&__stmt_12);
 		while(!(brl_polledinput_KeyDown(27)!=0)){
 			BBFLOAT bbt_x=0;
 			BBFLOAT bbt_y=0;
@@ -294,8 +297,8 @@ int _bb_main(){
 			brl_graphics_Flip(-1);
 			bbOnDebugLeaveScope();
 		}
-		struct BBDebugStm __stmt_12 = {0x1302e4b9354befcf, 55, 0};
-		bbOnDebugEnterStm(&__stmt_12);
+		struct BBDebugStm __stmt_13 = {0x1302e4b9354befcf, 55, 0};
+		bbOnDebugEnterStm(&__stmt_13);
 		bbEnd();
 		bbOnDebugLeaveScope();
 		return 0;
