@@ -21,7 +21,7 @@ RotateEntity light,90,0,0
 
 While Not KeyDown( KEY_ESCAPE )
  frame = frame + 1
-orbitcamera(camera,player,1)
+orbitcamera(camera,player,2)
 	'If KeyDown( KEY_RIGHT )=True Then TurnEntity camera,0,-1,0
 	'If KeyDown( KEY_LEFT )=True Then TurnEntity camera,0,1,0
 	'If KeyDown( KEY_DOWN )=True Then MoveEntity camera,0,0,-1
