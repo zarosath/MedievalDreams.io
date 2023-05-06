@@ -21,13 +21,13 @@ RotateEntity light,90,0,0
 
 While Not KeyDown( KEY_ESCAPE )
  frame = frame + 1
-orbitcamera(camera,player,2)
-	'If KeyDown( KEY_RIGHT )=True Then TurnEntity camera,0,-1,0
-	'If KeyDown( KEY_LEFT )=True Then TurnEntity camera,0,1,0
-	'If KeyDown( KEY_DOWN )=True Then MoveEntity camera,0,0,-1
-	'If KeyDown( KEY_UP )=True Then MoveEntity camera,0,0,1
-	'If KeyDown( key_W )=True Then MoveEntity camera,0,1,0
-	'If KeyDown( key_S )=True Then MoveEntity camera,0,-1,0
+orbitcamera(camera,Player,2)
+	If KeyDown( KEY_RIGHT )=True Then TurnEntity Player,0,-1,0
+	If KeyDown( KEY_LEFT )=True Then TurnEntity Player,0,1,0
+	If KeyDown( KEY_DOWN )=True Then MoveEntity Player,0,0,-1
+	If KeyDown( KEY_UP )=True Then MoveEntity Player,0,0,1
+	If KeyDown( key_W )=True Then MoveEntity Player,0,1,0
+	If KeyDown( key_S )=True Then MoveEntity Player,0,-1,0
 Local x#=EntityX(camera)
 Local y#=EntityY(camera)
 Local z#=EntityZ(camera)
