@@ -2,4 +2,6 @@
 Kingdoms where users make servers and play matches with randomly generated resources on the map
 
 
-Build & run the main file Main to run.
+Build & run main to run.
+
+TODO: add working camera system and player movement controls with gravity.
