@@ -1,16 +1,14 @@
-
-'camera
-
-Local camera:TCamera=CreateCamera()
-'PositionEntity camera,130,1,-130
-
-' ?? camera player pivot
-Local PlayerEyes:TPivot=CreatePivot()
-PositionEntity(PlayerEyes,EntityX(PlayerCollider,True),EntityY(PlayerCollider,True)+1.6-0.25,EntityZ(PlayerCollider,True)+0.25)
-EntityParent(PlayerEyes,PlayerCollider,True)
+'camera-
+Global camera:TCamera=CreateCamera(Pivot)
+Global x_speed:Float
+Global y_speed:Float
+Global cameracontrol:Int = False
+PositionEntity( Camera, 0.3, 2, -2.5 )
+CameraRange( Camera, 0.1, 100 )
 
 
-Function orbitcamera(cam:TEntity,ent:TEntity,dist#)
+
+Function orbitcamera(cam:TEntity,ent:TEntity,dist#) ' unused - saving for reference
 Local piv:TPivot=CreatePivot()
 PositionEntity piv,EntityX(ent),EntityY(ent),EntityZ(ent)
 PositionEntity cam,EntityX(piv),EntityY(piv),EntityZ(piv)
@@ -21,3 +19,20 @@ TurnEntity piv,Float(MouseXSpeed())*0.6,Float(MouseYSpeed())*0.6,Float(MouseZSpe
 'FreeEntity piv
 
 End Function
+
+
+Function CameraFunction()
+
+If (KeyHit(KEY_TAB) And cameracontrol = False) Then cameracontrol = True
+If KeyHit(KEY_TAB) And cameracontrol = True Then cameracontrol = False
+If (cameracontrol = True)
+Text 0,0,"camera control = true"
+	x_speed = ((MouseX()-GraphicsWidth()/2)-x_speed)/8+x_speed
+	y_speed = ((MouseY()-GraphicsHeight()/2)-y_speed)/8+y_speed
+	MoveMouse (GraphicsWidth()/2,GraphicsHeight()/2)
+	TurnEntity Pivot, 0, -x_speed , 0
+	TurnEntity Pivot, 0, +y_speed , 0
+	Else Text 0,0,"cameracontrol = false"
+EndIf
+End Function
+

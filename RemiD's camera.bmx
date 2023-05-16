@@ -1,105 +1,169 @@
-SuperStrict
+Strict
 
-Import openb3d.b3dglgraphics
+Framework openb3d.b3dglgraphics
+Import brl.randomdefault
+Graphics3D 800,600, 0, 3
 
-Graphics3D 800,600,0,2
+HideMouse()
 
-' world
-Local Floor:TEntity = CreatePlane()
-EntityColor  Floor, 0, 99, 0
+SeedRnd(MilliSecs()) 
 
-SeedRnd MilliSecs()
-For Local  i%=0 To 30
-	Local c:TEntity = CreateCylinder()
-	ScaleEntity c, 0.2,10,0.2
-   	PositionEntity c, -10,-2,-100 + i*10
+Const CFirstPerson% = 1
+Const CThirdPerson% = 2
+Global ViewMode% = CFirstPerson
 
-Next
-For Local  i%=0 To 10
-	Local c:TEntity = CreateCube()
-	EntityColor  c, Rand(255),Rand(255),Rand(255)
-	ScaleEntity c, 2 , 4, 2
-   	PositionEntity c, Rand(-60,60),1, Rand(-60,60)	
-   	TurnEntity c, 0, Rand(360),0	
-Next
+Const GroupEnvironment% = 1
+Const GroupCharacters% = 2
 
+Global Camera:TCamera = CreateCamera() 
+CameraRange(Camera,0.1,1000)
+CameraClsColor(Camera,000,000,000)  
 
-' light
-Global Light:TLight = CreateLight(1)
-LightRange Light,1000
-PositionEntity Light, 10,50,20
+Local Origine:TMesh = CreateCube() 
+ScaleMesh(Origine,0.1/2,1000.0,0.1/2)
+EntityColor(Origine,255,000,000)
+EntityFX(Origine,1)
 
+Local GroundMesh:TMesh  = CreateCube()
+ScaleMesh(GroundMesh,100.0/2,0.1/2,100.0/2)
+PositionMesh(GroundMesh,100.0/2,-0.1/2,100.0/2)
+EntityColor(GroundMesh,000,125,000)
+EntityType(GroundMesh,GroupEnvironment)
 
-' man
-Global Pivot:TEntity = CreatePivot()
-Global Man:TEntity = CreateCubicMan()
-EntityParent Man, pivot
-PositionEntity Man,0,0.75,0
+Local PlayerCollider:TPivot = CreatePivot() 
+PositionEntity(PlayerCollider,0,0,0) 
+EntityRadius(PlayerCollider,0.25)
+EntityType(PlayerCollider,GroupCharacters)
 
-' camera
-Global Camera:TCamera = CreateCamera(Pivot)
-PositionEntity( Camera, 0.3, 2, -2.5 )
-CameraRange( Camera, 0.1, 100 )
+Local PlayerEyes:TPivot = CreatePivot()
+PositionEntity(PlayerEyes,EntityX(PlayerCollider,True),EntityY(PlayerCollider,True)+1.6-0.25,EntityZ(PlayerCollider,True)+0.25)
+EntityParent(PlayerEyes,PlayerCollider,True)
 
+Local PlayerMesh:TMesh = CreateCube() 
+ScaleMesh(PlayerMesh,0.5/2,1.7/2,0.25/2) 
+PositionMesh(PlayerMesh,0,1.7/2,0) 
+EntityColor(PlayerMesh,000,000,125) 
+PositionEntity(PlayerMesh,EntityX(PlayerCollider,True),EntityY(PlayerCollider,True)-0.25,EntityZ(PlayerCollider,True)) 
+EntityParent(PlayerMesh,PlayerCollider,True) 
 
-Repeat
-	Movements
+ViewMode = CFirstPerson
 
-	Cls
-	UpdateWorld
-	RenderWorld
-	Flip 1
-Until KeyHit(1)
+PositionEntity(PlayerCollider,5,0.25+0.01,5)
 
+Local PlayerColliderYaw:Float = 0
+Local PlayerEyesPitch:Float = 0
+Local PlayerIsOnGround:Int = 0
 
-Function Movements()
-	If KeyDown(KEY_UP) 	MoveEntity Pivot, 0, 0   , 0.1
-	If KeyDown(KEY_RIGHT) TurnEntity Pivot, 0, -1 , 0
-	If KeyDown(KEY_LEFT) TurnEntity Pivot, 0, +1 , 0
-End Function
+Local PlayerVX:Float = 0
+Local PlayerVZ:Float = 0
+Local PlayerVY:Float = 0
+Local PlayerOldX:Float = 0
+Local PlayerOldZ:Float = 0
+Local PlayerNewX:Float = 0
+Local PlayerNewZ:Float = 0
+Local x_speed:Int
+Local y_speed:Int
+Local DirectLight:TLight = CreateLight(1) 
+LightColor(DirectLight,125,125,125) 
+PositionEntity(DirectLight,0,128.0,-128.0) 
+RotateEntity(DirectLight,45,0,0) 
+AmbientLight(063,063,063)
 
-		
-Function CreateCubicMan:TEntity()		
-		Local mesh:TEntity = CreatePivot()		
+Collisions(GroupCharacters,GroupEnvironment,2,3)
 
-		Local head:TMesh  = CreateSphere(32)
-		ScaleMesh    head, 0.25, 0.30, 0.25
-		PositionMesh head, 0, 0.92, 0		
-		EntityColor  head, 255,155,111
-		EntityParent head, Mesh
+While(Not KeyHit(KEY_ESCAPE))  
 
+ Local MXSpeed:Float = MouseXSpeed() 
+ Local MYSpeed:Float = MouseYSpeed()  
 
-		Local chest:TMesh = CreateCube()
-		ScaleMesh    chest, 0.24, 0.3, 0.1
-		PositionMesh chest, 0, 0.27, 0		
-		EntityColor  chest, 255,0,111
-		EntityParent chest, Mesh
+    x_speed=((MouseX()-320)-x_speed)/8+x_speed
+    y_speed=((MouseY()-240)-y_speed)/8+y_speed
+ MoveMouse(GraphicsWidth()/2,GraphicsHeight()/2) 
+ PlayerEyesPitch = PlayerEyesPitch+MYSpeed
+ If(PlayerEyesPitch > 89)
+  PlayerEyesPitch = 89
+ EndIf
+ If(PlayerEyesPitch < -89)
+  PlayerEyesPitch = -89
+ EndIf
+ PlayerColliderYaw = PlayerColliderYaw-MXSpeed
+ RotateEntity(PlayerEyes,PlayerEyesPitch,0,0)
+ RotateEntity(PlayerCollider,0,PlayerColliderYaw,0)  
 
+ Local CollidedCollidable:TEntity = EntityCollided(PlayerCollider,GroupEnvironment)
+If( Not CollidedCollidable )
+  PlayerIsOnGround = False
+ Else'If( CollidedCollidable <> 0 )
+  PlayerIsOnGround = True
+ EndIf
 
-		Local arms:TMesh = CreateCube()
-		ScaleMesh    arms, 0.85, 0.08, 0.08
-		PositionMesh arms, 0, 0.6, 0		
-		EntityColor  arms, 255,0,111
-		EntityParent arms, Mesh
+ If( PlayerIsOnGround = False )
+  'PlayerVY = PlayerVY - 0.0025
+  TranslateEntity(PlayerCollider,PlayerVX,PlayerVY,PlayerVZ) 
+  If(KeyDown(KEY_W)>0)
+   MoveEntity(PlayerCollider,0,0,0.01) 
+  Else If(KeyDown(KEY_A)>0) 
+   MoveEntity(PlayerCollider,0,0,-0.01) 
+  EndIf 
+  If(KeyDown(KEY_S)>0) 
+   MoveEntity(PlayerCollider,-0.01,0,0) 
+  Else If(KeyDown(KEY_D)>0) 
+   MoveEntity(PlayerCollider,0.01,0,0) 
+  EndIf
+ ElseIf( PlayerIsOnGround = True )
+  PlayerOldX = EntityX(PlayerCollider,True)
+  PlayerOldZ = EntityZ(PlayerCollider,True)
+  PlayerVY = 0 
+  If(KeyDown(1)>0)
+   MoveEntity(PlayerCollider,0,0,0.1) 
+  Else If(KeyDown(31)>0) 
+   MoveEntity(PlayerCollider,0,0,-0.1) 
+  EndIf 
+  If(KeyDown(2)>0) 
+   MoveEntity(PlayerCollider,-0.1,0,0) 
+  Else If(KeyDown(32)>0) 
+   MoveEntity(PlayerCollider,0.1,0,0) 
+  EndIf 
+  If(KeyDown(KEY_SPACE)>0)
+   PlayerVY# = 0.1
+  EndIf
+  PlayerNewX = EntityX(PlayerCollider,True)
+  PlayerNewZ = EntityZ(PlayerCollider,True)
+  PlayerVX = PlayerNewX - PlayerOldX
+  PlayerVZ = PlayerNewZ - PlayerOldZ 
+ EndIf
 
-		Local hips:TMesh = CreateCube()
-		ScaleMesh    hips, 0.26, 0.15, 0.11
-		PositionMesh hips, 0, 0, 0		
-		EntityColor  hips, 255,255,0
-		EntityParent hips, Mesh
+ UpdateWorld()
 
+ If(KeyHit(KEY_TAB)>0)
+  If( ViewMode = CFirstPerson )
+   ViewMode = CThirdPerson
+  ElseIf( ViewMode = CThirdPerson )
+   ViewMode = CFirstPerson
+  EndIf
+ EndIf
 
-		Local leg1:TMesh = CreateCylinder()
-		ScaleMesh    leg1, 0.08, 0.4, 0.08
-		PositionMesh leg1, -0.15, -0.4, 0		
-		EntityColor  leg1, 255,155,111
-		EntityParent leg1, Mesh
+ If( ViewMode = CFirstPerson )
+  PositionEntity(Camera,EntityX(PlayerEyes,True),EntityY(PlayerEyes,True),EntityZ(PlayerEyes,True))
+  RotateEntity(Camera,EntityPitch(PlayerEyes,True),EntityYaw(PlayerEyes,True),EntityRoll(PlayerEyes,True))
+  MoveEntity(Camera,0,0,0.0)
+ ElseIf( ViewMode = CThirdPerson )
+  PositionEntity(Camera,EntityX(PlayerEyes,True),EntityY(PlayerEyes,True),EntityZ(PlayerEyes,True))
+  RotateEntity(Camera,EntityPitch(PlayerEyes,True),EntityYaw(PlayerEyes,True),EntityRoll(PlayerEyes,True))
+  MoveEntity(Camera,0,0,-3.0)
+ EndIf
 
-		Local leg2:TMesh = CreateCylinder()
-		ScaleMesh    leg2, 0.08, 0.4, 0.08
-		PositionMesh leg2, +0.15, -0.4, 0		
-		EntityColor  leg2, 255,155,111
-		EntityParent leg2, Mesh
+ If(KeyDown(2)>0) 
+  Wireframe(True) 
+ Else 
+  Wireframe(False) 
+ EndIf 
 
-		Return mesh
-End Function
+ 'SetBuffer(BackBuffer())
+ RenderWorld() 
+
+ Flip(1) 
+
+Wend
+
+End
