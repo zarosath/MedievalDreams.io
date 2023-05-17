@@ -1,4 +1,4 @@
-# blitzmax-blitzKingdoms
+# blitzKingdoms
 Kingdoms where users make servers, create characters and play matches with randomly generated resources on the map
 
 
