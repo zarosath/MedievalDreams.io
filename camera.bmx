@@ -31,17 +31,19 @@ Function CameraFunction()
     EndIf
 EndIf
 If (cameracontrol = True)
+	HideMouse()
 Text 0,0,"camera control = true"
 	x_speed = ((MouseX()-GraphicsWidth()/2)-x_speed)/8+x_speed
 	y_speed = ((MouseY()-GraphicsHeight()/2)-y_speed)/8+y_speed
 	MoveMouse (GraphicsWidth()/2,GraphicsHeight()/2)
 	TurnEntity Pivot, 0, -x_speed , 0
-	'If Abs(EntityYaw(Camera) + y_speed)<45
-	    TurnEntity Camera, y_speed, 0 , 0
-	'EndIf
+	If Abs(EntityPitch(Camera) + y_speed)<30
+			TurnEntity Camera, y_speed, 0 , 0
+	EndIf
 	Else
-	Text 0,0,"cameracontrol = false"
-	RotateEntity Camera,0,0,0   ' RESETs the camera !!! 
+		ShowMouse()
+		Text 0,0,"cameracontrol = false"
+			RotateEntity Camera,0,0,0   ' RESETs the camera !!! 
 EndIf
 End Function
 
