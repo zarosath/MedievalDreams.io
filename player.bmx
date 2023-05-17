@@ -2,8 +2,9 @@
 Local Player:TMesh=LoadAnimMesh("Media/models/Player/player.b3d")
 ScaleEntity Player,1,1,1
 Global Pivot:TPivot=CreatePivot()
+
 EntityParent Player, Pivot
-'RotateEntity(player_Pivot, 180,180,180)
+RotateEntity(Player, 180,0,180)
 
 Local PlayerColliderYaw:Float = 0
 Local PlayerEyesPitch:Float = 0
