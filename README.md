@@ -4,4 +4,4 @@ Kingdoms where users make servers, create characters and play matches with rando
 
 Build & run main to run.
 
-TODO: add working camera system and player movement controls with gravity.
+TODO: add animations and gravity/jumping
