@@ -17,3 +17,4 @@ Local grass_tex:TTexture=LoadTexture( "Media/Zone/terrain_colormap.bmp" )
 EntityTexture terrain,grass_tex
 ScaleTexture grass_tex,1,1
 
+EntityType(terrain,GroupEnvironment)
