@@ -3,7 +3,7 @@ Local Player:TMesh=LoadAnimMesh("Media/models/Player/player.b3d")
 ScaleEntity Player,1,1,1
 Global Pivot:TPivot=CreatePivot()
 EntityType(pivot,GroupCharacters)
-EntityRadius(pivot, 0.01,0.01)
+EntityRadius(pivot, 0.00000000001,0.00000000001)
 
 
 EntityParent Player, Pivot
