@@ -17,7 +17,7 @@ Const GroupCharacters% = 2
 ' Light the world, todo;maybe put the lighting in bmx zone file. for now it is in main.
 Local light:TLight=CreateLight()
 RotateEntity light,90,0,0
-MoveEntity(pivot,14,1,-15)
+MoveEntity(pivot,14,0.02,-15)
 ' enable collisions
 Collisions(GroupCharacters,GroupEnvironment,2,2)
 
@@ -30,7 +30,7 @@ Collisions(GroupCharacters,GroupEnvironment,2,2)
 	If KeyDown( key_W )=True Then MoveEntity Pivot,0,1,0
 	If KeyDown( key_S )=True Then MoveEntity Pivot,0,-1,0
 	
-		If KeyHit(key_SPACE) And PlayerIsOnGround = False Then MoveEntity Pivot,0,5,0
+		If KeyHit(key_SPACE) And PlayerIsOnGround = True Then MoveEntity Pivot,0,15,0
 	
 If (KeyHit(KEY_R))
 Print EntityX(Pivot)
@@ -41,11 +41,15 @@ CameraFunction()
 Local WhoCollided:TEntity = EntityCollided(pivot,GroupEnvironment)
 If WhoCollided=terrain
      Print "Entity has collided with the terrain"
+PlayerIsOnGround = True
 Else
 
-Print "isnt colliding with anything"
+PlayerIsOnGround = False
+Print "player isnt colliding with anything"
 	EndIf
-	  PlayerVY = PlayerVY - 0.0025
+	
+	If PlayerIsOnGround = False
+	  PlayerVY = PlayerVY - 0.0015
   TranslateEntity(Pivot,PlayerVX,PlayerVY,PlayerVZ) 
   PlayerOldX = EntityX(pivot,True)
   PlayerOldZ = EntityZ(pivot,True)
@@ -54,7 +58,7 @@ Print "isnt colliding with anything"
   PlayerNewZ = EntityZ(pivot,True)
   PlayerVX = PlayerNewX - PlayerOldX
   PlayerVZ = PlayerNewZ - PlayerOldZ 
-
+EndIf
 	UpdateWorld
 	RenderWorld
 	Flip 1
