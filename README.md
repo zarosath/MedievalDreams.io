@@ -12,10 +12,12 @@ Markcwm & Si-Design (Simon Harrison) && contributors for openb3d and minib3d gam
   
 **users who have contributed**  
   
-Midimaster - for contributing portions of code and helping me to learn how stuff works or is done  
+**Midimaster** - for contributing portions of code and helping me to learn how stuff works or is done  
 
-GWRon - for explaining why portions of code didnt work as intended/ and explaining compile errors  
-
-RemiD for third person cam & gravity code reference/examples/snippet  
+**GWRon** - for explaining why portions of code didnt work as intended/ and explaining compile errors  
+  
+**Scaremonger**
+  
+**RemiD** for third person cam & gravity code reference/examples/snippet  
 
 and everyone who has contributed their code & time to the public helping others.
