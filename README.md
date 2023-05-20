@@ -4,7 +4,7 @@ Kingdoms where users make servers, create characters and play matches with rando
 It's a work in progress, right now im trying to implement many basic things to an online 3d third person rpg game.
 Build & run main to run.
 
-TODO: add animations and gravity/jumping
+TODO: add animations and networking
 
 
 
