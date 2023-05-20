@@ -19,7 +19,7 @@ Const GroupCharacters% = 2
 ' Light the world, todo;maybe put the lighting in bmx zone file. for now it is in main.
 Local light:TLight=CreateLight()
 RotateEntity light,90,0,0
-MoveEntity(pivot,14,0.00000000001,-15) ' lets move the player a little further onto the terrain. Todo: add general player spawn location
+MoveEntity(pivot,14,0.01,-15) ' lets move the player a little further onto the terrain. Todo: add general player spawn location
 
 
 ' debug entity landmark
@@ -33,10 +33,10 @@ Collisions(GroupCharacters,GroupEnvironment,2,2)
 
 	If KeyDown( KEY_RIGHT )=True Then TurnEntity Pivot,0,-1,0
 	If KeyDown( KEY_LEFT )=True Then TurnEntity Pivot,0,1,0
-	If KeyDown( KEY_DOWN )=True Then MoveEntity Pivot,0,0,-1
-	If KeyDown( KEY_UP )=True Then MoveEntity Pivot,0,0,1
-	If KeyDown( key_W )=True Then MoveEntity Pivot,0,1,0
-	If KeyDown( key_S )=True Then MoveEntity Pivot,0,-1,0
+	If KeyDown( KEY_DOWN )=True Then MoveEntity Pivot,0,0,-0.1
+	If KeyDown( KEY_UP )=True Then MoveEntity Pivot,0,0,0.1
+	If KeyDown( key_W )=True Then MoveEntity Pivot,0,0.1,0
+	If KeyDown( key_S )=True Then MoveEntity Pivot,0,-0.1,0
 	
 		If KeyDown(key_SPACE) And PlayerIsOnGround = True Then
 		Print EntityY(Pivot)
