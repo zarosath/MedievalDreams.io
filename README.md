@@ -21,6 +21,8 @@ Markcwm & Si-Design (Simon Harrison) && contributors for openb3d and minib3d gam
   
 **Scaremonger**
   
-**RemiD** for third person cam & gravity code reference/examples/snippet  
+**RemiD** for third person cam & gravity code reference/examples/code snippet  
 
+ **AXKuhta** / CameraFunctions.bmx gist code snippet for mouse functions etc.  
+ 
 and everyone who has contributed their time and code for helping others.
