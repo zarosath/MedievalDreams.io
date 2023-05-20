@@ -20,4 +20,4 @@ Markcwm & Si-Design (Simon Harrison) && contributors for openb3d and minib3d gam
   
 **RemiD** for third person cam & gravity code reference/examples/snippet  
 
-and everyone who has contributed their code & time to the public helping others.
+and everyone who has contributed their time and code for helping others.
