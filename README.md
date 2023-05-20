@@ -7,7 +7,7 @@ Build & run main to run.
 TODO: add animations and gravity/jumping
 
 ### Credits
-**Markcwm & Si-Design (Simon Harrison) && contributors for openb3d and minib3d game 3d engine wrapper**
+Markcwm & Si-Design (Simon Harrison) && contributors for openb3d and minib3d game 3d engine wrapper
   
   
 **users who have contributed**  
