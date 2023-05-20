@@ -16,6 +16,6 @@ RemiD for third person cam & gravity code reference/examples/snippet
 
 and everyone who has contributed their code & time to the public helping others.
 
-**Markcwm & Si-Design (Simon Harrison) && contributors for openb3d and minib3d game graphics engine library wrapper**
+**Markcwm & Si-Design (Simon Harrison) && contributors for openb3d and minib3d game 3d engine wrapper*
   
-Mark sibly & blitz research for b3d/blitzmax.
+###### Mark sibly & blitz research for b3d/blitzmax.
