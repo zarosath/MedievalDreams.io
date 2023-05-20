@@ -40,7 +40,7 @@ Collisions(GroupCharacters,GroupEnvironment,2,2)
 	
 		If KeyDown(key_SPACE) And PlayerIsOnGround = True Then
 		Print EntityY(Pivot)
-		 MoveEntity Pivot,0,10,0
+		 MoveEntity Pivot,0,20,0
 		Print EntityY(Pivot)
 			EndIf
 	
