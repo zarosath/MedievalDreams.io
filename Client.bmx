@@ -16,8 +16,8 @@ Const GroupEnvironment% = 1
 Const GroupCharacters% = 2
 
 Const GRAVITY:Float = 0.1
-Const  ENERGY:Float = 1.0
-Const  MOTION:Int   = 15 
+Const  ENERGY:Float = 1.5
+Const  MOTION:Int   = 25 
 Global YAcceleration:Float
 Global PlayerTime:Int
 Global playerjumped:Int
@@ -39,12 +39,12 @@ Collisions(GroupCharacters,GroupEnvironment,2,2)
 CameraFunction()
 
 
-	If KeyDown( KEY_RIGHT )=True Then TurnEntity Pivot,0,-1,0
-	If KeyDown( KEY_LEFT )=True Then TurnEntity Pivot,0,1,0
-	If KeyDown( KEY_DOWN )=True Then MoveEntity Pivot,0,0,-0.1
-	If KeyDown( KEY_UP )=True Then MoveEntity Pivot,0,0,0.1
-	If KeyDown( key_W )=True Then MoveEntity Pivot,0,0.1,0
-	If KeyDown( key_S )=True Then MoveEntity Pivot,0,-0.1,0
+	If KeyDown( KEY_D )=True Then TurnEntity Pivot,0,-1,0
+	If KeyDown( KEY_A )=True Then TurnEntity Pivot,0,1,0
+	If KeyDown( KEY_S )=True Then MoveEntity Pivot,0,0,-0.1
+	If KeyDown( KEY_W )=True Then MoveEntity Pivot,0,0,0.1
+	If KeyDown( key_UP )=True Then MoveEntity Pivot,0,0.1,0
+	If KeyDown( key_Down )=True Then MoveEntity Pivot,0,-0.1,0
 	
 		If KeyDown(key_SPACE) And PlayerIsOnGround = True Then
 		Print EntityY(Pivot)
