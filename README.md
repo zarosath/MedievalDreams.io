@@ -16,7 +16,7 @@ for explaining why portions of code didnt work as intended/ and explaining compi
 Markcwm & Si-Design (Simon Harrison) && contributors for openb3d and minib3d game 3d engine wrapper
   
   
-**users who have contributed**  
+**users who have contributed:**  
   
 Midimaster  
 
