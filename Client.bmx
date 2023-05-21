@@ -1,5 +1,5 @@
 Rem 
-		main client-side application
+		main client-side game application
 EndRem
 Strict
 
@@ -15,21 +15,29 @@ Include "createTerrain.bmx"
 Const GroupEnvironment% = 1
 Const GroupCharacters% = 2
 
+Const GRAVITY:Float = 0.1
+Const  ENERGY:Float = 1.0
+Const  MOTION:Int   = 15 
+Global YAcceleration:Float
+Global PlayerTime:Int
+Global playerjumped:Int
 
 ' Light the world, todo;maybe put the lighting in bmx zone file. for now it is in main.
 Local light:TLight=CreateLight()
 RotateEntity light,90,0,0
-MoveEntity(pivot,14,0.01,-15) ' lets move the player a little further onto the terrain. Todo: add general player spawn location
+MoveEntity(pivot,14,0.1,-15) ' lets move the player a little further onto the terrain. Todo: add general player spawn location
 
 
 ' debug entity landmark
 	Local c:TEntity = CreateCylinder()
 	ScaleEntity c, 0.2,10,0.2
    	PositionEntity c, 12,0.00000000001,-12
-' enable collisions
+' set collision
 Collisions(GroupCharacters,GroupEnvironment,2,2)
 
  Repeat
+CameraFunction()
+
 
 	If KeyDown( KEY_RIGHT )=True Then TurnEntity Pivot,0,-1,0
 	If KeyDown( KEY_LEFT )=True Then TurnEntity Pivot,0,1,0
@@ -40,37 +48,42 @@ Collisions(GroupCharacters,GroupEnvironment,2,2)
 	
 		If KeyDown(key_SPACE) And PlayerIsOnGround = True Then
 		Print EntityY(Pivot)
-		 MoveEntity Pivot,0,20,0
+		 'MoveEntity Pivot,0,20,0
+	YAcceleration=ENERGY
 		Print EntityY(Pivot)
 			EndIf
 	
-If (KeyHit(KEY_R))
+	If (KeyHit(KEY_R)) 'print coordinates for reference
 Print EntityX(Pivot)
 Print EntityY(Pivot)
 Print EntityZ(Pivot)
 EndIf
-CameraFunction()
+
+
+If  PlayerTime<MilliSecs() 'And YAcceleration<>0
+	PlayerTime = MilliSecs()+ MOTION
+	 	YAcceleration   = YAcceleration - GRAVITY
+	MoveEntity Pivot, 0,YAcceleration,0
+	Print EntityY(Pivot)
+	If EntityY(Pivot)<0
+		'  auto floor collision or:
+		 'PositionEntity Pivot, EntityX(Pivot), 0 , EntityZ(Pivot)
+		YAcceleration=0
+	EndIf
+EndIf
+
 Local WhoCollided:TEntity = EntityCollided(pivot,GroupEnvironment)
 If WhoCollided=terrain
-     'Print "Entity has collided with the terrain"
+     Print "Entity has collided with the terrain"
 PlayerIsOnGround = True
 Else
 
 PlayerIsOnGround = False
-'Print "player isnt colliding with anything"
+Print "player isnt colliding with anything"
 	EndIf
 	
-	If PlayerIsOnGround = False
-	  PlayerVY = PlayerVY - 0.0010
-  TranslateEntity(Pivot,PlayerVX,PlayerVY,PlayerVZ) 
-  PlayerOldX = EntityX(pivot,True)
-  PlayerOldZ = EntityZ(pivot,True)
+	
 
-  PlayerNewX = EntityX(pivot,True)
-  PlayerNewZ = EntityZ(pivot,True)
-  PlayerVX = PlayerNewX - PlayerOldX
-  PlayerVZ = PlayerNewZ - PlayerOldZ 
-EndIf
 	UpdateWorld
 	RenderWorld
 	Flip 1
