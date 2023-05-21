@@ -18,7 +18,7 @@ Markcwm & Si-Design (Simon Harrison) && contributors for openb3d and minib3d gam
   
 **users who have contributed**  
   
-**Midimaster*  
+**Midimaster**  
 
 **GWRon** 
   
