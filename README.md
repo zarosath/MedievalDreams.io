@@ -1,7 +1,7 @@
 # blitzKingdoms - MedievalDreams
 Kingdoms where users make servers, create characters and play matches with randomly generated resources on the map
 
-It's a work in progress, right now im trying to implement many basic things to an online 3d third person rpg game.
+It's a work in progress, right now im trying to implement many basic things.
 Build & run main to run.
 
 TODO: add animations and networking
