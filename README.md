@@ -10,14 +10,16 @@ TODO: add animations and networking
 
 
 ### Credits
+for contributing portions of code and helping me to learn how stuff works or is done
+for explaining why portions of code didnt work as intended/ and explaining compile errors 
 Markcwm & Si-Design (Simon Harrison) && contributors for openb3d and minib3d game 3d engine wrapper
   
   
 **users who have contributed**  
   
-**Midimaster** - for contributing portions of code and helping me to learn how stuff works or is done  
+**Midimaster*  
 
-**GWRon** - for explaining why portions of code didnt work as intended/ and explaining compile errors  
+**GWRon** 
   
 **Scaremonger**
   
