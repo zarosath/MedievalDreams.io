@@ -25,7 +25,7 @@ Global playerjumped:Int
 ' Light the world, todo;maybe put the lighting in bmx zone file. for now it is in main.
 Local light:TLight=CreateLight()
 RotateEntity light,90,0,0
-MoveEntity(pivot,14,0.1,-15) ' lets move the player a little further onto the terrain. Todo: add general player spawn location
+MoveEntity(pivot,14,0.2,-15) ' lets move the player a little further onto the terrain. Todo: add general player spawn location
 
 
 ' debug entity landmark
