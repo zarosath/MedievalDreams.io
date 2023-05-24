@@ -4,6 +4,70 @@ Import BRL.GNet
 
 ' This is the main server API for the game client
 
+AppTitle="GNet Server Example"
+Graphics 640,480,0,80
+
+Global Host:TGNetHost=CreateGNetHost()
+
+
+If Host
+   Print "Host created."
+Else
+   Print "Couldnt create host."
+EndIf
+
+Global player1:TGNetObject = CreateGNetObject(Host)
+
+Local player_x:Int=0
+Local player_y:Int=0
+
+Const GNET_PLAYER_X:Int=0
+Const GNET_PLAYER_Y:Int=1
+
+
+
+
+Global erfolg:Int =GNetListen(Host,12345)
+
+If erfolg
+   Print "Server listening on Port 12345"
+Else
+   Print "Could not bind socket."
+EndIf
+
+While Not KeyDown(KEY_ESCAPE)
+   Cls
+   GNetSync(Host)
+  
+   'If (GNetAccept(Host))
+   '   Print "Ein Client will sich verbinden"
+     
+     
+   'End If
+  
+   player_x=MouseX()
+   player_y=MouseY()
+  
+   SetGNetFloat player1,GNET_PLAYER_X,player_x
+   SetGNetFloat player1,GNET_PLAYER_Y,player_y
+
+   For Local obj:TGNetObject=EachIn GNetObjects( host,GNET_ALL )
+      If obj=player1
+         DrawText "Me",player_x,player_y
+      Else
+         DrawText "Him",GetGNetFloat(obj,GNET_PLAYER_X),GetGNetFloat(obj,GNET_PLAYER_Y)
+      EndIf
+   Next
+  
+   Flip
+   'FlushMem()
+Wend
+
+
+CloseGNetHost(Host)
+Print "Server Shut down" 
+
+Rem
 ' Create a new host. We call it listen because that's what it does
 Local listen:TGNetHost = CreateGNetHost()
 
@@ -69,3 +133,5 @@ Wend
 
 Local Command:String = Input("Server> "+ "Emter Command (--help for list of commands ")
 Print "Hello "+command
+
+End Rem

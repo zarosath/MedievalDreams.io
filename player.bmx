@@ -12,8 +12,10 @@ Local PlayerIsOnGround:Int
 
 Type TPlayer
 
-Field x
-Field y
+Field x: Float
+Field y: Float
+Field PlayerIsOnGround:Int
+Field YAcceleration:Float
 Field playerentity:TEntity = CopyEntity(Player)
 
 End Type
