@@ -27,9 +27,9 @@ Const GNET_PLAYER_Y:Int=1
 
 
 
-Global erfolg:Int =GNetListen(Host,12345)
+Global listen:Int =GNetListen(Host,12345)
 
-If erfolg
+If listen
    Print "Server listening on Port 12345"
 Else
    Print "Could not bind socket."
@@ -48,15 +48,15 @@ While Not KeyDown(KEY_ESCAPE)
    player_x=MouseX()
    player_y=MouseY()
   
-   SetGNetFloat player1,GNET_PLAYER_X,player_x
-   SetGNetFloat player1,GNET_PLAYER_Y,player_y
+   'SetGNetFloat player1,GNET_PLAYER_X,player_x
+   'SetGNetFloat player1,GNET_PLAYER_Y,player_y
 
    For Local obj:TGNetObject=EachIn GNetObjects( host,GNET_ALL )
-      If obj=player1
-         DrawText "Me",player_x,player_y
-      Else
-         DrawText "Him",GetGNetFloat(obj,GNET_PLAYER_X),GetGNetFloat(obj,GNET_PLAYER_Y)
-      EndIf
+      'If obj=player1
+         'DrawText "Me",player_x,player_y
+      'Else
+         'DrawText "Him",GetGNetFloat(obj,GNET_PLAYER_X),GetGNetFloat(obj,GNET_PLAYER_Y)
+      'EndIf
    Next
   
    Flip

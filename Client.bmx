@@ -4,7 +4,7 @@ EndRem
 Strict
 
 Framework openb3d.b3dglgraphics
-
+Import Brl.Gnet
 Graphics3D 800,600, 0, 3
 
 Include "player.bmx"
@@ -27,6 +27,23 @@ Local light:TLight=CreateLight()
 RotateEntity light,90,0,0
 MoveEntity(pivot,14,0.2,-15) ' lets move the player a little further onto the terrain. Todo: add general player spawn location
 
+Global Host:TGNetHost=CreateGNetHost()
+
+Global LocalPlayer:TGNetObject=CreateGNetObject(Host)
+
+If Host
+   Print "Host created."
+Else
+   Print "Couldnt create local host."
+EndIf
+If(Client = True) Then Print "Host has connected to the server successfully"
+
+Const GNET_PLAYER_X:Int=0
+Const GNET_PLAYER_Y:Int=1
+
+
+
+Global Client:Int = GNetConnect(Host,"localhost",12345)
 
 ' debug entity landmark
 	Local c:TEntity = CreateCylinder()
@@ -35,8 +52,14 @@ MoveEntity(pivot,14,0.2,-15) ' lets move the player a little further onto the te
 ' set collision
 Collisions(GroupCharacters,GroupEnvironment,2,2)
 
- Repeat
+Repeat
+
+If(Client = False)
+ Print"Host was not able to connect to server"
+Exit
+EndIf
 CameraFunction()
+
 
 
 	If KeyDown( KEY_D )=True Then TurnEntity Pivot,0,-1,0
@@ -48,8 +71,7 @@ CameraFunction()
 	
 		If KeyDown(key_SPACE) And PlayerIsOnGround = True Then
 		Print EntityY(Pivot)
-		 'MoveEntity Pivot,0,20,0
-	YAcceleration=ENERGY
+					YAcceleration=ENERGY
 		Print EntityY(Pivot)
 			EndIf
 	
@@ -74,23 +96,22 @@ EndIf
 
 Local WhoCollided:TEntity = EntityCollided(pivot,GroupEnvironment)
 If WhoCollided=terrain
-     Print "Entity has collided with the terrain"
+     'Print "Entity has collided with the terrain"
 PlayerIsOnGround = True
 Else
 
 PlayerIsOnGround = False
-Print "player isnt colliding with anything"
+'Print "player isnt colliding with anything"
 	EndIf
 	
-	
+	'Flip
 
 	UpdateWorld
 	RenderWorld
-	Flip 1
 
 'Text 0,0,"Use cursor keys to move about the terrain"
 
-Flip
+
 
 
 Until AppTerminate() Or KeyHit(KEY_ESCAPE) 
