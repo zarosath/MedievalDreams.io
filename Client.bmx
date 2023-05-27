@@ -36,15 +36,18 @@ If Host
 Else
    Print "Couldnt create local host."
 EndIf
-If(Client = True) Then Print "Host has connected to the server successfully"
+'If(Client = True) Then Print "Host has connected to the server successfully"
 
 Const GNET_PLAYER_X:Int=0
 Const GNET_PLAYER_Y:Int=1
 
 
 
-Global Client:Int = GNetConnect(Host,"localhost",12345)
-
+'Global Client:Int = GNetConnect(Host,"localhost",12345)
+'If(Client = False)
+ 'Print"Host was not able to connect to server"
+'Exit
+'EndIf
 ' debug entity landmark
 	Local c:TEntity = CreateCylinder()
 	ScaleEntity c, 0.2,10,0.2
@@ -54,10 +57,7 @@ Collisions(GroupCharacters,GroupEnvironment,2,2)
 
 Repeat
 
-If(Client = False)
- Print"Host was not able to connect to server"
-Exit
-EndIf
+
 CameraFunction()
 
 
@@ -70,9 +70,9 @@ CameraFunction()
 	If KeyDown( key_Down )=True Then MoveEntity Pivot,0,-0.1,0
 	
 		If KeyDown(key_SPACE) And PlayerIsOnGround = True Then
-		Print EntityY(Pivot)
+		'Print EntityY(Pivot)
 					YAcceleration=ENERGY
-		Print EntityY(Pivot)
+		'Print EntityY(Pivot)
 			EndIf
 	
 	If (KeyHit(KEY_R)) 'print coordinates for reference
@@ -86,7 +86,7 @@ If  PlayerTime<MilliSecs() 'And YAcceleration<>0
 	PlayerTime = MilliSecs()+ MOTION
 	 	YAcceleration   = YAcceleration - GRAVITY
 	MoveEntity Pivot, 0,YAcceleration,0
-	Print EntityY(Pivot)
+	'Print EntityY(Pivot)
 	If EntityY(Pivot)<0
 		'  auto floor collision or:
 		 'PositionEntity Pivot, EntityX(Pivot), 0 , EntityZ(Pivot)
@@ -104,7 +104,7 @@ PlayerIsOnGround = False
 'Print "player isnt colliding with anything"
 	EndIf
 	
-	'Flip
+	Flip
 
 	UpdateWorld
 	RenderWorld
