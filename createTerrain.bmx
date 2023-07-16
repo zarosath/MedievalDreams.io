@@ -10,7 +10,7 @@ PositionEntity(terrain,0,0,0)
 'TerrainDetail terrain,4000
 
 ' Scale terrain
-'ScaleEntity terrain,1,1,1
+ScaleEntity terrain,1,1,1
 
 ' Texture terrain
 Local grass_tex:TTexture=LoadTexture( "Media/Zone/terrain_colormap.bmp" )

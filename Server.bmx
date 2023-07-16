@@ -1,6 +1,7 @@
 Strict
 Import BRL.StandardIO
 Import BRL.GNet
+'Import "Player.bmx"
 
 ' This is the main server API for the game client
 
@@ -15,8 +16,6 @@ If Host
 Else
    Print "Couldnt create host."
 EndIf
-
-Global player1:TGNetObject = CreateGNetObject(Host)
 
 Local player_x:Int=0
 Local player_y:Int=0
