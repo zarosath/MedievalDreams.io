@@ -8,14 +8,14 @@ Import Brl.Gnet
 
 Graphics3D 800,600, 0, 3
 
+Include "createTerrain.bmx"
 Include "player.bmx"
 Include "camera.bmx"
-Include "createTerrain.bmx"
 Include "gnet.bmx"
 
 'variables
-Const GroupEnvironment% = 1
-Const GroupCharacters% = 2
+Const GroupEnvironment% = 2
+Const GroupCharacters% = 3
 
 Const GRAVITY:Float = 0.1
 Const  ENERGY:Float = 1.5

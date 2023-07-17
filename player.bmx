@@ -7,7 +7,7 @@ EntityType(pivot,GroupCharacters)
 
 Type TPlayer
 
-	Global all:TList = New TList
+	'Global all:TList = New TList
 
 Field Username:String
 Field x: Float
@@ -18,26 +18,42 @@ Field playerentity:TEntity = CopyEntity(Playermodel)
 
     Field GObj:TGNetObject
 
+
+
+	Global All:TList=New TList
+
     Function Addme:TPlayer(Name:String)
         Local loc:TPlayer = New TPlayer
 
 	ScaleEntity loc.playerentity,1,1,1
-			EntityRadius(pivot, 0.00000000002,0.00000000002)
+			EntityRadius(pivot, 0.01,0.01)
 
 		EntityParent loc.playerentity, Pivot
 			RotateEntity(loc.playerentity, 180,0,180)
 			
         loc.GObj = CreateGNetObject(Host)
+      loc.Username=Name
         all.AddLast loc
         Return loc
     End Function
 
     Function Addplayer(Obj:TGNetObject)
         Local loc:TPlayer = New TPlayer
-'ShowEntity(loc.playerentity)
         loc.GObj = Obj
         All.AddLast loc
     End Function
+
+   Function ClientHasClosed(Obj:TGnetObject)
+      For Local loc:TPlayer = EachIn All
+         If loc.GObj=Obj
+			loc.Delete()
+			FreeEntity(loc.playerentity)
+            All.Remove loc
+         EndIf
+      Next
+   End Function
+
+
 End Type
 
 Function ScanGnet()
@@ -47,9 +63,7 @@ Function ScanGnet()
     Next
     DrawText "TPlayers:" + TPlayer.All.Count() , 30,130
 
-    For Local obj:TGNetObject=EachIn GNetObjects( host, GNET_CLOSED )
-       If (Tplayer.All.Contains(obj))
-tplayer.All.remove(obj)
-EndIf
-    Next
+		For Local obj:TGNetObject=EachIn GNetObjects( host, GNET_CLOSED )
+		TPlayer.ClientHasClosed(obj)
+	Next
 End Function
