@@ -26,6 +26,7 @@ Global playerjumped:Int
 
 						' network objects
 						Global Host:TGNetHost=CreateGNetHost()
+						Global Client:Int = GNetConnect(Host,"localhost",12345)
 						Global localplayer:TPlayer = TPlayer.AddMe("client")
 						
 ' Light the world, todo;maybe put the lighting in bmx zone file. for now it is in main.
@@ -43,9 +44,6 @@ EndIf
 Const GNET_PLAYER_X:Int=0
 Const GNET_PLAYER_Y:Int=1
 
-
-'Connect to to the server
-Global Client:Int = GNetConnect(Host,"localhost",12345)
 If(Client = True)
 Print "Host has connected to the server successfully"
 	Else
@@ -115,11 +113,10 @@ Else
 PlayerIsOnGround = False
 'Print "player isnt colliding with anything"
 	EndIf
-	
-	Flip
 
 	UpdateWorld
 	RenderWorld
+		Flip
 
 'Text 0,0,"Use cursor keys to move about the terrain"
 

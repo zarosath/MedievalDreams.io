@@ -46,7 +46,6 @@ Field playerentity:TEntity = CopyEntity(Playermodel)
    Function ClientHasClosed(Obj:TGnetObject)
       For Local loc:TPlayer = EachIn All
          If loc.GObj=Obj
-			loc.Delete()
 			FreeEntity(loc.playerentity)
             All.Remove loc
          EndIf
