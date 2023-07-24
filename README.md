@@ -1,4 +1,4 @@
-# blitzKingdoms - MedievalDreams
+# BlitzHope - MedievalDreams
 Kingdoms where users make servers, create characters and play matches with randomly generated resources on the map
 
 It's a work in progress, right now im trying to implement many basic things.
