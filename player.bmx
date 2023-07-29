@@ -41,6 +41,8 @@ Field playerentity:TEntity = CopyEntity(Playermodel)
         Local loc:TPlayer = New TPlayer
         loc.GObj = Obj
         All.AddLast loc
+				MoveEntity(loc.playerentity,14,0.2,-15) ' default spawn location
+
     End Function
 
    Function ClientHasClosed(Obj:TGnetObject)
@@ -52,17 +54,10 @@ Field playerentity:TEntity = CopyEntity(Playermodel)
       Next
    End Function
 
+Method movePLayer (Player:TPlayer, x:Float,y:Float,z:Float)
+If Player = localplayer Then Return
+End Method
+
 
 End Type
 
-Function ScanGnet()
-    ' find new
-    For Local obj:TGNetObject=EachIn GNetObjects( host, GNET_CREATED )
-       TPlayer.Addplayer obj
-    Next
-    DrawText "TPlayers:" + TPlayer.All.Count() , 30,130
-
-		For Local obj:TGNetObject=EachIn GNetObjects( host, GNET_CLOSED )
-		TPlayer.ClientHasClosed(obj)
-	Next
-End Function

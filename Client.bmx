@@ -24,11 +24,12 @@ Global YAcceleration:Float
 Global PlayerTime:Int
 Global playerjumped:Int
 
-						' network objects
+						' instance of network objects
 						Global Host:TGNetHost=CreateGNetHost()
-						Global Client:Int = GNetConnect(Host,"localhost",12345)
-						Global localplayer:TPlayer = TPlayer.AddMe("client")
-						
+						Global Client:Int = GNetConnect(Host,"localhost",12345)						
+					Global localplayer:TPlayer = TPlayer.AddMe("client")
+
+
 ' Light the world, todo;maybe put the lighting in bmx zone file. for now it is in main.
 Local light:TLight=CreateLight()
 RotateEntity light,90,0,0
@@ -48,6 +49,8 @@ If(Client = True)
 Print "Host has connected to the server successfully"
 	Else
 				Print"Host was not able to connect to server"
+				CloseGNetHost(Host)
+Print "host closed"
 			Return
 	EndIf
 	
@@ -68,8 +71,6 @@ CameraFunction()
    GNetSync(Host)
 	ScanGnet()
 
-
-
 	If KeyDown( KEY_D )=True Then MoveEntity Pivot,0.1,0,0
 	If KeyDown( KEY_A )=True Then MoveEntity Pivot,-0.1,0,0
 	If KeyDown( KEY_S )=True Then MoveEntity Pivot,0,0,-0.1
@@ -88,7 +89,6 @@ Print EntityX(Pivot)
 Print EntityY(Pivot)
 Print EntityZ(Pivot)
 EndIf
-
 
 
 ' Gravity and jumping function
@@ -113,7 +113,11 @@ Else
 PlayerIsOnGround = False
 'Print "player isnt colliding with anything"
 	EndIf
-
+	
+	'get and set gnet player coordinates
+			SetGNetFloat(LocalPlayer.gobj,1,EntityX(localplayer.playerentity))
+	
+	
 	UpdateWorld
 	RenderWorld
 		Flip
