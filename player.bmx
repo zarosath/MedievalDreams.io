@@ -10,13 +10,13 @@ Type TPlayer
 	'Global all:TList = New TList
 
 Field Username:String
-Field x: Float
+'Field x: Float
 Field y: Float
 Field PlayerIsOnGround:Int
 Field YAcceleration:Float
 Field playerentity:TEntity = CopyEntity(Playermodel)
 
-    Field GObj:TGNetObject
+Field GObj:TGNetObject
 
 
 
@@ -60,6 +60,9 @@ Method movePLayer (Player:TPlayer, x:Float,y:Float,z:Float)
 If Player = localplayer Then Return
 End Method
 
+    Method X:Int()
+        Return GetGNetInt(GObj,1)
+    End Method
 
 End Type
 
