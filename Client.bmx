@@ -115,7 +115,7 @@ PlayerIsOnGround = False
 	EndIf
 	
 	'get and set gnet player coordinates
-			SetGNetFloat(LocalPlayer.gobj,1,EntityX(localplayer.playerentity))
+		SetGNetFloat(LocalPlayer.Gobj,1,EntityX(localplayer.playerentity))
 	
 	
 	UpdateWorld

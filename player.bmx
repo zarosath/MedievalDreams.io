@@ -42,6 +42,8 @@ Field playerentity:TEntity = CopyEntity(Playermodel)
         loc.GObj = Obj
         All.AddLast loc
 				MoveEntity(loc.playerentity,14,0.2,-15) ' default spawn location
+					RotateEntity(loc.playerentity, 180,0,180)
+						ScaleEntity loc.playerentity,1,1,1
 
     End Function
 
