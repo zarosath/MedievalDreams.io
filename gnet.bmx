@@ -11,16 +11,16 @@ Function ScanGnet()
 	
 	For Local obj:tgnetobject=EachIn GNetObjects(Host, GNET_MODIFIED)
 			      For Local loc:TPlayer = EachIn TPlayer.All
-         If loc.GObj=obj
-			If obj != loc.GObj
-				Local newx:Float = EntityX(loc.playerentity) - loc.X()
-								Print newx
-				MoveEntity(loc.playerentity,newx,EntityY(loc.playerentity),EntityZ(loc.playerentity))
+         If Localplayer.GObj=obj
+			Return
+				Else
+					Local newx:Float = EntityX(loc.playerentity) - loc.X()
+							Print newx
+						MoveEntity(loc.playerentity,newx,EntityY(loc.playerentity),EntityZ(loc.playerentity))
 
 				'loc.y
 				'loc.
          EndIf
-			EndIf
       Next
 	Next
 End Function
