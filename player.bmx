@@ -60,8 +60,8 @@ Method movePLayer (Player:TPlayer, x:Float,y:Float,z:Float)
 If Player = localplayer Then Return
 End Method
 
-    Method X:Int()
-        Return GetGNetInt(GObj,1)
+    Method X:Float()
+        Return GetGNetFloat(GObj,1)
     End Method
 
 End Type
