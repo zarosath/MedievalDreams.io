@@ -44,9 +44,6 @@ While Not KeyDown(KEY_ESCAPE)
      
    'End If
   
-   player_x=MouseX()
-   player_y=MouseY()
-  
    'SetGNetFloat player1,GNET_PLAYER_X,player_x
    'SetGNetFloat player1,GNET_PLAYER_Y,player_y
 
