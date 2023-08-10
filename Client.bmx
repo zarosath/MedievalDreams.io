@@ -73,7 +73,10 @@ CameraFunction()
 
 	If KeyDown( KEY_D )=True Then MoveEntity Pivot,0.1,0,0
 	If KeyDown( KEY_S )=True Then MoveEntity Pivot,0,0,-0.1
-	If KeyDown( KEY_W )=True Then MoveEntity Pivot,0,0,0.1 		SetGNetFloat(LocalPlayer.GObj,1,EntityX(localplayer.playerentity))
+	If KeyDown( KEY_W )=True 
+			MoveEntity Pivot,0,0,0.1
+				SetGNetFloat(LocalPlayer.GObj,1,EntityX(localplayer.playerentity))
+		endif
 	If KeyDown( key_UP )=True Then MoveEntity Pivot,0,0.1,0
 	If KeyDown( key_Down )=True Then MoveEntity Pivot,0,-0.1,0
 	
