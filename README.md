@@ -1,10 +1,9 @@
-# BlitzHope - MedievalDreams
-Kingdoms where users make servers, create characters and play matches with randomly generated resources on the map
+# Medieval Kingdom hope - MedievalDreams
+Game Servers when users make servers, create characters and play matches of medieval Kingdom Fiefdom fantasy
 
-It's a work in progress, right now im trying to implement many basic things.
-Build & run main to run.
+Blitz Indie Style, work in progress.
 
-TODO: add animations and networking
+Attempting to impliment networking 10/8/23
 
 
 
