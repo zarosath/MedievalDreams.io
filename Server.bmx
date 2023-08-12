@@ -7,7 +7,7 @@ Import BRL.GNet
 
 AppTitle="GNet Server Example"
 Graphics 640,480,0,80
-
+debugstop
 Global Host:TGNetHost=CreateGNetHost()
 
 

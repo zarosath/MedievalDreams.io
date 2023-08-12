@@ -41,7 +41,7 @@ Field GObj:TGNetObject
         Local loc:TPlayer = New TPlayer
         loc.GObj = Obj
         All.AddLast loc
-				MoveEntity(loc.playerentity,14,0.2,-15) ' default spawn location
+				PositionEntity(loc.playerentity,14,0.2,-15) ' default spawn location
 					RotateEntity(loc.playerentity, 180,0,180)
 						ScaleEntity loc.playerentity,1,1,1
 
