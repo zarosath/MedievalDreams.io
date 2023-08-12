@@ -44,6 +44,7 @@ EntityType(loc.pivot,GroupCharacters)
         loc.GObj = Obj
         All.AddLast loc
 EntityType(loc.pivot,GroupCharacters)
+			EntityRadius(loc.pivot, 0.1,0.1)
 		EntityParent loc.playerentity, loc.Pivot
 					RotateEntity(loc.playerentity, 180,0,180)
 						ScaleEntity loc.playerentity,1,1,1
