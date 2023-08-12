@@ -13,7 +13,7 @@ Function ScanGnet()
 			      For Local loc:TPlayer = EachIn TPlayer.All
 						If loc.GObj=obj
 							Print loc.X()
-						positionEntity(loc.playerentity,loc.X(),GetGNetFloat(loc.GObj,2),GetGNetFloat(loc.GObj,3))
+						PositionEntity(loc.pivot,GetGNetFloat(loc.GObj,1),GetGNetFloat(loc.GObj,2),GetGNetFloat(loc.GObj,3))
 
 				'loc.y
 				'loc.

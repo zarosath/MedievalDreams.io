@@ -2,8 +2,7 @@
 Global Playermodel:TMesh=LoadAnimMesh("Media/models/Player/player.b3d")
 HideEntity Playermodel
 Local PlayerIsOnGround:Int
-Global Pivot:TPivot=CreatePivot()
-EntityType(pivot,GroupCharacters)
+'EntityType(pivot,GroupCharacters)
 
 Type TPlayer
 
@@ -11,10 +10,11 @@ Type TPlayer
 
 Field Username:String
 'Field x: Float
-Field y: Float
+'Field y: Float
 Field PlayerIsOnGround:Int
 Field YAcceleration:Float
 Field playerentity:TEntity = CopyEntity(Playermodel)
+Field Pivot:TPivot=CreatePivot()
 
 Field GObj:TGNetObject
 
@@ -26,10 +26,11 @@ Field GObj:TGNetObject
         Local loc:TPlayer = New TPlayer
 
 	ScaleEntity loc.playerentity,1,1,1
-			EntityRadius(pivot, 0.01,0.01)
+			EntityRadius(loc.pivot, 0.01,0.01)
 
-		EntityParent loc.playerentity, Pivot
+		EntityParent loc.playerentity, loc.Pivot
 			RotateEntity(loc.playerentity, 180,0,180)
+						PositionEntity(loc.Pivot,14,0.2,-15) ' default spawn location
 			
         loc.GObj = CreateGNetObject(Host)
       loc.Username=Name
@@ -41,7 +42,8 @@ Field GObj:TGNetObject
         Local loc:TPlayer = New TPlayer
         loc.GObj = Obj
         All.AddLast loc
-				PositionEntity(loc.playerentity,14,0.2,-15) ' default spawn location
+		EntityParent loc.playerentity, loc.Pivot
+				PositionEntity(loc.Pivot,14,0.2,-15) ' default spawn location
 					RotateEntity(loc.playerentity, 180,0,180)
 						ScaleEntity loc.playerentity,1,1,1
 

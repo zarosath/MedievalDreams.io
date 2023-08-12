@@ -10,7 +10,6 @@ Graphics3D 800,600, 0, 3
 
 Include "createTerrain.bmx"
 Include "player.bmx"
-Include "camera.bmx"
 Include "PlayerNet.bmx"
 
 'variables
@@ -29,11 +28,10 @@ Global playerjumped:Int
 						Global Client:Int = GNetConnect(Host,"localhost",12345)						
 					Global localplayer:TPlayer = TPlayer.AddMe("client")
 
-
+Include "camera.bmx"
 ' Light the world, todo;maybe put the lighting in bmx zone file. for now it is in main.
 Local light:TLight=CreateLight()
 RotateEntity light,90,0,0
-PositionEntity(pivot,14,0.2,-15) ' lets move the player a little further onto the terrain. Todo: add general player spawn location
 
 If Host
    Print "Host created."
@@ -69,16 +67,15 @@ CameraFunction()
 
    GNetSync(Host)
 	ScanGnet()
-				SetGNetFloat(LocalPlayer.GObj,1,EntityX(localplayer.playerentity))
-				SetGNetFloat(LocalPlayer.GObj,2,EntityY(localplayer.playerentity))
-				SetGNetFloat(LocalPlayer.GObj,3,EntityZ(localplayer.playerentity))
-				
-	If KeyDown( KEY_D )=True Then MoveEntity Pivot,0.1,0,0
-	If KeyDown( KEY_S )=True Then MoveEntity Pivot,0,0,-0.1
-	If KeyDown( KEY_A )=True Then MoveEntity Pivot,-0.1,0,0
-	If KeyDown( KEY_W )=True Then MoveEntity Pivot,0,0,0.1
-	If KeyDown( key_UP )=True Then MoveEntity Pivot,0,0.1,0
-	If KeyDown( key_Down )=True Then MoveEntity Pivot,0,-0.1,0
+				SetGNetFloat(LocalPlayer.GObj,1,EntityX(localplayer.pivot))
+				SetGNetFloat(LocalPlayer.GObj,2,EntityY(localplayer.pivot))
+				SetGNetFloat(LocalPlayer.GObj,3,EntityZ(localplayer.pivot))
+	If KeyDown( KEY_D )=True Then MoveEntity localplayer.Pivot,0.1,0,0
+	If KeyDown( KEY_S )=True Then MoveEntity localplayer.Pivot,0,0,-0.1
+	If KeyDown( KEY_A )=True Then MoveEntity localplayer.Pivot,-0.1,0,0
+	If KeyDown( KEY_W )=True Then MoveEntity localplayer.Pivot,0,0,0.1
+	If KeyDown( key_UP )=True Then MoveEntity localplayer.Pivot,0,0.1,0
+	If KeyDown( key_Down )=True Then MoveEntity localplayer.Pivot,0,-0.1,0
 	
 		If KeyDown(key_SPACE) And PlayerIsOnGround = True Then
 		'Print EntityY(Pivot)
@@ -87,9 +84,9 @@ CameraFunction()
 			EndIf
 	
 	If (KeyHit(KEY_R)) 'print coordinates for reference
-Print EntityX(Pivot)
-Print EntityY(Pivot)
-Print EntityZ(Pivot)
+Print EntityX(localplayer.playerentity)
+Print EntityY(localplayer.playerentity)
+Print EntityZ(localplayer.playerentity)
 EndIf
 
 
@@ -97,16 +94,16 @@ EndIf
 If  PlayerTime<MilliSecs() 'And YAcceleration<>0
 	PlayerTime = MilliSecs()+ MOTION
 	 	YAcceleration = YAcceleration - GRAVITY
-	MoveEntity Pivot, 0,YAcceleration,0
+	MoveEntity localplayer.Pivot, 0,YAcceleration,0
 	'Print EntityY(Pivot)
-	If EntityY(Pivot)<0.01
+	If EntityY(localplayer.Pivot)<0.01
 		'  auto floor collision or:
-		 PositionEntity Pivot, EntityX(Pivot), 0 , EntityZ(Pivot)
+		 PositionEntity localplayer.Pivot, EntityX(localplayer.Pivot), 0 , EntityZ(localplayer.Pivot)
 		YAcceleration=0
 	EndIf
 EndIf
 
-Local WhoCollided:TEntity = EntityCollided(pivot,GroupEnvironment)
+Local WhoCollided:TEntity = EntityCollided(localplayer.pivot,GroupEnvironment)
 If WhoCollided=terrain
      'Print "Entity has collided with the terrain"
 PlayerIsOnGround = True
