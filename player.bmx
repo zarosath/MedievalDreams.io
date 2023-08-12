@@ -56,7 +56,7 @@ Field GObj:TGNetObject
       Next
    End Function
 
-Method movePLayer (Player:TPlayer, x:Float,y:Float,z:Float)
+Method movePlayer (Player:TPlayer, x:Float,y:Float,z:Float)
 If Player = localplayer Then Return
 End Method
 

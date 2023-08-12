@@ -99,9 +99,9 @@ If  PlayerTime<MilliSecs() 'And YAcceleration<>0
 	 	YAcceleration = YAcceleration - GRAVITY
 	MoveEntity Pivot, 0,YAcceleration,0
 	'Print EntityY(Pivot)
-	If EntityY(Pivot)<0
+	If EntityY(Pivot)<0.01
 		'  auto floor collision or:
-		 'PositionEntity Pivot, EntityX(Pivot), 0 , EntityZ(Pivot)
+		 PositionEntity Pivot, EntityX(Pivot), 0 , EntityZ(Pivot)
 		YAcceleration=0
 	EndIf
 EndIf
