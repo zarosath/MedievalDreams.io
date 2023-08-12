@@ -70,6 +70,9 @@ CameraFunction()
 				SetGNetFloat(LocalPlayer.GObj,1,EntityX(localplayer.pivot))
 				SetGNetFloat(LocalPlayer.GObj,2,EntityY(localplayer.pivot))
 				SetGNetFloat(LocalPlayer.GObj,3,EntityZ(localplayer.pivot))
+				SetGNetFloat(localplayer.GObj,4,EntityPitch(localplayer.pivot))
+								SetGNetFloat(localplayer.GObj,5,EntityYaw(localplayer.pivot))
+								SetGNetFloat(localplayer.GObj,6,EntityRoll(localplayer.pivot))
 	If KeyDown( KEY_D )=True Then MoveEntity localplayer.Pivot,0.1,0,0
 	If KeyDown( KEY_S )=True Then MoveEntity localplayer.Pivot,0,0,-0.1
 	If KeyDown( KEY_A )=True Then MoveEntity localplayer.Pivot,-0.1,0,0
@@ -78,15 +81,13 @@ CameraFunction()
 	If KeyDown( key_Down )=True Then MoveEntity localplayer.Pivot,0,-0.1,0
 	
 		If KeyDown(key_SPACE) And PlayerIsOnGround = True Then
-		'Print EntityY(Pivot)
 					YAcceleration=ENERGY
-		'Print EntityY(Pivot)
 			EndIf
 	
 	If (KeyHit(KEY_R)) 'print coordinates for reference
-Print EntityX(localplayer.playerentity)
-Print EntityY(localplayer.playerentity)
-Print EntityZ(localplayer.playerentity)
+Print EntityX(localplayer.pivot)
+Print EntityY(localplayer.pivot)
+Print EntityZ(localplayer.pivot)
 EndIf
 
 
@@ -96,9 +97,9 @@ If  PlayerTime<MilliSecs() 'And YAcceleration<>0
 	 	YAcceleration = YAcceleration - GRAVITY
 	MoveEntity localplayer.Pivot, 0,YAcceleration,0
 	'Print EntityY(Pivot)
-	If EntityY(localplayer.Pivot)<0.01
+	If EntityY(localplayer.Pivot)<0
 		'  auto floor collision or:
-		 PositionEntity localplayer.Pivot, EntityX(localplayer.Pivot), 0 , EntityZ(localplayer.Pivot)
+		 'PositionEntity localplayer.Pivot, EntityX(localplayer.Pivot), 1 , EntityZ(localplayer.Pivot)
 		YAcceleration=0
 	EndIf
 EndIf

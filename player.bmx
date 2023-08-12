@@ -2,7 +2,6 @@
 Global Playermodel:TMesh=LoadAnimMesh("Media/models/Player/player.b3d")
 HideEntity Playermodel
 Local PlayerIsOnGround:Int
-'EntityType(pivot,GroupCharacters)
 
 Type TPlayer
 
@@ -24,13 +23,15 @@ Field GObj:TGNetObject
 
     Function Addme:TPlayer(Name:String)
         Local loc:TPlayer = New TPlayer
-
+EntityType(loc.pivot,GroupCharacters)
 	ScaleEntity loc.playerentity,1,1,1
-			EntityRadius(loc.pivot, 0.01,0.01)
+			EntityRadius(loc.pivot, 0.1,0.1)
 
 		EntityParent loc.playerentity, loc.Pivot
 			RotateEntity(loc.playerentity, 180,0,180)
-						PositionEntity(loc.Pivot,14,0.2,-15) ' default spawn location
+			PositionEntity(loc.pivot,14,0.2,-15) 'general player spawn location
+
+			
 			
         loc.GObj = CreateGNetObject(Host)
       loc.Username=Name
@@ -42,11 +43,11 @@ Field GObj:TGNetObject
         Local loc:TPlayer = New TPlayer
         loc.GObj = Obj
         All.AddLast loc
+EntityType(loc.pivot,GroupCharacters)
 		EntityParent loc.playerentity, loc.Pivot
-				PositionEntity(loc.Pivot,14,0.2,-15) ' default spawn location
 					RotateEntity(loc.playerentity, 180,0,180)
 						ScaleEntity loc.playerentity,1,1,1
-
+			PositionEntity(loc.pivot,14,0.2,-15) 'general player spawn location
     End Function
 
    Function ClientHasClosed(Obj:TGnetObject)

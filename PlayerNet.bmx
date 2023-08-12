@@ -12,9 +12,8 @@ Function ScanGnet()
 	For Local obj:tgnetobject=EachIn GNetObjects(Host, GNET_MODIFIED)
 			      For Local loc:TPlayer = EachIn TPlayer.All
 						If loc.GObj=obj
-							Print loc.X()
-						PositionEntity(loc.pivot,GetGNetFloat(loc.GObj,1),GetGNetFloat(loc.GObj,2),GetGNetFloat(loc.GObj,3))
-
+						PositionEntity(loc.pivot,loc.X(),GetGNetFloat(loc.GObj,2),GetGNetFloat(loc.GObj,3))
+						RotateEntity(loc.pivot,GetGNetFloat(loc.GObj,4),GetGNetFloat(loc.GObj,5),GetGNetFloat(loc.GObj,6))
 				'loc.y
 				'loc.
          EndIf
