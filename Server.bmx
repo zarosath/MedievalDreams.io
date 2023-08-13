@@ -1,11 +1,8 @@
 SuperStrict
 ' This is the main server API for the game client
-
-AppTitle="GNet Server Example"
-Graphics 640,480
+Framework brl.GNet
 
 Global Host:TGNetHost=CreateGNetHost()
-
 
 If Host
    Print "Host created."
@@ -23,13 +20,11 @@ Else
    CloseGNetHost Host
    End
 EndIf
-
+Local shutdown:Int = False
 Repeat
-    Cls
     GNetSync Host
-    DrawText MilliSecs(), 100,100
-    Flip 1
-Until AppTerminate() Or KeyDown(KEY_ESCAPE)
+    Print MilliSecs()
+Until shutdown=True
 
 CloseGNetHost Host
 Print "Server Shut down" 
