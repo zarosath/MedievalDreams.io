@@ -80,11 +80,11 @@ End Method
         Return GetGNetFloat(GObj,4)
     End Method
 
-    Method Roll:Float()
+    Method Yaw:Float()
         Return GetGNetFloat(GObj,5)
     End Method
 
-    Method Yaw:Float()
+    Method Roll:Float()
         Return GetGNetFloat(GObj,6)
     End Method
 
