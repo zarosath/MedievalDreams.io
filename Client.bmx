@@ -67,12 +67,7 @@ CameraFunction()
 
    GNetSync(Host)
 	ScanGnet()
-				SetGNetFloat(LocalPlayer.GObj,1,EntityX(localplayer.pivot))
-				SetGNetFloat(LocalPlayer.GObj,2,EntityY(localplayer.pivot))
-				SetGNetFloat(LocalPlayer.GObj,3,EntityZ(localplayer.pivot))
-				SetGNetFloat(localplayer.GObj,4,EntityPitch(localplayer.pivot))
-								SetGNetFloat(localplayer.GObj,5,EntityYaw(localplayer.pivot))
-								SetGNetFloat(localplayer.GObj,6,EntityRoll(localplayer.pivot))
+	
 	If KeyDown( KEY_D )=True Then MoveEntity localplayer.Pivot,0.1,0,0
 	If KeyDown( KEY_S )=True Then MoveEntity localplayer.Pivot,0,0,-0.1
 	If KeyDown( KEY_A )=True Then MoveEntity localplayer.Pivot,-0.1,0,0
@@ -83,7 +78,8 @@ CameraFunction()
 		If KeyDown(key_SPACE) And PlayerIsOnGround = True Then
 					YAcceleration=ENERGY
 			EndIf
-	
+		
+		
 	If (KeyHit(KEY_R)) 'print coordinates for reference
 Print EntityX(localplayer.pivot)
 Print EntityY(localplayer.pivot)
@@ -114,6 +110,8 @@ PlayerIsOnGround = False
 'Print "player isnt colliding with anything"
 	EndIf
 	
+		'send client player movement
+		localplayer.Send()
 	
 	UpdateWorld
 	RenderWorld

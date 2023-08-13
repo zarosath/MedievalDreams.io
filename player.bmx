@@ -61,7 +61,7 @@ EntityType(loc.pivot,GroupCharacters)
    End Function
 
 Method movePlayer (Player:TPlayer, x:Float,y:Float,z:Float)
-If Player = localplayer Then Return
+If Player = localplayer Then Return ' method presently unused, saving for later in case it is needed
 End Method
 
     Method X:Float()
@@ -88,5 +88,20 @@ End Method
         Return GetGNetFloat(GObj,GnetplayerRoll)
     End Method
 
+	Method Set()
+           PositionEntity Pivot, X(), Y(), Z()
+           RotateEntity   Pivot, Pitch(), Yaw(), Roll()
+	End Method
+
+	Method Send()
+	'send client player information
+		   SetGNetFloat(LocalPlayer.GObj,GnetplayerX,EntityX(localplayer.pivot))
+		   SetGNetFloat(LocalPlayer.GObj,GnetplayerY,EntityY(localplayer.pivot))
+		   SetGNetFloat(LocalPlayer.GObj,GnetplayerZ,EntityZ(localplayer.pivot))
+		   SetGNetFloat(localplayer.GObj,GnetplayerPitch,EntityPitch(localplayer.pivot))
+		   SetGNetFloat(localplayer.GObj,GnetplayerYaw,EntityYaw(localplayer.pivot))
+		   SetGNetFloat(localplayer.GObj,GnetplayerRoll,EntityRoll(localplayer.pivot))
+	End Method
+	
 End Type
 
