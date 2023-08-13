@@ -65,27 +65,27 @@ If Player = localplayer Then Return
 End Method
 
     Method X:Float()
-        Return GetGNetFloat(GObj,1)
+        Return GetGNetFloat(GObj,GnetplayerX)
     End Method
 
     Method Y:Float()
-        Return GetGNetFloat(GObj,2)
+        Return GetGNetFloat(GObj,GnetplayerY)
     End Method
 
     Method Z:Float()
-        Return GetGNetFloat(GObj,3)
+        Return GetGNetFloat(GObj,GnetplayerZ)
     End Method
 
     Method Pitch:Float()
-        Return GetGNetFloat(GObj,4)
+        Return GetGNetFloat(GObj,GnetplayerPitch)
     End Method
 
     Method Yaw:Float()
-        Return GetGNetFloat(GObj,5)
+        Return GetGNetFloat(GObj,GnetplayerYaw)
     End Method
 
     Method Roll:Float()
-        Return GetGNetFloat(GObj,6)
+        Return GetGNetFloat(GObj,GnetplayerRoll)
     End Method
 
 End Type

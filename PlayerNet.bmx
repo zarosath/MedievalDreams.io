@@ -1,3 +1,12 @@
+Const GnetplayerX:Int = 1
+Const GnetplayerY:Int = 2
+Const GnetplayerZ:Int = 3
+Const GnetplayerPitch:Int = 4
+Const GnetplayerYaw:Int = 5
+Const GnetplayerRoll:Int = 6
+
+
+
 Function ScanGnet()
     ' find new
     For Local obj:TGNetObject=EachIn GNetObjects( host, GNET_CREATED )
