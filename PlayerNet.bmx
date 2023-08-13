@@ -13,7 +13,7 @@ Function ScanGnet()
 			      For Local loc:TPlayer = EachIn TPlayer.All
 						If loc.GObj=obj
 						PositionEntity(loc.pivot,loc.X(),GetGNetFloat(loc.GObj,2),GetGNetFloat(loc.GObj,3))
-						RotateEntity(loc.pivot,GetGNetFloat(loc.GObj,4),GetGNetFloat(loc.GObj,5),GetGNetFloat(loc.GObj,6))
+						RotateEntity(loc.pivot,loc.Pitch(),loc.Yaw(),loc.Roll())
 				'loc.y
 				'loc.
          EndIf

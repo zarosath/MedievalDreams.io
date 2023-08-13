@@ -5,7 +5,7 @@
 ' Load terrain
 Local terrain:TTerrain=LoadTerrain( "Media/Zone/terrain_hmap.bmp" )
 
-PositionEntity(terrain,0,0,0)
+'PositionEntity(terrain,0,0,0)
 ' Set terrain detail, enable vertex morphing
 'TerrainDetail terrain,4000
 

@@ -68,5 +68,25 @@ End Method
         Return GetGNetFloat(GObj,1)
     End Method
 
+    Method Y:Float()
+        Return GetGNetFloat(GObj,2)
+    End Method
+
+    Method Z:Float()
+        Return GetGNetFloat(GObj,3)
+    End Method
+
+    Method Pitch:Float()
+        Return GetGNetFloat(GObj,4)
+    End Method
+
+    Method Roll:Float()
+        Return GetGNetFloat(GObj,5)
+    End Method
+
+    Method Yaw:Float()
+        Return GetGNetFloat(GObj,6)
+    End Method
+
 End Type
 
