@@ -30,10 +30,11 @@ EntityType(loc.pivot,GroupCharacters)
 		EntityParent loc.playerentity, loc.Pivot
 			RotateEntity(loc.playerentity, 180,0,180)
 			PositionEntity(loc.pivot,14,0.2,-15) 'general player spawn location
-
-			
 			
         loc.GObj = CreateGNetObject(Host)
+			        For Local i:Int= 0 To 31
+        SetGNetFloat loc.GObj,i,0
+        Next 
       loc.Username=Name
         all.AddLast loc
         Return loc

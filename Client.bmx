@@ -25,7 +25,7 @@ Global playerjumped:Int
 
 						' instance of network objects
 						Global Host:TGNetHost=CreateGNetHost()
-						Global Client:Int = GNetConnect(Host,"198.58.126.136",12345)						
+						Global Client:Int = GNetConnect(Host,"localhost",12345)						
 					Global localplayer:TPlayer = TPlayer.AddMe("client")
 
 Include "camera.bmx"
