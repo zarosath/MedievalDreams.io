@@ -25,9 +25,12 @@ Global playerjumped:Int
 
 						' instance of network objects
 						Global Host:TGNetHost=CreateGNetHost()
-						Global Client:Int = GNetConnect(Host,"localhost",12345)						
+						Global Client:Int = GNetConnect(Host,"medievaldreams.io",12345)						
 					Global localplayer:TPlayer = TPlayer.AddMe("client")
-
+		'send initial player location
+		Localplayer.SendX()
+		Localplayer.SendY()
+		Localplayer.SendZ()
 Include "camera.bmx"
 ' Light the world, todo;maybe put the lighting in bmx zone file. for now it is in main.
 Local light:TLight=CreateLight()
@@ -38,10 +41,6 @@ If Host
 Else
    Print "Couldnt create local host."
 EndIf
-
-
-Const GNET_PLAYER_X:Int=0
-Const GNET_PLAYER_Y:Int=1
 
 If(Client = True)
 Print "Host has connected to the server successfully"
@@ -68,12 +67,32 @@ CameraFunction()
    GNetSync(Host)
 	ScanGnet()
 	
-	If KeyDown( KEY_D )=True Then MoveEntity localplayer.Pivot,0.1,0,0
-	If KeyDown( KEY_S )=True Then MoveEntity localplayer.Pivot,0,0,-0.1
-	If KeyDown( KEY_A )=True Then MoveEntity localplayer.Pivot,-0.1,0,0
-	If KeyDown( KEY_W )=True Then MoveEntity localplayer.Pivot,0,0,0.1
-	If KeyDown( key_UP )=True Then MoveEntity localplayer.Pivot,0,0.1,0
-	If KeyDown( key_Down )=True Then MoveEntity localplayer.Pivot,0,-0.1,0
+	If KeyDown( KEY_D )=True
+	MoveEntity localplayer.Pivot,0.1,0,0
+	EndIf
+	If KeyDown( KEY_S )=True
+	MoveEntity localplayer.Pivot,0,0,-0.1
+	EndIf
+	If KeyDown( KEY_A )=True
+	MoveEntity localplayer.Pivot,-0.1,0,0
+	EndIf
+	If KeyDown( KEY_W )=True
+	MoveEntity localplayer.Pivot,0,0,0.1
+	EndIf
+	If KeyDown( key_UP )=True
+	MoveEntity localplayer.Pivot,0,0.1,0
+	EndIf
+	If KeyDown( key_Down )=True
+	MoveEntity localplayer.Pivot,0,-0.1,0
+	EndIf
+			'Update player location and rotation upon changes
+	If EntityX(localplayer.pivot) <> localplayer.X() Then localplayer.SendX()
+		If EntityY(localplayer.pivot) <> localplayer.Y() Then localplayer.SendY()
+			If EntityZ(localplayer.pivot) <> localplayer.Z() Then localplayer.SendZ()
+			
+				If EntityPitch(localplayer.pivot) <> localplayer.Pitch() Then localplayer.SendPitch()
+		If EntityYaw(localplayer.pivot) <> localplayer.Yaw() Then localplayer.SendYaw()
+			If EntityRoll(localplayer.pivot) <> localplayer.Roll() Then localplayer.SendRoll()
 	
 		If KeyDown(key_SPACE) And PlayerIsOnGround = True Then
 					YAcceleration=ENERGY
@@ -109,9 +128,6 @@ Else
 PlayerIsOnGround = False
 'Print "player isnt colliding with anything"
 	EndIf
-	
-		'send client player movement
-		localplayer.Send()
 	
 	UpdateWorld
 	RenderWorld

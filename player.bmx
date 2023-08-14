@@ -34,7 +34,8 @@ EntityType(loc.pivot,GroupCharacters)
         loc.GObj = CreateGNetObject(Host)
 			        For Local i:Int= 0 To 31
         SetGNetFloat loc.GObj,i,0
-        Next 
+        Next
+
       loc.Username=Name
         all.AddLast loc
         Return loc
@@ -94,15 +95,30 @@ End Method
            RotateEntity   Pivot, Pitch(), Yaw(), Roll()
 	End Method
 
-	Method Send()
+	Method SendX()
 	'send client player information
-		   SetGNetFloat(LocalPlayer.GObj,GnetplayerX,EntityX(localplayer.pivot))
-		   SetGNetFloat(LocalPlayer.GObj,GnetplayerY,EntityY(localplayer.pivot))
-		   SetGNetFloat(LocalPlayer.GObj,GnetplayerZ,EntityZ(localplayer.pivot))
-		   SetGNetFloat(localplayer.GObj,GnetplayerPitch,EntityPitch(localplayer.pivot))
-		   SetGNetFloat(localplayer.GObj,GnetplayerYaw,EntityYaw(localplayer.pivot))
-		   SetGNetFloat(localplayer.GObj,GnetplayerRoll,EntityRoll(localplayer.pivot))
+			   SetGNetFloat(LocalPlayer.GObj,GnetplayerX,EntityX(localplayer.pivot))
 	End Method
 	
+	Method SendY()
+			   SetGNetFloat(LocalPlayer.GObj,GnetplayerY,EntityY(localplayer.pivot))
+	End Method
+	
+	Method SendZ()
+			   SetGNetFloat(LocalPlayer.GObj,GnetplayerZ,EntityZ(localplayer.pivot))
+	End Method
+	
+	Method SendPitch()
+			   SetGNetFloat(localplayer.GObj,GnetplayerPitch,EntityPitch(localplayer.pivot))
+		
+		End Method
+	
+	Method SendYaw()
+			   SetGNetFloat(localplayer.GObj,GnetplayerYaw,EntityYaw(localplayer.pivot))
+	End Method
+	
+	Method SendRoll()
+			   SetGNetFloat(localplayer.GObj,GnetplayerRoll,EntityRoll(localplayer.pivot))
+	End Method
 End Type
 
