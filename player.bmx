@@ -23,19 +23,17 @@ Field GObj:TGNetObject
 
     Function Addme:TPlayer(Name:String)
         Local loc:TPlayer = New TPlayer
-EntityType(loc.pivot,GroupCharacters)
-	ScaleEntity loc.playerentity,1,1,1
+        loc.GObj = CreateGNetObject(Host)
+		EntityType(loc.pivot,GroupCharacters)
+		ScaleEntity loc.playerentity,1,1,1
 			EntityRadius(loc.pivot, 0.1,0.1)
 
 		EntityParent loc.playerentity, loc.Pivot
 			RotateEntity(loc.playerentity, 180,0,180)
 			PositionEntity(loc.pivot,14,0.2,-15) 'general player spawn location
-			
-        loc.GObj = CreateGNetObject(Host)
 			        For Local i:Int= 0 To 31
         SetGNetFloat loc.GObj,i,0
         Next
-
       loc.Username=Name
         all.AddLast loc
         Return loc
@@ -45,12 +43,12 @@ EntityType(loc.pivot,GroupCharacters)
         Local loc:TPlayer = New TPlayer
         loc.GObj = Obj
         All.AddLast loc
-EntityType(loc.pivot,GroupCharacters)
-			EntityRadius(loc.pivot, 0.1,0.1)
-		EntityParent loc.playerentity, loc.Pivot
-					RotateEntity(loc.playerentity, 180,0,180)
-						ScaleEntity loc.playerentity,1,1,1
-			PositionEntity(loc.pivot,14,0.2,-15) 'general player spawn location
+	EntityType(loc.pivot,GroupCharacters)
+	EntityRadius(loc.pivot, 0.1,0.1)
+	EntityParent loc.playerentity, loc.Pivot
+	RotateEntity(loc.playerentity, 180,0,180)
+	ScaleEntity loc.playerentity,1,1,1
+	PositionEntity(loc.pivot,14,0.2,-15) 'general player spawn location
     End Function
 
    Function ClientHasClosed(Obj:TGnetObject)
@@ -96,7 +94,6 @@ End Method
 	End Method
 
 	Method SendX()
-	'send client player information
 			   SetGNetFloat(LocalPlayer.GObj,GnetplayerX,EntityX(localplayer.pivot))
 	End Method
 	

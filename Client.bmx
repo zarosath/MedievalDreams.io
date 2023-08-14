@@ -27,10 +27,6 @@ Global playerjumped:Int
 						Global Host:TGNetHost=CreateGNetHost()
 						Global Client:Int = GNetConnect(Host,"medievaldreams.io",12345)						
 					Global localplayer:TPlayer = TPlayer.AddMe("client")
-		'send initial player location
-		Localplayer.SendX()
-		Localplayer.SendY()
-		Localplayer.SendZ()
 Include "camera.bmx"
 ' Light the world, todo;maybe put the lighting in bmx zone file. for now it is in main.
 Local light:TLight=CreateLight()
@@ -51,13 +47,16 @@ Print "host closed"
 			Return
 	EndIf
 	
-	
+	localplayer.SendX()
+		localplayer.SendY()
+				localplayer.SendZ()
 ' debug entity landmark
 	Local c:TEntity = CreateCylinder()
 	ScaleEntity c, 0.2,10,0.2
    	PositionEntity c, 12,0.00000000001,-12
 ' set collision
 Collisions(GroupCharacters,GroupEnvironment,2,2)
+
 
 Repeat
 
