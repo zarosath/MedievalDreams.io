@@ -94,28 +94,28 @@ End Method
 	End Method
 
 	Method SendX()
-			   SetGNetFloat(LocalPlayer.GObj,GnetplayerX,EntityX(localplayer.pivot))
+			   SetGNetFloat(GObj,GnetplayerX,EntityX(pivot))
 	End Method
 	
 	Method SendY()
-			   SetGNetFloat(LocalPlayer.GObj,GnetplayerY,EntityY(localplayer.pivot))
+			   SetGNetFloat(GObj,GnetplayerY,EntityY(pivot))
 	End Method
 	
 	Method SendZ()
-			   SetGNetFloat(LocalPlayer.GObj,GnetplayerZ,EntityZ(localplayer.pivot))
+			   SetGNetFloat(GObj,GnetplayerZ,EntityZ(pivot))
 	End Method
 	
 	Method SendPitch()
-			   SetGNetFloat(localplayer.GObj,GnetplayerPitch,EntityPitch(localplayer.pivot))
+			   SetGNetFloat(GObj,GnetplayerPitch,EntityPitch(pivot))
 		
 		End Method
 	
 	Method SendYaw()
-			   SetGNetFloat(localplayer.GObj,GnetplayerYaw,EntityYaw(localplayer.pivot))
+			   SetGNetFloat(GObj,GnetplayerYaw,EntityYaw(pivot))
 	End Method
 	
 	Method SendRoll()
-			   SetGNetFloat(localplayer.GObj,GnetplayerRoll,EntityRoll(localplayer.pivot))
+			   SetGNetFloat(GObj,GnetplayerRoll,EntityRoll(pivot))
 	End Method
 End Type
 

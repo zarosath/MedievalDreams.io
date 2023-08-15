@@ -25,9 +25,7 @@ Global playerjumped:Int
 
 						' instance of network objects
 						Global Host:TGNetHost=CreateGNetHost()
-						Global Client:Int = GNetConnect(Host,"medievaldreams.io",12345)						
-					Global localplayer:TPlayer = TPlayer.AddMe("client")
-Include "camera.bmx"
+						Global Client:Int = GNetConnect(Host,"medievaldreams.io",43594)						
 ' Light the world, todo;maybe put the lighting in bmx zone file. for now it is in main.
 Local light:TLight=CreateLight()
 RotateEntity light,90,0,0
@@ -46,10 +44,12 @@ Print "Host has connected to the server successfully"
 Print "host closed"
 			Return
 	EndIf
-	
+						Global localplayer:TPlayer = TPlayer.AddMe("client")
+Include "camera.bmx"
 	localplayer.SendX()
 		localplayer.SendY()
 				localplayer.SendZ()
+					'send player position after tplayer GNetobject is created
 ' debug entity landmark
 	Local c:TEntity = CreateCylinder()
 	ScaleEntity c, 0.2,10,0.2
@@ -139,6 +139,8 @@ PlayerIsOnGround = False
 
 Until AppTerminate() Or KeyHit(KEY_ESCAPE)
 CloseGNetObject(localplayer.GObj)
+Delay 100
 Print"Player object closed"
 CloseGNetHost(Host)
+Delay 100
 Print "host closed"
