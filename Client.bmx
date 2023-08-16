@@ -44,11 +44,11 @@ Print "Host has connected to the server successfully"
 Print "host closed"
 			Return
 	EndIf
-						Global localplayer:TPlayer = TPlayer.AddMe("client")
+						Global me:TPlayer = TPlayer.AddMe("client")
 Include "camera.bmx"
-	localplayer.SendX()
-		localplayer.SendY()
-				localplayer.SendZ()
+	me.SendX()
+		me.SendY()
+				me.SendZ()
 					'send player position after tplayer GNetobject is created
 ' debug entity landmark
 	Local c:TEntity = CreateCylinder()
@@ -67,31 +67,31 @@ CameraFunction()
 	ScanGnet()
 	
 	If KeyDown( KEY_D )=True
-	MoveEntity localplayer.Pivot,0.1,0,0
+	MoveEntity me.Pivot,0.1,0,0
 	EndIf
 	If KeyDown( KEY_S )=True
-	MoveEntity localplayer.Pivot,0,0,-0.1
+	MoveEntity me.Pivot,0,0,-0.1
 	EndIf
 	If KeyDown( KEY_A )=True
-	MoveEntity localplayer.Pivot,-0.1,0,0
+	MoveEntity me.Pivot,-0.1,0,0
 	EndIf
 	If KeyDown( KEY_W )=True
-	MoveEntity localplayer.Pivot,0,0,0.1
+	MoveEntity me.Pivot,0,0,0.1
 	EndIf
 	If KeyDown( key_UP )=True
-	MoveEntity localplayer.Pivot,0,0.1,0
+	MoveEntity me.Pivot,0,0.1,0
 	EndIf
 	If KeyDown( key_Down )=True
-	MoveEntity localplayer.Pivot,0,-0.1,0
+	MoveEntity me.Pivot,0,-0.1,0
 	EndIf
 			'Update player location and rotation upon changes
-	If EntityX(localplayer.pivot) <> localplayer.X() Then localplayer.SendX()
-		If EntityY(localplayer.pivot) <> localplayer.Y() Then localplayer.SendY()
-			If EntityZ(localplayer.pivot) <> localplayer.Z() Then localplayer.SendZ()
+	If EntityX(me.pivot) <> me.X() Then me.SendX()
+		If EntityY(me.pivot) <> me.Y() Then me.SendY()
+			If EntityZ(me.pivot) <> me.Z() Then me.SendZ()
 			
-				If EntityPitch(localplayer.pivot) <> localplayer.Pitch() Then localplayer.SendPitch()
-		If EntityYaw(localplayer.pivot) <> localplayer.Yaw() Then localplayer.SendYaw()
-			If EntityRoll(localplayer.pivot) <> localplayer.Roll() Then localplayer.SendRoll()
+				If EntityPitch(me.pivot) <> me.Pitch() Then me.SendPitch()
+		If EntityYaw(me.pivot) <> me.Yaw() Then me.SendYaw()
+			If EntityRoll(me.pivot) <> me.Roll() Then me.SendRoll()
 	
 		If KeyDown(key_SPACE) And PlayerIsOnGround = True Then
 					YAcceleration=ENERGY
@@ -99,9 +99,9 @@ CameraFunction()
 		
 		
 	If (KeyHit(KEY_R)) 'print coordinates for reference
-Print EntityX(localplayer.pivot)
-Print EntityY(localplayer.pivot)
-Print EntityZ(localplayer.pivot)
+Print EntityX(me.pivot)
+Print EntityY(me.pivot)
+Print EntityZ(me.pivot)
 EndIf
 
 
@@ -109,16 +109,16 @@ EndIf
 If  PlayerTime<MilliSecs() 'And YAcceleration<>0
 	PlayerTime = MilliSecs()+ MOTION
 	 	YAcceleration = YAcceleration - GRAVITY
-	MoveEntity localplayer.Pivot, 0,YAcceleration,0
+	MoveEntity me.Pivot, 0,YAcceleration,0
 	'Print EntityY(Pivot)
-	If EntityY(localplayer.Pivot)<0.1
+	If EntityY(me.Pivot)<0.1
 		'  auto floor collision or:
-		 'PositionEntity localplayer.Pivot, EntityX(localplayer.Pivot), 1 , EntityZ(localplayer.Pivot)
+		 'PositionEntity me.Pivot, EntityX(me.Pivot), 1 , EntityZ(me.Pivot)
 		YAcceleration=0
 	EndIf
 EndIf
 
-Local WhoCollided:TEntity = EntityCollided(localplayer.pivot,GroupEnvironment)
+Local WhoCollided:TEntity = EntityCollided(me.pivot,GroupEnvironment)
 If WhoCollided=terrain
      'Print "Entity has collided with the terrain"
 PlayerIsOnGround = True
@@ -138,7 +138,7 @@ PlayerIsOnGround = False
 
 
 Until AppTerminate() Or KeyHit(KEY_ESCAPE)
-CloseGNetObject(localplayer.GObj)
+CloseGNetObject(me.GObj)
 Delay 500
 Print"Player object closed"
 CloseGNetHost(Host)
