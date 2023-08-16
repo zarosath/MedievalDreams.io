@@ -30,4 +30,5 @@ RemiD for third person cam & gravity code reference/examples/code snippet
 and everyone who has contributed their time and code for helping others.
 
 ### showcase
-!Basic groundwork](./img/screenshot.png)
+![screenshot](https://github.com/zarosath/MedievalDreams.io/assets/1097150/4cb6d902-8fc1-4c12-b341-e95278920883)
+
