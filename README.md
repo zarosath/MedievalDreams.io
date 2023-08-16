@@ -30,4 +30,4 @@ RemiD for third person cam & gravity code reference/examples/code snippet
 and everyone who has contributed their time and code for helping others.
 
 ### showcase
-[img]./img/screenshot.png[img]
+!Basic groundwork](./img/screenshotpng)
