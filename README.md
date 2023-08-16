@@ -17,13 +17,13 @@ Markcwm & Si-Design (Simon Harrison) && contributors for openb3d and minib3d gam
   
 **users who have contributed:**  
   
-Midimaster  
+Midimaster for project help and knowledge.
 
-GWRon and Woollybah for contributing and maintaing Blitzmax
+GWRon and Woollybah for blitzmax contributions and maintenance.
   
-Scaremonger
+Scaremonger.
   
-RemiD
+RemiD.
 
  AXKuhta / CameraFunctions.bmx gist code snippet for mouse functions etc.  
  
