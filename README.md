@@ -19,7 +19,7 @@ Markcwm & Si-Design (Simon Harrison) && contributors for openb3d and minib3d gam
   
 Midimaster  
 
-GWRon 
+GWRon and Woollybah for contributing and maintaing Blitzmax
   
 Scaremonger
   
