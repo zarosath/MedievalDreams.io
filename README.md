@@ -23,7 +23,7 @@ GWRon
   
 Scaremonger
   
-RemiD for third person cam & gravity code reference/examples/code snippet  
+RemiD
 
  AXKuhta / CameraFunctions.bmx gist code snippet for mouse functions etc.  
  
