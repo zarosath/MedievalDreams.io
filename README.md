@@ -17,17 +17,18 @@ Markcwm & Si-Design (Simon Harrison) && contributors for openb3d and minib3d gam
   
 **users who have contributed:**  
   
-Midimaster  
+Midimaster for project help and knowledge.
 
-GWRon 
+GWRon and Woollybah for blitzmax contributions and maintenance.
   
-Scaremonger
+Scaremonger.
   
-RemiD for third person cam & gravity code reference/examples/code snippet  
+RemiD.
 
  AXKuhta / CameraFunctions.bmx gist code snippet for mouse functions etc.  
  
-and everyone who has contributed their time and code for helping others.
+and everyone who has contributed their time and code to contributing to blitzmax and helping others.
 
 ### showcase
-!Basic groundwork](./img/screenshot.png)
+![screenshot](https://github.com/zarosath/MedievalDreams.io/assets/1097150/4cb6d902-8fc1-4c12-b341-e95278920883)
+
