@@ -139,8 +139,8 @@ PlayerIsOnGround = False
 
 Until AppTerminate() Or KeyHit(KEY_ESCAPE)
 CloseGNetObject(localplayer.GObj)
-Delay 100
+Delay 500
 Print"Player object closed"
 CloseGNetHost(Host)
-Delay 100
 Print "host closed"
+End
