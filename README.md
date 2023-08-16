@@ -28,3 +28,6 @@ RemiD for third person cam & gravity code reference/examples/code snippet
  AXKuhta / CameraFunctions.bmx gist code snippet for mouse functions etc.  
  
 and everyone who has contributed their time and code for helping others.
+
+### showcase
+!Basic groundwork](./img/screenshot.png)
