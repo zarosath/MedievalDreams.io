@@ -5,7 +5,6 @@ Import brl.standardio
 Import brl.threads
 
 Global Host:TGNetHost=CreateGNetHost()
-
 If Host
    Print "Host created."
 Else
@@ -13,10 +12,10 @@ Else
    End
 EndIf
 
-Global listen:Int = GNetListen(Host,43594)
+Global listen:Int = GNetListen(Host,12345)
 Local inputthread:TThread=CreateThread(commandinput, "")
 If listen
-   Print "Server listening on Port 43594"
+   Print "Server listening on Port 12345"
 Else
    Print "Could not bind socket."
    CloseGNetHost Host

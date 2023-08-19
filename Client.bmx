@@ -25,7 +25,7 @@ Global playerjumped:Int
 
 						' instance of network objects
 						Global Host:TGNetHost=CreateGNetHost()
-						Global Client:Int = GNetConnect(Host,"medievaldreams.io",43594)						
+						Global Client:Int = GNetConnect(Host,"medievaldreams.io",12345)						
 ' Light the world, todo;maybe put the lighting in bmx zone file. for now it is in main.
 Local light:TLight=CreateLight()
 RotateEntity light,90,0,0
@@ -62,9 +62,6 @@ Repeat
 
 
 CameraFunction()
-
-   GNetSync(Host)
-	ScanGnet()
 	
 	If KeyDown( KEY_D )=True
 	MoveEntity me.Pivot,0.1,0,0
@@ -84,28 +81,8 @@ CameraFunction()
 	If KeyDown( key_Down )=True
 	MoveEntity me.Pivot,0,-0.1,0
 	EndIf
-			'Update player location and rotation upon changes
-	If EntityX(me.pivot) <> me.X() Then me.SendX()
-		If EntityY(me.pivot) <> me.Y() Then me.SendY()
-			If EntityZ(me.pivot) <> me.Z() Then me.SendZ()
-			
-				If EntityPitch(me.pivot) <> me.Pitch() Then me.SendPitch()
-		If EntityYaw(me.pivot) <> me.Yaw() Then me.SendYaw()
-			If EntityRoll(me.pivot) <> me.Roll() Then me.SendRoll()
 	
-		If KeyDown(key_SPACE) And PlayerIsOnGround = True Then
-					YAcceleration=ENERGY
-			EndIf
-		
-		
-	If (KeyHit(KEY_R)) 'print coordinates for reference
-Print EntityX(me.pivot)
-Print EntityY(me.pivot)
-Print EntityZ(me.pivot)
-EndIf
-
-
-' Gravity and jumping function
+	' Gravity and jumping function
 If  PlayerTime<MilliSecs() 'And YAcceleration<>0
 	PlayerTime = MilliSecs()+ MOTION
 	 	YAcceleration = YAcceleration - GRAVITY
@@ -127,6 +104,29 @@ Else
 PlayerIsOnGround = False
 'Print "player isnt colliding with anything"
 	EndIf
+	
+			'Update player location and rotation upon changes
+	If EntityX(me.pivot) <> me.X() Then me.SendX()
+		If EntityY(me.pivot) <> me.Y() Then me.SendY()
+			If EntityZ(me.pivot) <> me.Z() Then me.SendZ()
+			
+				If EntityPitch(me.pivot) <> me.Pitch() Then me.SendPitch()
+		If EntityYaw(me.pivot) <> me.Yaw() Then me.SendYaw()
+			If EntityRoll(me.pivot) <> me.Roll() Then me.SendRoll()
+	
+		If KeyDown(key_SPACE) And PlayerIsOnGround = True Then
+					YAcceleration=ENERGY
+			EndIf
+		
+		
+		
+		   GNetSync(Host)
+	ScanGnet()
+	If (KeyHit(KEY_R)) 'print coordinates for reference
+Print EntityX(me.pivot)
+Print EntityY(me.pivot)
+Print EntityZ(me.pivot)
+EndIf
 	
 	UpdateWorld
 	RenderWorld
