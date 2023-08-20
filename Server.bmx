@@ -4,7 +4,7 @@ Framework brl.GNet
 Import brl.standardio
 Import brl.threads
 
-local port:int = 12345
+Local port:Int = 12345
 
 Global Host:TGNetHost=CreateGNetHost()
 If Host
@@ -15,9 +15,8 @@ Else
 EndIf
 
 Global listen:Int = GNetListen(Host,port)
-Local inputthread:TThread=CreateThread(commandinput, "")
 If listen
-   Print "Server listening on Port 12345"
+   Print "Server listening on Port "+ port
 Else
    Print "Could not bind socket."
    CloseGNetHost Host
@@ -25,6 +24,7 @@ Else
 EndIf
 Global shutdown:Int = False
 Local ServerMilliseconds:Int=MilliSecs()
+Local inputthread:TThread=CreateThread(commandinput, "")
 Repeat
     GNetSync Host
     'Print MilliSecs()
