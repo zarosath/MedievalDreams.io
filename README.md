@@ -1,4 +1,4 @@
-# Medieval Kingdom hope - MedievalDreams
+# Medieval Kingdom hope
 Game Servers when users make servers, create characters and play matches of medieval Kingdom Fiefdom fantasy
 
 Blitz Indie Style, work in progress.
