@@ -4,6 +4,8 @@ Framework brl.GNet
 Import brl.standardio
 Import brl.threads
 
+local port:int = 12345
+
 Global Host:TGNetHost=CreateGNetHost()
 If Host
    Print "Host created."
@@ -12,7 +14,7 @@ Else
    End
 EndIf
 
-Global listen:Int = GNetListen(Host,12345)
+Global listen:Int = GNetListen(Host,port)
 Local inputthread:TThread=CreateThread(commandinput, "")
 If listen
    Print "Server listening on Port 12345"
@@ -46,7 +48,3 @@ Until shutdown=True
 EndFunction
 DetachThread(inputthread)
 CloseGNetHost(host)
-Delay 500
-If host
-Print "server still running after loop shutdown"
-Else Print "Server closed" EndIf 

@@ -12,6 +12,8 @@ Include "createTerrain.bmx"
 Include "player.bmx"
 Include "PlayerNet.bmx"
 
+local port:int = 12345
+local server:string = "medievaldreams.io"
 'variables
 Const GroupEnvironment% = 2
 Const GroupCharacters% = 3
@@ -25,7 +27,7 @@ Global playerjumped:Int
 
 						' instance of network objects
 						Global Host:TGNetHost=CreateGNetHost()
-						Global Client:Int = GNetConnect(Host,"medievaldreams.io",12345)						
+						Global Client:Int = GNetConnect(Host,server,port)						
 ' Light the world, todo;maybe put the lighting in bmx zone file. for now it is in main.
 Local light:TLight=CreateLight()
 RotateEntity light,90,0,0

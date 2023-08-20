@@ -27,7 +27,7 @@ Print "host closed"
 	EndIf
 
 Local gobj:tgnetobject = CreateGNetObject(hostclient)
-DebugStop
+
 Repeat
 GNetSync(Hostserver)
 GNetSync(hostclient)

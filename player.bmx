@@ -52,7 +52,7 @@ Field GObj:TGNetObject
 	PositionEntity(loc.pivot,14,0.2,-15) 'general player spawn location
     End Function
 
-   Function ClientHasClosed(Obj:TGnetObject)
+   Function remove(Obj:TGnetObject)
       For Local loc:TPlayer = EachIn All
          If loc.GObj=Obj
 			FreeEntity(loc.playerentity)
