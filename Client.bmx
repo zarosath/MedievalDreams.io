@@ -3,6 +3,9 @@ Rem
 EndRem
 Strict
 
+Rem
+Test visual studio commit.
+end rem
 Framework openb3d.b3dglgraphics
 Import Brl.Gnet
 
