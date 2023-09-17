@@ -23,13 +23,13 @@ Field GObj:TGNetObject
 
     Function Addme:TPlayer(Name:String)
         Local loc:TPlayer = New TPlayer
-		EntityType(loc.pivot,GroupCharacters)
+		EntityType(loc.pivot,GroupCharacters, True)
 		ScaleEntity loc.playerentity,1,1,1
-			EntityRadius(loc.pivot, 0.1,0.1)
+			'EntityRadius(loc.pivot, 1,1)
 
 		EntityParent loc.playerentity, loc.Pivot
 			RotateEntity(loc.playerentity, 180,0,180)
-			PositionEntity(loc.pivot,14,0.2,-15) 'general player spawn location
+			PositionEntity(loc.pivot,14,1.5,-15) 'general player spawn location
 			
 			        loc.GObj = CreateGNetObject(Host)
 			        For Local i:Int= 0 To 31
@@ -44,8 +44,9 @@ Field GObj:TGNetObject
         Local loc:TPlayer = New TPlayer
         loc.GObj = Obj
         All.AddLast loc
-	EntityType(loc.pivot,GroupCharacters)
-	EntityRadius(loc.pivot, 0.1,0.1)
+	EntityType(loc.pivot,GroupCharacters, True)
+	EntityRadius(loc.pivot, 1,1)
+	EntityPickMode(loc.playerentity,2)
 	EntityParent loc.playerentity, loc.Pivot
 	RotateEntity(loc.playerentity, 180,0,180)
 	ScaleEntity loc.playerentity,1,1,1

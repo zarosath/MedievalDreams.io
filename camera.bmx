@@ -17,7 +17,7 @@ Function CameraFunction()
     EndIf
 EndIf
 If (cameracontrol = True)
-	HideMouse()
+	'HideMouse()
 Text 0,0,"camera control = true"
 	x_speed = ((MouseX()-GraphicsWidth()/2)-x_speed)/8+x_speed
 	y_speed = ((MouseY()-GraphicsHeight()/2)-y_speed)/8+y_speed

@@ -15,8 +15,8 @@ Include "createTerrain.bmx"
 Include "player.bmx"
 Include "PlayerNet.bmx"
 
-local port:int = 12345
-local server:string = "medievaldreams.io"
+Local port:Int = 12345
+Local address:String = "localhost"
 'variables
 Const GroupEnvironment% = 2
 Const GroupCharacters% = 3
@@ -30,7 +30,7 @@ Global playerjumped:Int
 
 						' instance of network objects
 						Global Host:TGNetHost=CreateGNetHost()
-						Global Client:Int = GNetConnect(Host,server,port)						
+						Global Client:Int = GNetConnect(Host,address,port)						
 ' Light the world, todo;maybe put the lighting in bmx zone file. for now it is in main.
 Local light:TLight=CreateLight()
 RotateEntity light,90,0,0
@@ -51,6 +51,7 @@ Print "host closed"
 	EndIf
 						Global me:TPlayer = TPlayer.AddMe("client")
 Include "camera.bmx"
+Include "EntityPick.bmx"
 	me.SendX()
 		me.SendY()
 				me.SendZ()
@@ -61,6 +62,7 @@ Include "camera.bmx"
    	PositionEntity c, 12,0.00000000001,-12
 ' set collision
 Collisions(GroupCharacters,GroupEnvironment,2,2)
+'Collisions(GroupCharacters,GroupCharacters,2,2)
 
 
 Repeat
@@ -86,6 +88,8 @@ CameraFunction()
 	If KeyDown( key_Down )=True
 	MoveEntity me.Pivot,0,-0.1,0
 	EndIf
+	
+	Click()
 	
 	' Gravity and jumping function
 If  PlayerTime<MilliSecs() 'And YAcceleration<>0
