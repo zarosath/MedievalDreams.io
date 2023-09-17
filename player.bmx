@@ -45,7 +45,7 @@ Field GObj:TGNetObject
         loc.GObj = Obj
         All.AddLast loc
 	EntityType(loc.pivot,GroupCharacters, True)
-	EntityRadius(loc.pivot, 1,1)
+	'EntityRadius(loc.pivot, 1,1)
 	EntityPickMode(loc.playerentity,2)
 	EntityParent loc.playerentity, loc.Pivot
 	RotateEntity(loc.playerentity, 180,0,180)
