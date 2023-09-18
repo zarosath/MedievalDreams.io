@@ -5,7 +5,7 @@ Local PlayerIsOnGround:Int
 
 Type TPlayer
 
-	'Global all:TList = New TList
+	Global all:TList = New TList
 
 Field Username:String
 'Field x: Float
@@ -18,16 +18,13 @@ Field Pivot:TPivot=CreatePivot()
 Field GObj:TGNetObject
 
 
-
-	Global All:TList=New TList
-
     Function Addme:TPlayer(Name:String)
-        Local loc:TPlayer = New TPlayer
-		EntityType(loc.pivot,GroupCharacters, True)
-		ScaleEntity loc.playerentity,1,1,1
+			Local loc:TPlayer = New TPlayer
+			EntityType(loc.pivot,GroupCharacters, True)
+			ScaleEntity loc.playerentity,1,1,1
 			'EntityRadius(loc.pivot, 1,1)
 
-		EntityParent loc.playerentity, loc.Pivot
+			EntityParent loc.playerentity, loc.Pivot
 			RotateEntity(loc.playerentity, 180,0,180)
 			PositionEntity(loc.pivot,14,1.5,-15) 'general player spawn location
 			
@@ -44,13 +41,14 @@ Field GObj:TGNetObject
         Local loc:TPlayer = New TPlayer
         loc.GObj = Obj
         All.AddLast loc
-	EntityType(loc.pivot,GroupCharacters, True)
-	'EntityRadius(loc.pivot, 1,1)
-	EntityPickMode(loc.playerentity,2)
-	EntityParent loc.playerentity, loc.Pivot
-	RotateEntity(loc.playerentity, 180,0,180)
-	ScaleEntity loc.playerentity,1,1,1
-	PositionEntity(loc.pivot,14,0.2,-15) 'general player spawn location
+		NameEntity(loc.playerentity, "playerEntity")
+		EntityType(loc.pivot,GroupCharacters, True)
+		'EntityRadius(loc.pivot, 1,1)
+		EntityPickMode(loc.playerentity,2)
+		EntityParent loc.playerentity, loc.Pivot
+		RotateEntity(loc.playerentity, 180,0,180)
+		ScaleEntity loc.playerentity,1,1,1
+		PositionEntity(loc.pivot,14,0.2,-15) 'general player spawn location
     End Function
 
    Function remove(Obj:TGnetObject)

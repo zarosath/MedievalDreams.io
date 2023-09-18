@@ -89,7 +89,11 @@ CameraFunction()
 	MoveEntity me.Pivot,0,-0.1,0
 	EndIf
 	
-	Click()
+	'if left mouse button was hit
+	If MouseHit(1)
+	Click() ' entity pick
+	EndIf
+	
 	
 	' Gravity and jumping function
 If  PlayerTime<MilliSecs() 'And YAcceleration<>0
