@@ -64,6 +64,13 @@ Include "EntityPick.bmx"
 Collisions(GroupCharacters,GroupEnvironment,2,2)
 'Collisions(GroupCharacters,GroupCharacters,2,2)
 
+Rem
+load test And Or preload player entities
+End Rem
+'For Local i=1 To 100
+'Local bots:TPlayer = New TPlayer
+'Print i
+'Next
 
 Repeat
 
@@ -91,7 +98,7 @@ CameraFunction()
 	
 	'if left mouse button was hit
 	If MouseHit(1)
-	Click() ' entity pick
+	CheckPick() ' entity pick
 	EndIf
 	
 	

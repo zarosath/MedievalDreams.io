@@ -60,7 +60,7 @@ Field GObj:TGNetObject
       Next
    End Function
 
-Method movePlayer (Player:TPlayer, x:Float,y:Float,z:Float)
+Method Moveplayer (Player:TPlayer, x:Float,y:Float,z:Float)
 If Player = me Then Return ' method presently unused, saving for later in case it is needed
 End Method
 
