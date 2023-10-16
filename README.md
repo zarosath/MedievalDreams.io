@@ -1,4 +1,4 @@
-# Medieval Kingdom hope
+# Medieval Fantasy
 Game Servers with users make servers, create characters and play matches of medieval Kingdom Fiefdom fantasy
 
 Blitz Indie Style, work in progress.
