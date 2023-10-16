@@ -1,4 +1,4 @@
-# Medieval kingdom fantasy
+# MedievalDreams.io
 Game Servers, create characters and play matches of medieval Kingdom Fiefdom fantasy
 
 Blitz Indie Style, work in progress.
