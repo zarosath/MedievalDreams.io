@@ -113,7 +113,9 @@ CameraFunction()
 If  PlayerTime<MilliSecs() And PlayerIsOnGround=False'And YAcceleration<>0
 	PlayerTime = MilliSecs()+ MOTION
 	 	YAcceleration = YAcceleration - GRAVITY
+		if (PlayerIsOnGround=false)
 	MoveEntity me.Pivot, 0,YAcceleration,0
+		end if
 	'Print EntityY(Pivot)
 	If EntityY(me.Pivot)<0.1
 		'  auto floor collision or:
