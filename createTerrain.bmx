@@ -3,9 +3,9 @@
 
 
 ' Load terrain
-global terrain:TTerrain=LoadTerrain( "Media/Zone/terrain_hmap.bmp" )
+Global terrain:TTerrain=LoadTerrain( "Media/Zone/terrain_hmap.bmp" )
 
-'PositionEntity(terrain,0,0,0)
+'PositionEntity(terrain,14,0,-15)
 ' Set terrain detail, enable vertex morphing
 'TerrainDetail terrain,4000
 

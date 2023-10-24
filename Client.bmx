@@ -8,12 +8,14 @@ Test visual studio commit.
 end rem
 Framework openb3d.b3dglgraphics
 Import Brl.Gnet
+Import brl.threads
 
 Graphics3D 800,600, 0, 3
 
 Include "createTerrain.bmx"
 Include "player.bmx"
 Include "PlayerNet.bmx"
+
 
 Local port:Int = 12345
 Local address:String = "localhost"
@@ -50,12 +52,15 @@ Print "host closed"
 			Return
 	EndIf
 						Global me:TPlayer = TPlayer.AddMe("client")
+Rem
+so we Include these bmx files down here For until clients me.tplayer instance Not yet 
+End Rem
 Include "camera.bmx"
 Include "EntityPick.bmx"
 	me.SendX()
 		me.SendY()
 				me.SendZ()
-					'send player position after tplayer GNetobject is created
+					'send player position after TPlayer GNetobject is created
 ' debug entity landmark
 	Local c:TEntity = CreateCylinder()
 	ScaleEntity c, 0.2,10,0.2
@@ -67,11 +72,13 @@ Collisions(GroupCharacters,GroupEnvironment,2,2)
 Rem
 load test And Or preload player entities
 End Rem
-'For Local i=1 To 100
-'Local bots:TPlayer = New TPlayer
-'Print i
-'Next
-
+Local entitycopythread:TThread=CreateThread(entitycopy, "")
+Function entitycopy:Object(data:Object)
+For Local i=1 To 100
+Local bots:TPlayer = New TPlayer
+Print i
+Next
+End Function
 Repeat
 
 
@@ -103,7 +110,7 @@ CameraFunction()
 	
 	
 	' Gravity and jumping function
-If  PlayerTime<MilliSecs() 'And YAcceleration<>0
+If  PlayerTime<MilliSecs() And PlayerIsOnGround=False'And YAcceleration<>0
 	PlayerTime = MilliSecs()+ MOTION
 	 	YAcceleration = YAcceleration - GRAVITY
 	MoveEntity me.Pivot, 0,YAcceleration,0

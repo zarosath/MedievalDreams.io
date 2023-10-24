@@ -41,7 +41,9 @@ Field GObj:TGNetObject
         Local loc:TPlayer = New TPlayer
         loc.GObj = Obj
         All.AddLast loc
-		NameEntity(loc.playerentity, "playerEntity")
+		'NameEntity(loc.playerentity, "playerEntity")
+
+		loc.playerentity.NameEntity "playerEntity: ID: "
 		EntityType(loc.pivot,GroupCharacters, True)
 		'EntityRadius(loc.pivot, 1,1)
 		EntityPickMode(loc.playerentity,2)
