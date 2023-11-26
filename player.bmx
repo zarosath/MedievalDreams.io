@@ -1,7 +1,7 @@
 ' load player mesh
-Global Playermodel:TMesh=LoadAnimMesh("Media/models/Player/player.b3d")
+Global Playermodel:TMesh=LoadAnimMesh("Media/models/Player/untitled.b3d")
 HideEntity Playermodel
-Local PlayerIsOnGround:Int
+Local PlayerIsOnGround:Int = False
 
 Type TPlayer
 
@@ -22,7 +22,7 @@ Field GObj:TGNetObject
 			Local loc:TPlayer = New TPlayer
 			EntityType(loc.pivot,GroupCharacters, True)
 			ScaleEntity loc.playerentity,1,1,1
-			'EntityRadius(loc.pivot, 1,1)
+			EntityRadius(loc.pivot, 1,1)
 
 			EntityParent loc.playerentity, loc.Pivot
 			RotateEntity(loc.playerentity, 180,0,180)
@@ -45,6 +45,7 @@ Field GObj:TGNetObject
 
 		loc.playerentity.NameEntity "playerEntity: ID: "
 		EntityType(loc.pivot,GroupCharacters, True)
+					EntityType(loc.pivot,groupcharacters,True)
 		'EntityRadius(loc.pivot, 1,1)
 		EntityPickMode(loc.playerentity,2)
 		EntityParent loc.playerentity, loc.Pivot
