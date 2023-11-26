@@ -3,7 +3,7 @@ Game Servers, create characters and play matches of medieval Kingdom Fiefdom fan
 
 Blitz Indie Style, work in progress.
 
-Attempting to impliment networking 10/8/23
+Attempting to impliment networking 10/8/23 - 11-26-2023, basic networking has been accomplished visa vi movement but more work needs to be done to accomplish smooth, possibly procedural movement with high latency
 
 
 
