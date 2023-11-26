@@ -122,7 +122,7 @@ If  PlayerTime<MilliSecs() And PlayerIsOnGround=False'And YAcceleration<>0
 
 	MoveEntity me.Pivot, 0,YAcceleration,0
 	'Print EntityY(Pivot)
-	If EntityY(me.Pivot)<0.5
+	If EntityY(me.Pivot)<0.3
 		'  auto floor collision or:
 	EndIf
 EndIf

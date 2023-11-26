@@ -25,6 +25,7 @@ Field GObj:TGNetObject
 			EntityRadius(loc.pivot, 1)
 			EntityParent loc.playerentity, loc.Pivot
 			RotateEntity(loc.playerentity, 180,0,180)
+			PositionEntity(loc.playerentity, 0, -1,0, True)
 			PositionEntity(loc.pivot,14,1.5,-15) 'general player spawn location
 			
 			        loc.GObj = CreateGNetObject(Host)
