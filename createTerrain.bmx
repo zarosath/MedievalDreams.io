@@ -6,7 +6,7 @@
 Global terrain:TTerrain=LoadTerrain( "Media/Zone/terrain_hmap.bmp" )
 
 ' Set terrain detail, enable vertex morphing
-'TerrainDetail terrain,4000
+TerrainDetail terrain,1'4000
 
 ' Scale terrain
 ScaleEntity terrain,1,1,1
@@ -22,4 +22,4 @@ ScaleTexture grass_tex,1,1
 
 PositionEntity(terrain,0,0,0)
 EntityType(terrain,GroupEnvironment)
-EntityRadius(terrain,1, 1)
+EntityRadius(terrain, 1)

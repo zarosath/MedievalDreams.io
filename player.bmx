@@ -20,7 +20,7 @@ Field GObj:TGNetObject
 
     Function Addme:TPlayer(Name:String)
 			Local loc:TPlayer = New TPlayer
-			EntityType(loc.pivot,GroupCharacters, True)
+			EntityType(loc.pivot,GroupCharacters, true)
 			ScaleEntity loc.playerentity,1,1,1
 			EntityRadius(loc.pivot, 1)
 			EntityParent loc.playerentity, loc.Pivot
@@ -44,7 +44,7 @@ Field GObj:TGNetObject
 		'NameEntity(loc.playerentity, "playerEntity")
 
 		loc.playerentity.NameEntity "playerEntity: ID: "
-		EntityType(loc.pivot,GroupCharacters, True)
+		'EntityType(loc.playerentity,GroupCharacters, )
 					EntityType(loc.pivot,groupcharacters,True)
 		EntityRadius(loc.pivot, 1)
 		EntityPickMode(loc.playerentity,2)

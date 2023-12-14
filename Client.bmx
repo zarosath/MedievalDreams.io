@@ -136,11 +136,11 @@ Local WhoCollided:TEntity = EntityCollided(me.pivot,GroupEnvironment)
 If WhoCollided=terrain
      'Print "Entity has collided with the terrain"
 PlayerIsOnGround = True
-ElseIf EntityY(me.pivot) > ( TerrainZ(terrain, pX, pY, pZ))
+ElseIf EntityY(me.pivot) > ( TerrainY(terrain, pX, pY, pZ))
 PlayerIsOnGround = False
 'Print "player isnt colliding with anything"
 	EndIf
-	
+
 			'Update player location and rotation upon changes
 	If EntityX(me.pivot) <> me.X() Then me.SendX()
 		If EntityY(me.pivot) <> me.Y() Then me.SendY()
