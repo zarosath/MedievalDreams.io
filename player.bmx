@@ -1,7 +1,6 @@
 ' load player mesh
 Global Playermodel:TMesh=LoadAnimMesh("Media/models/Player/player.b3d")
 HideEntity Playermodel
-Local PlayerIsOnGround:Int = False
 
 Type TPlayer
 
@@ -20,13 +19,13 @@ Field GObj:TGNetObject
 
     Function Addme:TPlayer(Name:String)
 			Local loc:TPlayer = New TPlayer
-			EntityType(loc.pivot,GroupCharacters, true)
+			EntityType(loc.pivot,GroupCharacters, True)
 			ScaleEntity loc.playerentity,1,1,1
 			EntityRadius(loc.pivot, 1)
 			EntityParent loc.playerentity, loc.Pivot
 			RotateEntity(loc.playerentity, 180,0,180)
 			PositionEntity(loc.playerentity, 0, -1,0, True)
-			PositionEntity(loc.pivot,14,1.5,-15) 'general player spawn location
+			PositionEntity(loc.pivot,10,5.5,-5) 'general player spawn location
 			
 			        loc.GObj = CreateGNetObject(Host)
 			        For Local i:Int= 0 To 31

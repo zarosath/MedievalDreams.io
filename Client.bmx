@@ -29,6 +29,7 @@ Const  MOTION:Int   = 20
 Global YAcceleration:Float
 Global PlayerTime:Int
 Global playerjumped:Int
+Global Startmenu:Int = False
 
 						' instance of network objects
 						Global Host:TGNetHost=CreateGNetHost()
@@ -66,7 +67,7 @@ Include "EntityPick.bmx"
 	ScaleEntity c, 0.2,10,0.2
    	PositionEntity c, 12,0,-12
 ' set collision
-Collisions(GroupCharacters,GroupEnvironment,2,2)
+Collisions(GroupCharacters,GroupEnvironment,2,3)
 Collisions(GroupCharacters,GroupCharacters,2,1)
 
 Rem
@@ -80,8 +81,18 @@ Print i
 Next
 End Function
 
+Function Rungame()
+
+End Function
+
 Repeat
 
+If Startmenu = True
+
+'Return
+Else
+
+EndIf
 CameraFunction()
 	
 	If KeyDown( KEY_D )=True
@@ -103,7 +114,7 @@ CameraFunction()
 	MoveEntity me.Pivot,0,-0.1,0
 	EndIf
 	
-			If KeyDown(key_SPACE) And PlayerIsOnGround = True Then
+			If KeyDown(key_SPACE) And me.PlayerIsOnGround = True Then
 					playerJumped=True
 					YAcceleration=ENERGY
 			EndIf
@@ -115,14 +126,14 @@ CameraFunction()
 	
 	
 	' Gravity and jumping function
-If  PlayerTime<MilliSecs() And PlayerIsOnGround=False'And YAcceleration<>0
+If  PlayerTime<MilliSecs() And me.PlayerIsOnGround=False'And YAcceleration<>0
 	PlayerTime = MilliSecs()+ MOTION
 	
 	 	YAcceleration = YAcceleration - GRAVITY
 
 	MoveEntity me.Pivot, 0,YAcceleration,0
 	'Print EntityY(Pivot)
-	If EntityY(me.Pivot)<0.3
+	If EntityY(me.Pivot)<0
 		'  auto floor collision or:
 	EndIf
 EndIf
@@ -135,9 +146,9 @@ Local pZ:Int = EntityZ(me.pivot)
 Local WhoCollided:TEntity = EntityCollided(me.pivot,GroupEnvironment)
 If WhoCollided=terrain
      'Print "Entity has collided with the terrain"
-PlayerIsOnGround = True
+me.PlayerIsOnGround = True
 ElseIf EntityY(me.pivot) > ( TerrainY(terrain, pX, pY, pZ))
-PlayerIsOnGround = False
+me.PlayerIsOnGround = False
 'Print "player isnt colliding with anything"
 	EndIf
 
@@ -170,8 +181,6 @@ EndIf
 		Flip
 
 'Text 0,0,"Use cursor keys to move about the terrain"
-
-
 
 
 Until AppTerminate() Or KeyHit(KEY_ESCAPE)
