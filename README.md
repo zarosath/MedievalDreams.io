@@ -1,5 +1,5 @@
 # MedievalDreams.io
-This is the MedievalDreams Game open source Project
+This is the MedievalDreams open source game project
 
 Blitz Indie Style, work in progress.
 
