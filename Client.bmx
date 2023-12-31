@@ -10,11 +10,11 @@ Framework openb3d.b3dglgraphics
 Import Brl.Gnet
 Import brl.threads
 
-Graphics3D 800,600, 0, 3
+Graphics3D 800,600, 32,3,120
 
 Include "createTerrain.bmx"
 Include "player.bmx"
-Include "PlayerNet.bmx"
+Include "Gnet.bmx"
 
 
 Local port:Int = 12345
@@ -75,11 +75,25 @@ load test And Or preload player entities
 End Rem
 Local entitycopythread:TThread=CreateThread(entitycopy, "")
 Function entitycopy:Object(data:Object)
-For Local i=1 To 100
+For Local i=1 To 200
 Local bots:TPlayer = New TPlayer
 Print i
 Next
 End Function
+
+Type FPS
+    Global Counter, time, TFPS
+
+    Function Calc%()
+        Counter:+1
+        If time < MilliSecs()
+            TFPS = Counter ' <- Frames/Sec
+             time = MilliSecs() + 1000 'Update
+             Counter = 0
+        End If
+        Return TFPS
+    End Function
+End Type
 
 Function Rungame()
 
@@ -175,12 +189,13 @@ Print EntityX(me.playerentity, True)
 Print EntityY(me.playerentity, True)
 Print EntityZ(me.playerentity, True)
 EndIf
-	
+
 	UpdateWorld
 	RenderWorld
+		Text 5,5,"Your FPS: "+FPS.Calc() 'This goes in main-loop
 		Flip
 
-'Text 0,0,"Use cursor keys to move about the terrain"
+'Text 1,1,"use mouse and WASD from keyboard to move"
 
 
 Until AppTerminate() Or KeyHit(KEY_ESCAPE)
