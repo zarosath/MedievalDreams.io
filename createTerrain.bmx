@@ -3,7 +3,7 @@
 
 
 ' Load terrain
-Global terrain:TTerrain=LoadTerrain( "Media/Zone/terrain_hmap.bmp" )
+Global terrain:TTerrain=LoadTerrain( "Media/Zone/heightmap1.bmp" )
 
 ' Set terrain detail, enable vertex morphing
 TerrainDetail terrain,1'4000
@@ -14,7 +14,7 @@ EntityPickMode(terrain,2)
 NameEntity(terrain, "terrain")
 
 ' Texture terrain
-Local grass_tex:TTexture=LoadTexture( "Media/Zone/terrain_colormap.bmp" )
+Local grass_tex:TTexture=LoadTexture( "Media/Zone/colormap1.bmp" )
 EntityTexture terrain,grass_tex
 ScaleTexture grass_tex,1,1
 
