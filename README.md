@@ -1,5 +1,5 @@
 # MedievalDreams.io
-Game Servers, create characters and play matches of medieval Kingdom Fiefdom fantasy
+This is the MedievalDreams Game open source Project
 
 Blitz Indie Style, work in progress.
 
