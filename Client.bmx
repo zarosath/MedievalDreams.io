@@ -10,7 +10,7 @@ Framework openb3d.b3dglgraphics
 Import Brl.Gnet
 Import brl.threads
 
-Graphics3D 800,600, 32,3,120
+Graphics3D 800,600, 32,3
 
 Include "createTerrain.bmx"
 Include "player.bmx"
@@ -30,6 +30,8 @@ Global YAcceleration:Float
 Global PlayerTime:Int
 Global playerjumped:Int
 Global Startmenu:Int = False
+Global exitapp:Int=False
+
 
 						' instance of network objects
 						Global Host:TGNetHost=CreateGNetHost()
@@ -76,8 +78,11 @@ End Rem
 Local entitycopythread:TThread=CreateThread(entitycopy, "")
 Function entitycopy:Object(data:Object)
 For Local i=1 To 200
+If (exitapp=True)
+Return
+EndIf
 Local bots:TPlayer = New TPlayer
-Print i
+Print "ModelPreload_"+i
 Next
 End Function
 
@@ -98,8 +103,21 @@ End Type
 Function Rungame()
 
 End Function
-
-Repeat
+While (exitapp=False)
+If(AppTerminate() Or KeyHit(KEY_ESCAPE))
+exitapp=True
+WaitThread(entitycopythread)
+EndIf
+If (exitapp=True)
+DetachThread(entitycopythread)
+CloseGNetObject(me.GObj)
+Delay 500
+Print"Player object closed"
+CloseGNetHost(Host)
+Print "host closed"
+Return
+EndIf
+'Repeat
 
 If Startmenu = True
 
@@ -193,16 +211,7 @@ EndIf
 	UpdateWorld
 	RenderWorld
 		Text 5,5,"Your FPS: "+FPS.Calc() 'This goes in main-loop
+		Text 20,20,"use mouse and WASD from keyboard to move"
 		Flip
 
-'Text 1,1,"use mouse and WASD from keyboard to move"
-
-
-Until AppTerminate() Or KeyHit(KEY_ESCAPE)
-DetachThread(entitycopythread)
-CloseGNetObject(me.GObj)
-Delay 500
-Print"Player object closed"
-CloseGNetHost(Host)
-Print "host closed"
-'End
+Wend
