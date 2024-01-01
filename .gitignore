@@ -10,3 +10,4 @@
 # Exclude files
 *.bak
 *.debug
+*.exe

@@ -3,7 +3,9 @@ SuperStrict
 Framework brl.GNet
 Import brl.standardio
 Import brl.threads
-
+?win32
+Import Pub.Win32
+?
 ' Color codes for console
 Global RED:String = "~$1b~[0;31m"
 Global GRN:String = "~$1b~[0;32m"
@@ -13,7 +15,6 @@ Global WHT:String = "~$1b~[0;37m"
 
 'Windows? Console mode for windows
 ?win32
-Import pub.win32
 	Local hConsoleHandle:Byte Ptr = GetStdHandle(STD_OUTPUT_HANDLE)
 	Local dwMode:ULongInt
 	GetConsoleMode(hConsoleHandle, dwMode)
