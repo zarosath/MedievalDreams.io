@@ -9,8 +9,8 @@ end rem
 Framework openb3d.b3dglgraphics
 Import Brl.Gnet
 Import brl.threads
-
-Graphics3D 800,600, 32,3
+'DebugStop
+Graphics3D DesktopWidth(),DesktopHeight(),32,1
 
 Include "createTerrain.bmx"
 Include "player.bmx"
@@ -74,12 +74,13 @@ Collisions(GroupCharacters,GroupCharacters,2,1)
 
 Rem
 load test And Or preload player entities
+TODO: create preload cache system for multi-repurposing player entities
 End Rem
 Local entitycopythread:TThread=CreateThread(entitycopy, "")
 Function entitycopy:Object(data:Object)
 For Local i=1 To 200
 If (exitapp=True)
-Return
+Exit
 EndIf
 Local bots:TPlayer = New TPlayer
 Print "ModelPreload_"+i
@@ -103,6 +104,8 @@ End Type
 Function Rungame()
 
 End Function
+
+' Main Loop
 While (exitapp=False)
 If(AppTerminate() Or KeyHit(KEY_ESCAPE))
 exitapp=True
@@ -110,12 +113,13 @@ WaitThread(entitycopythread)
 EndIf
 If (exitapp=True)
 DetachThread(entitycopythread)
+Print("thread EntityCopyThread Detached")
 CloseGNetObject(me.GObj)
 Delay 500
-Print"Player object closed"
+Print"PlayerNetobject closed"
 CloseGNetHost(Host)
 Print "host closed"
-Return
+Exit
 EndIf
 'Repeat
 
@@ -158,7 +162,7 @@ CameraFunction()
 	
 	
 	' Gravity and jumping function
-If  PlayerTime<MilliSecs() And me.PlayerIsOnGround=False'And YAcceleration<>0
+If  PlayerTime<MilliSecs() And me.PlayerIsOnGround=False
 	PlayerTime = MilliSecs()+ MOTION
 	
 	 	YAcceleration = YAcceleration - GRAVITY
@@ -177,11 +181,9 @@ Local pZ:Int = EntityZ(me.pivot)
 
 Local WhoCollided:TEntity = EntityCollided(me.pivot,GroupEnvironment)
 If WhoCollided=terrain
-     'Print "Entity has collided with the terrain"
 me.PlayerIsOnGround = True
 ElseIf EntityY(me.pivot) > ( TerrainY(terrain, pX, pY, pZ))
 me.PlayerIsOnGround = False
-'Print "player isnt colliding with anything"
 	EndIf
 
 			'Update player location and rotation upon changes
@@ -214,4 +216,4 @@ EndIf
 		Text 20,20,"use mouse and WASD from keyboard to move"
 		Flip
 
-Wend
+Wend ' End Main Loop

@@ -4,7 +4,7 @@ Strict
 
 Framework openb3d.b3dglgraphics
 
-Graphics3D 800,600
+Graphics3D 800,600,32,1
 
 
 Local FpsTimer, FpsTicks, fps:Int
