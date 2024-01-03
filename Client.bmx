@@ -10,7 +10,7 @@ Framework openb3d.b3dglgraphics
 Import Brl.Gnet
 Import brl.threads
 'DebugStop
-Graphics3D DesktopWidth(),DesktopHeight(),32,1
+Graphics3D DesktopWidth(),DesktopHeight(),0,1
 
 Include "createTerrain.bmx"
 Include "player.bmx"
@@ -174,9 +174,9 @@ If  PlayerTime<MilliSecs() And me.PlayerIsOnGround=False
 	EndIf
 EndIf
 
-Local pX:Int = EntityX(me.pivot)
-Local pY:Int = EntityY(me.pivot)
-Local pZ:Int = EntityZ(me.pivot)
+Local pX:Float = EntityX(me.pivot)
+Local pY:Float = EntityY(me.pivot)
+Local pZ:Float = EntityZ(me.pivot)
 
 
 Local WhoCollided:TEntity = EntityCollided(me.pivot,GroupEnvironment)
