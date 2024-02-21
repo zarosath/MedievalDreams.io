@@ -3,12 +3,10 @@ Rem
 EndRem
 Strict
 
-Rem
-Test visual studio commit.
-end rem
 Framework openb3d.b3dglgraphics
 Import Brl.Gnet
 Import brl.threads
+Import blide.deltatiming
 'DebugStop
 Graphics3D DesktopWidth(),DesktopHeight(),0,1
 
@@ -18,7 +16,7 @@ Include "Gnet.bmx"
 
 
 Local port:Int = 12345
-Local address:String = "localhost"
+Local address:String = "198.23.133.142"
 'variables
 Const GroupEnvironment% = 2
 Const GroupCharacters% = 3
@@ -83,6 +81,8 @@ If (exitapp=True)
 Exit
 EndIf
 Local bots:TPlayer = New TPlayer
+bots.newID()
+bots.printID()
 Print "ModelPreload_"+i
 Next
 End Function
@@ -109,6 +109,7 @@ End Function
 While (exitapp=False)
 If(AppTerminate() Or KeyHit(KEY_ESCAPE))
 exitapp=True
+' wait thread because we need to be sure it exits the loop via exitapp=true so it does not segment fault
 WaitThread(entitycopythread)
 EndIf
 If (exitapp=True)
@@ -212,7 +213,9 @@ EndIf
 
 	UpdateWorld
 	RenderWorld
+	'text command function must go here under update/renderworld
 		Text 5,5,"Your FPS: "+FPS.Calc() 'This goes in main-loop
+		'DrawText("Current deltatime: " + Delta.Factor(), 0, 40)
 		Text 20,20,"use mouse and WASD from keyboard to move"
 		Flip
 

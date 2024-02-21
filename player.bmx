@@ -15,7 +15,17 @@ Field playerentity:TEntity = CopyEntity(Playermodel)
 Field Pivot:TPivot=CreatePivot()
 
 Field GObj:TGNetObject
+  Field id:Int
+  Global lastID:Int = 0
 
+  Method NewID()
+    lastID :+ 1
+    Self.id = lastID
+  End Method
+
+Method printID()
+Print Self.id
+End Method
 
     Function Addme:TPlayer(Name:String)
 			Local loc:TPlayer = New TPlayer

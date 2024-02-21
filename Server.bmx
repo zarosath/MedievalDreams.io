@@ -67,9 +67,12 @@ Case "close" shutdown=True
 Case "stop" shutdown=True
 Case "shutdown" shutdown=True
 Case "exit" shutdown=True
-Case "help" Printcolor("Commands to terminate server: Exit, close, stop, shutdown", RED)
+Case "help" 
+Printcolor("Commands are Case sensitive", WHT)
+Printcolor("Commands to terminate server: exit, close, stop, shutdown", WHT)
 Default
 PrintColor("Commands: close, stop, shutdown, exit, help", RED)
+Printcolor("Commands are Case sensitive", WHT)
 EndSelect
 Until shutdown=True
 
