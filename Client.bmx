@@ -16,7 +16,7 @@ Include "Gnet.bmx"
 
 
 Local port:Int = 12345
-Local address:String = "198.23.133.142"
+Local address:String = "localhost"
 'variables
 Const GroupEnvironment% = 2
 Const GroupCharacters% = 3
