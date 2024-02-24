@@ -34,8 +34,8 @@ End Method
 			ScaleEntity loc.playerentity,1,1,1
 			EntityParent loc.playerentity, loc.Pivot
 			RotateEntity(loc.playerentity, 180,0,180)
-			PositionEntity(loc.playerentity, 0, -1,0, True)
-			EntityRadius(loc.pivot, 0.3, 1)
+			PositionEntity(loc.playerentity, 0, -1,0, True) ' position entity ground level, exactly -1 from Y radius.
+			EntityRadius(loc.pivot, 0.2, 1)
 			PositionEntity(loc.pivot,10,5.5,-5) 'general player spawn location
 			
 			        loc.GObj = CreateGNetObject(Host)
@@ -58,9 +58,9 @@ End Method
 		EntityPickMode(loc.playerentity,2)
 		EntityParent loc.playerentity, loc.Pivot
 		RotateEntity(loc.playerentity, 180,0,180)
-					PositionEntity(loc.playerentity, 0, -1,0, True)
+		PositionEntity(loc.playerentity, 0, -1,0, True) ' position entity ground level, exactly -1 from Y radius.
 		ScaleEntity loc.playerentity,1,1,1
-			EntityRadius(loc.pivot, 0.3,1)
+			EntityRadius(loc.pivot, 0.2, 1)
 		PositionEntity(loc.pivot,14,0.2,-15) 'general player spawn location
     End Function
 
