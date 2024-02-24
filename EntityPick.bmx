@@ -11,10 +11,10 @@ Print EntityName(picked)
 'Next
 
 
-Select EntityName(Picked) ' Switch Case Select for purpose of action to the picked.
+Select EntityName(Picked) ' Switch Case Select for purpose to action of the picked.
 Case "playerEntity"
 Print "action: how to interact?"
-Return String(TPlayer.PlayerID[picked]).toint()
+Return String(TPlayer.PlayerID[picked]).ToInt()
 End Select
 
 EndIf
