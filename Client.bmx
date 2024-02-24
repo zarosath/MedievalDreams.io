@@ -8,7 +8,7 @@ Import Brl.Gnet
 Import brl.threads
 Import blide.deltatiming
 'DebugStop
-Graphics3D DesktopWidth(),DesktopHeight(),0,1
+Graphics3D 840,600,0,2
 
 Include "createTerrain.bmx"
 Include "player.bmx"
@@ -20,6 +20,7 @@ Local address:String = "localhost"
 'variables
 Const GroupEnvironment% = 2
 Const GroupCharacters% = 3
+Const pivots:Int = 4
 
 Const GRAVITY:Float = 0.1
 Const  ENERGY:Float = 1.5
@@ -68,7 +69,8 @@ Include "EntityPick.bmx"
    	PositionEntity c, 12,0,-12
 ' set collision
 Collisions(GroupCharacters,GroupEnvironment,2,3)
-Collisions(GroupCharacters,GroupCharacters,2,1)
+'Collisions(pivots,GroupEnvironment,2,3)
+Collisions(GroupCharacters,GroupCharacters,3,3)
 
 Rem
 load test And Or preload player entities
@@ -80,10 +82,10 @@ For Local i=1 To 200
 If (exitapp=True)
 Exit
 EndIf
-Local bots:TPlayer = New TPlayer
-bots.newID()
-bots.printID()
-Print "ModelPreload_"+i
+'Local bots:TPlayer = New TPlayer
+'bots.newID()
+'bots.printID()
+'Print "ModelPreload_"+i
 Next
 End Function
 
