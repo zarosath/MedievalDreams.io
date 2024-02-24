@@ -29,14 +29,13 @@ End Method
 
     Function Addme:TPlayer(Name:String)
 			Local loc:TPlayer = New TPlayer
-					EntityType(loc.pivot,GroupCharacters, False)
+					EntityType(loc.pivot,GroupCharacters, True)
 			'EntityType(loc.playerentity,GroupCharacters, False)
-			EntityBox(loc.pivot, 1, 1, 1, 1, 2, 0.439)
-			EntityRadius(loc.pivot, 1.03)
 			ScaleEntity loc.playerentity,1,1,1
 			EntityParent loc.playerentity, loc.Pivot
 			RotateEntity(loc.playerentity, 180,0,180)
-			'PositionEntity(loc.playerentity, 0, -1,0, True)
+			PositionEntity(loc.playerentity, 0, -1,0, True)
+			EntityRadius(loc.pivot, 0.3, 1)
 			PositionEntity(loc.pivot,10,5.5,-5) 'general player spawn location
 			
 			        loc.GObj = CreateGNetObject(Host)
@@ -55,14 +54,13 @@ End Method
 		'NameEntity(loc.playerentity, "playerEntity")
 
 		loc.playerentity.NameEntity "playerEntity: ID: "
-		'EntityType(loc.playerentity,GroupCharacters, )
-		EntityType(loc.pivot,GroupCharacters, False)
-		EntityBox(loc.pivot, 0, 0, 0, 1.205, 2.001, 0.439)
-		EntityRadius(loc.pivot, 1.03)
+		EntityType(loc.pivot,GroupCharacters, True)
 		EntityPickMode(loc.playerentity,2)
 		EntityParent loc.playerentity, loc.Pivot
 		RotateEntity(loc.playerentity, 180,0,180)
+					PositionEntity(loc.playerentity, 0, -1,0, True)
 		ScaleEntity loc.playerentity,1,1,1
+			EntityRadius(loc.pivot, 0.3,1)
 		PositionEntity(loc.pivot,14,0.2,-15) 'general player spawn location
     End Function
 

@@ -69,8 +69,8 @@ Include "EntityPick.bmx"
    	PositionEntity c, 12,0,-12
 ' set collision
 Collisions(GroupCharacters,GroupEnvironment,2,3)
-'Collisions(pivots,GroupEnvironment,2,3)
-Collisions(GroupCharacters,GroupCharacters,3,3)
+'Collisions(pivots,GroupCharacters,3,3)
+Collisions(GroupCharacters,GroupCharacters,1,3)
 
 Rem
 load test And Or preload player entities
