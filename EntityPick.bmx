@@ -8,13 +8,13 @@ Local Picked:TEntity=PickedEntity()
 Print EntityName(picked)
 'For Local s:TEntity = EachIn TPlayer.PlayerID.Keys()
     'Print EntityName(Picked) + " = " + String(TPlayer.PlayerID[picked]) ' retrieve value using index operator
-Return String(TPlayer.PlayerID[picked]).toint()
 'Next
 
 
 Select EntityName(Picked) ' Switch Case Select for purpose of action to the picked.
 Case "playerEntity"
 Print "action: how to interact?"
+Return String(TPlayer.PlayerID[picked]).toint()
 End Select
 
 EndIf

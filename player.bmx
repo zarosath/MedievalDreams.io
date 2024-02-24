@@ -54,7 +54,7 @@ End Method
         All.AddLast loc
 		'NameEntity(loc.playerentity, "playerEntity")
 		PlayerID.Insert(loc.playerentity, String(loc.NewID()))
-		loc.playerentity.NameEntity "playerEntity: ID: "
+		loc.playerentity.NameEntity "playerEntity"
 		EntityType(loc.pivot,GroupCharacters, True)
 		EntityPickMode(loc.playerentity,2)
 		EntityParent loc.playerentity, loc.Pivot
