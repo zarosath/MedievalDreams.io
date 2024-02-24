@@ -67,9 +67,9 @@ Include "EntityPick.bmx"
 	Local c:TEntity = CreateCylinder()
 	ScaleEntity c, 0.2,10,0.2
    	PositionEntity c, 12,0,-12
+
 ' set collision
 Collisions(GroupCharacters,GroupEnvironment,2,3)
-'Collisions(pivots,GroupCharacters,3,3)
 Collisions(GroupCharacters,GroupCharacters,1,3)
 
 Rem
