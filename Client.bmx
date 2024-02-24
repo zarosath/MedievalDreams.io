@@ -20,7 +20,6 @@ Local address:String = "localhost"
 'variables
 Const GroupEnvironment% = 2
 Const GroupCharacters% = 3
-Const pivots:Int = 4
 
 Const GRAVITY:Float = 0.1
 Const  ENERGY:Float = 1.5
@@ -160,7 +159,7 @@ CameraFunction()
 	
 	'if left mouse button was hit
 	If MouseHit(1)
-	CheckPick() ' entity pick
+	Print CheckPick()' entity pick
 	EndIf
 	
 	

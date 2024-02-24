@@ -5,6 +5,7 @@ HideEntity Playermodel
 Type TPlayer
 
 	Global all:TList = New TList
+	 Global PlayerID:TMap = New TMap
 
 Field Username:String
 'Field x: Float
@@ -13,7 +14,6 @@ Field PlayerIsOnGround:Int
 Field YAcceleration:Float
 Field playerentity:TEntity = CopyEntity(Playermodel)
 Field Pivot:TPivot=CreatePivot()
-
 Field GObj:TGNetObject
   Field id:Int
   Global lastID:Int = 0
@@ -21,6 +21,7 @@ Field GObj:TGNetObject
   Method NewID()
     lastID :+ 1
     Self.id = lastID
+Return Self.id
   End Method
 
 Method printID()
@@ -52,7 +53,7 @@ End Method
         loc.GObj = Obj
         All.AddLast loc
 		'NameEntity(loc.playerentity, "playerEntity")
-
+		PlayerID.Insert(loc.playerentity, String(loc.NewID()))
 		loc.playerentity.NameEntity "playerEntity: ID: "
 		EntityType(loc.pivot,GroupCharacters, True)
 		EntityPickMode(loc.playerentity,2)
