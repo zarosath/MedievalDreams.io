@@ -4,11 +4,12 @@ EndRem
 Strict
 
 Framework openb3d.b3dglgraphics
+Import brl.map
 Import Brl.Gnet
 Import brl.threads
 Import blide.deltatiming
 'DebugStop
-Graphics3D 840,600,0,2
+Graphics3D 840,600,0,2,144
 
 Include "createTerrain.bmx"
 Include "player.bmx"
@@ -54,7 +55,8 @@ Print "host closed"
 	EndIf
 						Global me:TPlayer = TPlayer.AddMe("client")
 Rem
-so we Include these bmx files down here For until clients me.tplayer instance Not yet 
+so we Include these bmx files down here For until clients me.tplayer instance isnt initialized until now
+
 End Rem
 Include "camera.bmx"
 Include "EntityPick.bmx"
@@ -151,7 +153,7 @@ CameraFunction()
 	If KeyDown( key_Down )=True
 	MoveEntity me.Pivot,0,-0.1,0
 	EndIf
-	
+
 			If KeyDown(key_SPACE) And me.PlayerIsOnGround = True Then
 					playerJumped=True
 					YAcceleration=ENERGY
@@ -161,8 +163,8 @@ CameraFunction()
 	If MouseHit(1)
 	Print CheckPick()' entity pick
 	EndIf
-	
-	
+
+
 	' Gravity and jumping function
 If  PlayerTime<MilliSecs() And me.PlayerIsOnGround=False
 	PlayerTime = MilliSecs()+ MOTION
@@ -196,9 +198,9 @@ me.PlayerIsOnGround = False
 				If EntityPitch(me.pivot) <> me.Pitch() Then me.SendPitch()
 		If EntityYaw(me.pivot) <> me.Yaw() Then me.SendYaw()
 			If EntityRoll(me.pivot) <> me.Roll() Then me.SendRoll()
-		
-		
-		
+
+
+
 		   GNetSync(Host)
 	ScanGnet()
 	If (KeyHit(KEY_R)) 'print coordinates for reference
