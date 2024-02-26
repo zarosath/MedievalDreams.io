@@ -15,7 +15,7 @@ Local height%=DesktopHeight()
 Local winx%=DesktopWidth()/2-width/2
 Local winy%=DesktopHeight()/2-height/2
 SetGraphicsDriver GLMax2DDriver(),flags ' before SetGraphics, set this so graphics look right
-	Local Window:TGadget=CreateWindow("Username",winx,winy,width,height)
+	Local Window:TGadget=CreateWindow("MedievalDreams",winx,winy,width,height)
 	Global Canvas:TGadget=CreateCanvas(0,0,ClientWidth(Window),ClientHeight(Window),Window,0)
 	SetGadgetLayout(Canvas, 1, 1, 1, 1)
 	ActivateGadget(Canvas)
@@ -166,9 +166,7 @@ If(AppTerminate() Or KeyHit(KEY_ESCAPE))
 exitapp=True
 ' wait thread because we need to be sure it exits the loop via exitapp=true so it does not segment fault
 WaitThread(entitycopythread)
-?linux Or MacOS
 DetachThread(WindowThread)
-?
 EndIf
 If (exitapp=True)
 DetachThread(entitycopythread)
@@ -191,20 +189,19 @@ Else
 
 EndIf
 ?Win32
-WaitEvent()
-SelectmaxguiEvents()
+WaitEvent(), SelectmaxguiEvents()
 ?
 CameraFunction()
 	
 	If KeyDown( KEY_D )=True
-	TurnEntity me.Pivot, 0, -0.2, 0
+	TurnEntity me.Pivot, 0, 0.1, 0
 	MoveEntity me.Pivot,0.1,0,0
 	EndIf
 	If KeyDown( KEY_S )=True
 	MoveEntity me.Pivot,0,0,-0.1
 	EndIf
 	If KeyDown( KEY_A )=True
-	TurnEntity me.Pivot, 0, 0.2, 0
+	TurnEntity me.Pivot, 0, -0.1, 0
 	MoveEntity me.Pivot,-0.1,0,0
 	EndIf
 	If KeyDown( KEY_W )=True
