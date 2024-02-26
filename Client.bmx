@@ -175,19 +175,20 @@ Else
 
 EndIf
 ?Win32
-WaitEvent(), SelectmaxguiEvents()
+WaitEvent()
+SelectmaxguiEvents()
 ?
 CameraFunction()
 	
 	If KeyDown( KEY_D )=True
-	TurnEntity me.Pivot, 0, 0.2*Delta.factor(), 0
+	TurnEntity me.Pivot, 0, -0.2*Delta.factor(), 0
 	MoveEntity me.Pivot,0.07*Delta.factor(),0,0
 	EndIf
 	If KeyDown( KEY_S )=True
 	MoveEntity me.Pivot,0,0,-0.07*Delta.factor()
 	EndIf
 	If KeyDown( KEY_A )=True
-	TurnEntity me.Pivot, 0, -0.2*Delta.factor(), 0
+	TurnEntity me.Pivot, 0, 0.2*Delta.factor(), 0
 	MoveEntity me.Pivot,-0.07*Delta.factor(),0,0
 	EndIf
 	If KeyDown( KEY_W )=True
