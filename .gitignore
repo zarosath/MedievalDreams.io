@@ -11,3 +11,4 @@
 *.bak
 *.debug
 *.exe
+*.linux.x64.a

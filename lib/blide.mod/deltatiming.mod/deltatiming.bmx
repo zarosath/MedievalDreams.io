@@ -32,10 +32,6 @@ Private
         If Not Paused UpdateTiming()
     End Function
 
-Function getDeltaTime:Double
-Return DeltaTime:double
-End Function
-
     Function UpdateTiming()
         Local MLS:Double = MilliSecs()
         DeltaTime = Abs(MLS - LastTiming) / 10.0
