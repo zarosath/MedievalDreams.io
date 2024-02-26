@@ -183,7 +183,7 @@ If Startmenu = True
 Else
 
 EndIf
-?Windows 
+?Win32
 WaitEvent(), SelectmaxguiEvents()
 ?
 CameraFunction()
