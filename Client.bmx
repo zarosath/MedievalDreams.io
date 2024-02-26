@@ -7,25 +7,23 @@ Import openb3d.b3dglgraphics
 Import brl.map
 Import Brl.Gnet
 Import brl.threads
-'Import brl.Graphics
 Import blide.deltatiming
 Import MaxGui.Drivers
-Import brl.event
-
+Local flags%=GRAPHICS_BACKBUFFER|GRAPHICS_ALPHABUFFER|GRAPHICS_DEPTHBUFFER|GRAPHICS_STENCILBUFFER|GRAPHICS_ACCUMBUFFER
 Local width%=DesktopWidth()
 Local height%=DesktopHeight()
 Local winx%=DesktopWidth()/2-width/2
 Local winy%=DesktopHeight()/2-height/2
-
+SetGraphicsDriver GLMax2DDriver(),flags ' before SetGraphics, set this so graphics look right
 	Local Window:TGadget=CreateWindow("MedievalDreams.io",winx,winy,width,height)
-	Local Canvas:TGadget=CreateCanvas(0,0,ClientWidth(Window),ClientHeight(Window),Window,0)
+	Global Canvas:TGadget=CreateCanvas(0,0,ClientWidth(Window),ClientHeight(Window),Window,0)
 	SetGadgetLayout(Canvas, 1, 1, 1, 1)
 	ActivateGadget(Canvas)
 	EnablePolledInput Canvas ' to activate mouse and keys
 	SetGraphics CanvasGraphics(Canvas)
 	
 		
-		Graphics3D ClientWidth(Window),ClientHeight(Window),0,3,144,-1,True
+		Graphics3D(ClientWidth(Window),ClientHeight(Window),0,,144,-1,True)
 
 Include "createTerrain.bmx"
 Include "player.bmx"
@@ -106,6 +104,31 @@ EndIf
 Next
 End Function
 
+Local WindowThread:TThread=CreateThread(Processwindow, "")
+
+Function Processwindow:Object(data:Object)
+
+While (exitapp=False)
+	WaitEvent()
+	
+Select EventID()
+			
+	Case EVENT_WINDOWCLOSE
+		exitapp=True
+	
+	Case EVENT_WINDOWSIZE
+			
+	Case EVENT_WINDOWACTIVATE ' note: in Linux there is no initial EVENT_WINDOWSIZE
+			
+	Case EVENT_TIMERTICK
+		RedrawGadget Canvas
+			
+	Case EVENT_GADGETPAINT
+		UpdateCanvas(Canvas,camera) ' update viewport
+
+End Select
+Wend
+End Function
 
 
 Type FPS
@@ -132,6 +155,7 @@ If(AppTerminate() Or KeyHit(KEY_ESCAPE))
 exitapp=True
 ' wait thread because we need to be sure it exits the loop via exitapp=true so it does not segment fault
 WaitThread(entitycopythread)
+DetachThread(WindowThread)
 EndIf
 If (exitapp=True)
 DetachThread(entitycopythread)
@@ -145,25 +169,7 @@ Exit
 EndIf
 'Repeat
 
-	WaitEvent()
-	
-Select EventID()
-			
-	Case EVENT_WINDOWCLOSE
-		exitapp=True
-	End
-			
-	Case EVENT_WINDOWSIZE
-			
-	Case EVENT_WINDOWACTIVATE ' note: in Linux there is no initial EVENT_WINDOWSIZE
-			
-	Case EVENT_TIMERTICK
-		RedrawGadget Canvas
-			
-	Case EVENT_GADGETPAINT
-		UpdateCanvas(Canvas,camera) ' update viewport
 
-End Select
 
 If Startmenu = True
 
@@ -239,7 +245,7 @@ me.PlayerIsOnGround = False
 			If EntityRoll(me.pivot) <> me.Roll() Then me.SendRoll()
 
 
-
+'DebugStop
 		   GNetSync(Host)
 	ScanGnet()
 	If (KeyHit(KEY_R)) 'print coordinates for reference
