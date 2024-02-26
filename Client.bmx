@@ -3,17 +3,33 @@ Rem
 EndRem
 Strict
 
-Framework openb3d.b3dglgraphics
+Import openb3d.b3dglgraphics
 Import brl.map
 Import Brl.Gnet
 Import brl.threads
+'Import brl.Graphics
 Import blide.deltatiming
-'DebugStop
-Graphics3D 840,600,0,2,144
+Import MaxGui.Drivers
+Import brl.event
+
+Local width%=DesktopWidth()
+Local height%=DesktopHeight()
+Local winx%=DesktopWidth()/2-width/2
+Local winy%=DesktopHeight()/2-height/2
+
+	Local Window:TGadget=CreateWindow("MedievalDreams.io",winx,winy,width,height)
+	Local Canvas:TGadget=CreateCanvas(0,0,ClientWidth(Window),ClientHeight(Window),Window,0)
+	SetGadgetLayout(Canvas, 1, 1, 1, 1)
+	ActivateGadget(Canvas)
+	EnablePolledInput Canvas ' to activate mouse and keys
+	SetGraphics CanvasGraphics(Canvas)
+	
+		
+		Graphics3D ClientWidth(Window),ClientHeight(Window),0,3,144,-1,True
 
 Include "createTerrain.bmx"
 Include "player.bmx"
-Include "Gnet.bmx"
+Include "net.bmx"
 
 
 Local port:Int = 12345
@@ -90,6 +106,8 @@ EndIf
 Next
 End Function
 
+
+
 Type FPS
     Global Counter, time, TFPS
 
@@ -127,21 +145,44 @@ Exit
 EndIf
 'Repeat
 
+	WaitEvent()
+	
+Select EventID()
+			
+	Case EVENT_WINDOWCLOSE
+		exitapp=True
+	End
+			
+	Case EVENT_WINDOWSIZE
+			
+	Case EVENT_WINDOWACTIVATE ' note: in Linux there is no initial EVENT_WINDOWSIZE
+			
+	Case EVENT_TIMERTICK
+		RedrawGadget Canvas
+			
+	Case EVENT_GADGETPAINT
+		UpdateCanvas(Canvas,camera) ' update viewport
+
+End Select
+
 If Startmenu = True
 
 'Return
 Else
 
 EndIf
+
 CameraFunction()
 	
 	If KeyDown( KEY_D )=True
-	MoveEntity me.Pivot,0.1,0,0
+	TurnEntity me.Pivot, 0, 0.1, 0
+	MoveEntity me.Pivot,0.1*DeltaTime,0,0
 	EndIf
 	If KeyDown( KEY_S )=True
 	MoveEntity me.Pivot,0,0,-0.1
 	EndIf
 	If KeyDown( KEY_A )=True
+	TurnEntity me.Pivot, 0, -0.1, 0
 	MoveEntity me.Pivot,-0.1,0,0
 	EndIf
 	If KeyDown( KEY_W )=True
@@ -168,11 +209,9 @@ CameraFunction()
 	' Gravity and jumping function
 If  PlayerTime<MilliSecs() And me.PlayerIsOnGround=False
 	PlayerTime = MilliSecs()+ MOTION
-	
 	 	YAcceleration = YAcceleration - GRAVITY
-
 	MoveEntity me.Pivot, 0,YAcceleration,0
-	'Print EntityY(Pivot)
+	
 	If EntityY(me.Pivot)<0
 		'  auto floor collision or:
 	EndIf
@@ -212,6 +251,7 @@ Print "playerentity coordinates"
 Print EntityX(me.playerentity, True)
 Print EntityY(me.playerentity, True)
 Print EntityZ(me.playerentity, True)
+Print ("terrainY: "+TerrainY(terrain, pX, pY, pZ))
 EndIf
 
 	UpdateWorld
@@ -223,3 +263,20 @@ EndIf
 		Flip
 
 Wend ' End Main Loop
+
+' Simplifies using Max2D with a resizable canvas (by Hezkore)
+Function UpdateCanvas(can:TGadget, cam:TCamera)
+
+	SetGraphics(CanvasGraphics(can))
+	
+	If GlobalWidth()<>ClientWidth(can) Or GlobalHeight()<>ClientHeight(can)
+		BeginMax2D()
+		SetGraphics(CanvasGraphics(can))
+		GlobalResolution(ClientWidth(can), ClientHeight(can))' update global width and height for CameraViewport
+		SetViewport(0, 0, GlobalWidth(), GlobalHeight())
+		EndMax2D()
+		
+		CameraViewport(cam, 0, 0, GlobalWidth(), GlobalHeight())
+	EndIf
+	
+EndFunction

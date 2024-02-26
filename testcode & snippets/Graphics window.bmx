@@ -1,0 +1,133 @@
+' maxgui.bmx
+
+Strict
+
+Import openb3d.b3dglgraphics
+Import brl.map
+Import Brl.Gnet
+Import brl.threads
+Import brl.Graphics
+Import blide.deltatiming
+Import MaxGui.Drivers
+Import brl.event
+
+Local flags%=GRAPHICS_BACKBUFFER|GRAPHICS_ALPHABUFFER|GRAPHICS_DEPTHBUFFER|GRAPHICS_STENCILBUFFER|GRAPHICS_ACCUMBUFFER
+'SetGraphicsDriver GLMax2DDriver(),flags ' before SetGraphics
+
+Local width%=640
+Local height%=480
+Local winx%=DesktopWidth()/2-width/2
+Local winy%=DesktopHeight()/2-height/2
+
+Local win:TGadget=CreateWindow("OpenB3D in a GUI window",winx,winy,width,height)
+
+Local can:TGadget=CreateCanvas(0,0,ClientWidth(win),ClientHeight(win),win,0)
+SetGadgetLayout can,1,1,1,1
+ActivateGadget can ' set focus
+EnablePolledInput(can) ' to activate mouse and keys
+
+SetGraphics CanvasGraphics(can)
+
+Graphics3D ClientWidth(win),ClientHeight(win),0,2,144,-1,True ' true if using canvas
+
+Local cam:TCamera=CreateCamera()
+PositionEntity cam,0,0,-10
+
+Local light:TLight=CreateLight(1)
+
+Local tex:TTexture=LoadTexture("/home/william/Documents/GitHub/MedievalDreams.io/Media/Zone/terrain_hmap.bmp")
+
+Local cube:TMesh=CreateCube()
+Local sphere:TMesh=CreateSphere()
+Local cylinder:TMesh=CreateCylinder()
+Local cone:TMesh=CreateCone() 
+
+PositionEntity cube,-6,0,0
+PositionEntity sphere,-2,0,0
+PositionEntity cylinder,2,0,0
+PositionEntity cone,6,0,0
+
+EntityTexture cube,tex
+EntityTexture sphere,tex
+EntityTexture cylinder,tex
+EntityTexture cone,tex
+
+Local renders%, fps%, old_ms%=MilliSecs() ' used by fps code
+Local left_mouse%, mouse_x%, mouse_y%
+
+CreateTimer(60)
+
+
+While Not KeyDown(KEY_ESCAPE)
+
+	WaitEvent()
+	
+	Select EventID()
+			
+		Case EVENT_WINDOWCLOSE
+			End
+			
+		Case EVENT_WINDOWSIZE
+			
+		Case EVENT_WINDOWACTIVATE ' note: in Linux there is no initial EVENT_WINDOWSIZE
+			
+		Case EVENT_TIMERTICK
+			RedrawGadget can
+			
+		Case EVENT_GADGETPAINT
+			UpdateCanvas(can,cam) ' update viewport
+			
+			left_mouse=0
+			If MouseDown(1) Then left_mouse=1
+			
+			mouse_x=MouseX()
+			mouse_y=MouseY()
+			
+			MoveEntity cam,KeyDown(KEY_LEFT)-KeyDown(KEY_RIGHT),0,KeyDown(KEY_DOWN)-KeyDown(KEY_UP)
+			TurnEntity cam,KeyDown(KEY_S)-KeyDown(KEY_W),KeyDown(KEY_A)-KeyDown(KEY_D),0
+			
+			TurnEntity cube,0,1,0
+		
+			RenderWorld
+			
+			' calculate fps
+			renders=renders+1
+			If Abs(MilliSecs() - old_ms) >= 1000
+				old_ms=MilliSecs()
+				fps=renders
+				renders=0
+			EndIf
+			
+			Text 20,0,"FPS: "+fps
+			Text 20,20,"left_mouse:"+left_mouse
+			Text 20,40,"mouse_x:"+mouse_x
+			Text 20,60,"mouse_y:"+mouse_y
+			
+			BeginMax2D()
+			GLDrawText "Testing Max2d",ClientWidth(win)-120,0
+			EndMax2D()
+			
+			Flip
+			
+	EndSelect
+	
+Wend
+End
+
+
+' Simplifies using Max2D with a resizable canvas (by Hezkore)
+Function UpdateCanvas(can:TGadget, cam:TCamera)
+
+	SetGraphics(CanvasGraphics(can))
+	
+	If GlobalWidth()<>ClientWidth(can) Or GlobalHeight()<>ClientHeight(can)
+		BeginMax2D()
+		SetGraphics(CanvasGraphics(can))
+		GlobalResolution(ClientWidth(can), ClientHeight(can))' update global width and height for CameraViewport
+		SetViewport(0, 0, GlobalWidth(), GlobalHeight())
+		EndMax2D()
+		
+		CameraViewport(cam, 0, 0, GlobalWidth(), GlobalHeight())
+	EndIf
+	
+EndFunction

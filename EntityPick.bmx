@@ -6,6 +6,7 @@ Return
 Else
 Local Picked:TEntity=PickedEntity()
 Print EntityName(picked)
+
 'For Local s:TEntity = EachIn TPlayer.PlayerID.Keys()
     'Print EntityName(Picked) + " = " + String(TPlayer.PlayerID[picked]) ' retrieve value using index operator
 'Next
