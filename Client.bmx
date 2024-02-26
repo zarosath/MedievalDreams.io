@@ -24,7 +24,7 @@ SetGraphicsDriver GLMax2DDriver(),flags ' before SetGraphics, set this so graphi
 	SetGraphics CanvasGraphics(Canvas)
 	
 		
-		Graphics3D(ClientWidth(Window),ClientHeight(Window),0,,144,-1,True)
+		Graphics3D(ClientWidth(Window),ClientHeight(Window),,,144,-1,True)
 
 Include "createTerrain.bmx"
 Include "player.bmx"
@@ -182,14 +182,14 @@ CameraFunction()
 	
 	If KeyDown( KEY_D )=True
 	TurnEntity me.Pivot, 0, -0.2*Delta.factor(), 0
-	MoveEntity me.Pivot,0.07*Delta.factor(),0,0
+	MoveEntity me.Pivot,0.04*Delta.factor(),0,0
 	EndIf
 	If KeyDown( KEY_S )=True
 	MoveEntity me.Pivot,0,0,-0.07*Delta.factor()
 	EndIf
 	If KeyDown( KEY_A )=True
 	TurnEntity me.Pivot, 0, 0.2*Delta.factor(), 0
-	MoveEntity me.Pivot,-0.07*Delta.factor(),0,0
+	MoveEntity me.Pivot,-0.04*Delta.factor(),0,0
 	EndIf
 	If KeyDown( KEY_W )=True
 	MoveEntity me.Pivot,0,0,0.07*Delta.factor()
