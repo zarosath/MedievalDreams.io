@@ -14,6 +14,7 @@ Local width%=DesktopWidth()
 Local height%=DesktopHeight()
 Local winx%=DesktopWidth()/2-width/2
 Local winy%=DesktopHeight()/2-height/2
+AppTitle="Username"
 SetGraphicsDriver GLMax2DDriver(),flags ' before SetGraphics, set this so graphics look right
 	Local Window:TGadget=CreateWindow("MedievalDreams",winx,winy,width,height)
 	Global Canvas:TGadget=CreateCanvas(0,0,ClientWidth(Window),ClientHeight(Window),Window,0)
@@ -36,7 +37,7 @@ CreateTimer(60)
 
 
 Local port:Int = 12345
-Local address:String = "localhost"
+Local address:String = "medievaldreams.io"
 'variables
 Const GroupEnvironment% = 2
 Const GroupCharacters% = 3
@@ -109,7 +110,7 @@ EndIf
 Next
 End Function
 
-?linux Or macOS
+?linux Or MacOS
 Local WindowThread:TThread=CreateThread(Processwindow, "")
 ?
 
@@ -140,21 +141,6 @@ Select EventID()
 
 End Select
 End Function
-
-
-Type FPS
-    Global Counter, time, TFPS
-
-    Function Calc%()
-        Counter:+1
-        If time < MilliSecs()
-            TFPS = Counter ' <- Frames/Sec
-             time = MilliSecs() + 1000 'Update
-             Counter = 0
-        End If
-        Return TFPS
-    End Function
-End Type
 
 Function Rungame()
 
@@ -194,18 +180,18 @@ WaitEvent(), SelectmaxguiEvents()
 CameraFunction()
 	
 	If KeyDown( KEY_D )=True
-	TurnEntity me.Pivot, 0, 0.1, 0
-	MoveEntity me.Pivot,0.1,0,0
+	TurnEntity me.Pivot, 0, 0.2, 0
+	MoveEntity me.Pivot,0.09*Delta.factor(),0,0
 	EndIf
 	If KeyDown( KEY_S )=True
-	MoveEntity me.Pivot,0,0,-0.1
+	MoveEntity me.Pivot,0,0,-0.09*Delta.factor()
 	EndIf
 	If KeyDown( KEY_A )=True
-	TurnEntity me.Pivot, 0, -0.1, 0
-	MoveEntity me.Pivot,-0.1,0,0
+	TurnEntity me.Pivot, 0, -0.2, 0
+	MoveEntity me.Pivot,-0.09*Delta.factor(),0,0
 	EndIf
 	If KeyDown( KEY_W )=True
-	MoveEntity me.Pivot,0,0,0.1
+	MoveEntity me.Pivot,0,0,0.09*Delta.factor()
 	EndIf
 	If KeyDown( key_UP )=True
 	MoveEntity me.Pivot,0,0.1,0
@@ -228,7 +214,7 @@ CameraFunction()
 	' Gravity and jumping function
 If  PlayerTime<MilliSecs() And me.PlayerIsOnGround=False
 	PlayerTime = MilliSecs()+ MOTION
-	 	YAcceleration = YAcceleration - GRAVITY
+	 	YAcceleration = YAcceleration - GRAVITY *Delta.factor()
 	MoveEntity me.Pivot, 0,YAcceleration,0
 	
 	If EntityY(me.Pivot)<0
@@ -276,7 +262,7 @@ EndIf
 	UpdateWorld
 	RenderWorld
 	'text command function must go here under update/renderworld
-		Text (5,5,"Your FPS: "+Fps.Calc())
+		Text (5,5,"Your FPS: "+Delta.GetFPS()+" DeltaTimeFactor "+Delta.Factor())
 		'DrawText("Current deltatime: " + Delta.Factor(), 0, 40)
 		Text 20,20,"use mouse and WASD from keyboard to move"
 		Flip
