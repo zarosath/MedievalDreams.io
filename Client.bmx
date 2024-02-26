@@ -176,7 +176,7 @@ CameraFunction()
 	
 	If KeyDown( KEY_D )=True
 	TurnEntity me.Pivot, 0, 0.1, 0
-	MoveEntity me.Pivot,0.1*DeltaTime,0,0
+	MoveEntity me.Pivot,0.1,0,0
 	EndIf
 	If KeyDown( KEY_S )=True
 	MoveEntity me.Pivot,0,0,-0.1
