@@ -104,13 +104,20 @@ EndIf
 Next
 End Function
 
+?linux Or macOS
 Local WindowThread:TThread=CreateThread(Processwindow, "")
+?
 
 Function Processwindow:Object(data:Object)
 
 While (exitapp=False)
 	WaitEvent()
-	
+	SelectmaxguiEvents()
+
+Wend
+End Function
+
+Function SelectmaxguiEvents()
 Select EventID()
 			
 	Case EVENT_WINDOWCLOSE
@@ -127,7 +134,6 @@ Select EventID()
 		UpdateCanvas(Canvas,camera) ' update viewport
 
 End Select
-Wend
 End Function
 
 
@@ -177,7 +183,9 @@ If Startmenu = True
 Else
 
 EndIf
-
+?Windows 
+WaitEvent(), SelectmaxguiEvents()
+?
 CameraFunction()
 	
 	If KeyDown( KEY_D )=True
