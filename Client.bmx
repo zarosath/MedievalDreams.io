@@ -29,6 +29,11 @@ Include "createTerrain.bmx"
 Include "player.bmx"
 Include "net.bmx"
 
+Rem
+Add timer for event hooks
+End Rem 
+CreateTimer(60)
+
 
 Local port:Int = 12345
 Local address:String = "localhost"
@@ -271,7 +276,7 @@ EndIf
 	UpdateWorld
 	RenderWorld
 	'text command function must go here under update/renderworld
-		Text 5,5,"Your FPS: "+FPS.Calc() 'This goes in main-loop
+		Text (5,5,"Your FPS: "+Fps.Calc())
 		'DrawText("Current deltatime: " + Delta.Factor(), 0, 40)
 		Text 20,20,"use mouse and WASD from keyboard to move"
 		Flip
