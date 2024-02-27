@@ -24,7 +24,7 @@ SetGraphicsDriver GLMax2DDriver(),flags ' set this so graphics look right
 	SetGraphics CanvasGraphics(Canvas)
 	
 		
-		Graphics3D(ClientWidth(Window),ClientHeight(Window),,,144,-1,True)
+		Graphics3D(ClientWidth(Window),ClientHeight(Window),DesktopDepth(),0,144,-1,True)
 
 Include "createTerrain.bmx"
 Include "player.bmx"
@@ -164,6 +164,7 @@ Delay 500
 Print"PlayerNetobject closed"
 CloseGNetHost(Host)
 Print "host closed"
+EndGraphics
 Exit
 EndIf
 'Repeat
