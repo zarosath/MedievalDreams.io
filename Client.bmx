@@ -152,7 +152,9 @@ If(AppTerminate() Or KeyHit(KEY_ESCAPE))
 exitapp=True
 ' wait thread because we need to be sure it exits the loop via exitapp=true so it does not segment fault
 WaitThread(entitycopythread)
+?Linux Or MacOS
 DetachThread(WindowThread)
+?
 EndIf
 If (exitapp=True)
 DetachThread(entitycopythread)
