@@ -12,3 +12,4 @@
 *.debug
 *.exe
 *.linux.x64.a
+*.linux.x86.a
