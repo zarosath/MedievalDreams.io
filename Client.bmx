@@ -15,8 +15,8 @@ Local height%=DesktopHeight()
 Local winx%=DesktopWidth()/2-width/2
 Local winy%=DesktopHeight()/2-height/2
 AppTitle="Username"
-SetGraphicsDriver GLMax2DDriver(),flags ' before SetGraphics, set this so graphics look right
-	Local Window:TGadget=CreateWindow("MedievalDreams",winx,winy,width,height)
+SetGraphicsDriver GLMax2DDriver(),flags ' set this so graphics look right
+	Local Window:TGadget=CreateWindow("MedievalDreams",winx,winy,width,height, Null, 7)
 	Global Canvas:TGadget=CreateCanvas(0,0,ClientWidth(Window),ClientHeight(Window),Window,0)
 	SetGadgetLayout(Canvas, 1, 1, 1, 1)
 	ActivateGadget(Canvas)
