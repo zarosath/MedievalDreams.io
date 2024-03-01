@@ -118,12 +118,11 @@ Function Processwindow:Object(data:Object)
 
 While (exitapp=False)
 	WaitEvent()
-	SelectmaxguiEvents()
-
+	maxguiEvents()
 Wend
 End Function
 
-Function SelectmaxguiEvents()
+Function maxguiEvents()
 Select EventID()
 			
 	Case EVENT_WINDOWCLOSE
@@ -138,6 +137,9 @@ Select EventID()
 			
 	Case EVENT_GADGETPAINT
 		UpdateCanvas(Canvas,camera) ' update viewport
+		
+	Case EVENT_APPSUSPEND
+		Exitapp=True
 
 End Select
 End Function
@@ -165,7 +167,6 @@ Print"PlayerNetobject closed"
 CloseGNetHost(Host)
 Print "host closed"
 EndGraphics
-Exit
 EndIf
 'Repeat
 

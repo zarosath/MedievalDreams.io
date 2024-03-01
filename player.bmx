@@ -131,5 +131,13 @@ End Method
 	Method SendRoll()
 			   SetGNetFloat(GObj,GnetplayerRoll,EntityRoll(pivot))
 	End Method
+	
+	Method GetPlayer()
+				  For Local loc:TPlayer = EachIn TPlayer.All
+						'If loc.
+					
+        ' EndIf
+			next
+	End Method
 End Type
 

@@ -20,6 +20,5 @@ ScaleTexture grass_tex,1,1
 
 ' entity properties
 
-PositionEntity(terrain,0,0,0)
 EntityType(terrain,GroupEnvironment)
 EntityRadius(terrain, 1)
