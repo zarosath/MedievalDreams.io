@@ -5,7 +5,6 @@ HideEntity Playermodel
 Type TPlayer
 
 	Global all:TList = New TList
-	 Global PlayerID:TMap = New TMap
 
 Field Username:String
 'Field x: Float
@@ -15,18 +14,7 @@ Field YAcceleration:Float
 Field playerentity:TEntity = CopyEntity(Playermodel)
 Field Pivot:TPivot=CreatePivot()
 Field GObj:TGNetObject
-  Field id:Int
-  Global lastID:Int = 0
 
-  Method NewID()
-    lastID :+ 1
-    Self.id = lastID
-Return Self.id
-  End Method
-
-Method printID()
-Print Self.id
-End Method
 
     Function Addme:TPlayer(Name:String)
 			Local loc:TPlayer = New TPlayer
@@ -52,9 +40,7 @@ End Method
         Local loc:TPlayer = New TPlayer
         loc.GObj = Obj
         All.AddLast loc
-		'NameEntity(loc.playerentity, "playerEntity")
-		PlayerID.Insert(loc.playerentity, String(loc.NewID()))
-		loc.playerentity.NameEntity "playerEntity"
+		NameEntity(loc.playerentity, "playerEntity")
 		EntityType(loc.pivot,GroupCharacters, True)
 		EntityPickMode(loc.playerentity,2)
 		EntityParent loc.playerentity, loc.Pivot
@@ -131,13 +117,15 @@ End Method
 	Method SendRoll()
 			   SetGNetFloat(GObj,GnetplayerRoll,EntityRoll(pivot))
 	End Method
-	
-	Method GetPlayer()
-				  For Local loc:TPlayer = EachIn TPlayer.All
-						'If loc.
-					
-        ' EndIf
-			next
-	End Method
+
+	    Function Find:TPlayer( SearchEntity:TEntity)
+        For Local loc:TPlayer = EachIn All
+             If loc.playerentity = SearchEntity
+                 Return loc
+             EndIf
+        Next
+        Return Null
+    End Function
+
 End Type
 

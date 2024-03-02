@@ -1,4 +1,4 @@
-Function CheckPick()
+Function CheckPick:Object()
 ' via camera pick from coordinates of cursor
 If CameraPick(camera, MouseX(),MouseY()) = Null
 Print "returned null: no entity could be picked"
@@ -15,7 +15,7 @@ Print EntityName(picked)
 Select EntityName(Picked) ' Switch Case Select for purpose to action of the picked.
 Case "playerEntity"
 Print "action: how to interact?"
-Return String(TPlayer.PlayerID[picked]).ToInt()
+Return tplayer.find(picked)
 End Select
 
 EndIf

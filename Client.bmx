@@ -212,7 +212,7 @@ CameraFunction()
 	
 	'if left mouse button was hit
 	If MouseHit(1)
-	Print CheckPick()' entity pick
+	CheckPick() ' entity pick
 	EndIf
 
 

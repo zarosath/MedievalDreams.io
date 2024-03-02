@@ -10,7 +10,7 @@ Const GnetplayerRoll:Int = 6
 Function ScanGnet()
     ' find new
     For Local obj:TGNetObject=EachIn GNetObjects( host, GNET_CREATED )
-       TPlayer.Addplayer obj
+       TPlayer.Addplayer(obj)
     Next
    ' DrawText "TPlayers:" + TPlayer.All.Count() , 30,130
 
