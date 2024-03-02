@@ -15,7 +15,9 @@ Print EntityName(picked)
 Select EntityName(Picked) ' Switch Case Select for purpose to action of the picked.
 Case "playerEntity"
 Print "action: how to interact?"
-Return tplayer.find(picked)
+Local playerobj:Tplayer = tplayer.find(picked)
+AttackPlayer(playerobj)
+Return playerobj
 End Select
 
 EndIf

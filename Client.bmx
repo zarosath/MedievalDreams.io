@@ -80,6 +80,7 @@ so we Include these bmx files down here For until clients me.tplayer instance is
 End Rem
 Include "camera.bmx"
 Include "EntityPick.bmx"
+Include "EntityActions.bmx"
 	me.SendX()
 		me.SendY()
 				me.SendZ()
@@ -111,7 +112,7 @@ Next
 End Function
 
 ?linux Or MacOS
-Local WindowThread:TThread=CreateThread(Processwindow, "")
+'Local WindowThread:TThread=CreateThread(Processwindow, "")
 ?
 
 Function Processwindow:Object(data:Object)
@@ -155,7 +156,7 @@ exitapp=True
 ' wait thread because we need to be sure it exits the loop via exitapp=true so it does not segment fault
 WaitThread(entitycopythread)
 ?Linux Or MacOS
-DetachThread(WindowThread)
+'DetachThread(WindowThread)
 ?
 EndIf
 If (exitapp=True)
@@ -178,10 +179,10 @@ If Startmenu = True
 Else
 
 EndIf
-?Win32
+
 WaitEvent()
-SelectmaxguiEvents()
-?
+maxguiEvents()
+
 CameraFunction()
 	
 	If KeyDown( KEY_D )=True
@@ -212,7 +213,7 @@ CameraFunction()
 	
 	'if left mouse button was hit
 	If MouseHit(1)
-	CheckPick() ' entity pick
+	 Print CheckPick().ToString() ' entity pick
 	EndIf
 
 
@@ -290,3 +291,4 @@ Function UpdateCanvas(can:TGadget, cam:TCamera)
 	EndIf
 	
 EndFunction
+

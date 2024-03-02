@@ -14,7 +14,7 @@ Field YAcceleration:Float
 Field playerentity:TEntity = CopyEntity(Playermodel)
 Field Pivot:TPivot=CreatePivot()
 Field GObj:TGNetObject
-
+Field Health:Int = 99
 
     Function Addme:TPlayer(Name:String)
 			Local loc:TPlayer = New TPlayer
@@ -117,6 +117,23 @@ End Method
 	Method SendRoll()
 			   SetGNetFloat(GObj,GnetplayerRoll,EntityRoll(pivot))
 	End Method
+	
+	Method Gethealth()
+	Return Health
+	End Method
+	
+	Method removehealth(hit:Int)
+	If hit < health = 0
+	health = 0
+	Else
+		Health:-hit
+		EndIf
+	End Method
+	
+	Function Death(Player:tplayer)
+		PositionEntity(Player.pivot, 10,5.5,-5)
+		Player.Health = 99
+		EndFunction
 
 	    Function Find:TPlayer( SearchEntity:TEntity)
         For Local loc:TPlayer = EachIn All
