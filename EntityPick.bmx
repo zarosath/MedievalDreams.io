@@ -1,24 +1,19 @@
-Function CheckPick:Object()
-' via camera pick from coordinates of cursor
-If CameraPick(camera, MouseX(),MouseY()) = Null
-Print "returned null: no entity could be picked"
-Return
+Global Pick:TEntity
+Global Picked:TEntity
+
+Function GetPick:TEntity()
+Pick = CameraPick(camera, MouseX(),MouseY())
+Picked = PickedEntity()
+If Pick = Null
+?Debug
+Print "Returned Null: no entity was picked"
+?
+Return null
 Else
-Local Picked:TEntity=PickedEntity()
-Print EntityName(picked)
-
-'For Local s:TEntity = EachIn TPlayer.PlayerID.Keys()
-    'Print EntityName(Picked) + " = " + String(TPlayer.PlayerID[picked]) ' retrieve value using index operator
-'Next
-
-
-Select EntityName(Picked) ' Switch Case Select for purpose to action of the picked.
-Case "playerEntity"
-Print "action: how to interact?"
-Local playerobj:Tplayer = tplayer.find(picked)
-AttackPlayer(playerobj)
-Return playerobj
-End Select
-
+?Debug
+Print EntityName(Picked)
+Print Picked.ToString()
+?
+Return Picked
 EndIf
 End Function

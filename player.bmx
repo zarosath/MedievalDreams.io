@@ -19,7 +19,6 @@ Field Health:Int = 99
     Function Addme:TPlayer(Name:String)
 			Local loc:TPlayer = New TPlayer
 					EntityType(loc.pivot,GroupCharacters, True)
-			'EntityType(loc.playerentity,GroupCharacters, False)
 			ScaleEntity loc.playerentity,1,1,1
 			EntityParent loc.playerentity, loc.Pivot
 			RotateEntity(loc.playerentity, 180,0,180)

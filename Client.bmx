@@ -22,9 +22,7 @@ SetGraphicsDriver GLMax2DDriver(),flags ' set this so graphics look right
 	ActivateGadget(Canvas)
 	EnablePolledInput Canvas ' to activate mouse and keys
 	SetGraphics CanvasGraphics(Canvas)
-	
-		
-		Graphics3D(ClientWidth(Window),ClientHeight(Window),DesktopDepth(),0,144,-1,True)
+		Graphics3D(ClientWidth(Window),ClientHeight(Window),DesktopDepth(),0,0,-1,True)
 
 Include "createTerrain.bmx"
 Include "player.bmx"
@@ -33,7 +31,7 @@ Include "net.bmx"
 Rem
 Add timer for event hooks
 End Rem 
-CreateTimer(60)
+CreateTimer(120)
 
 
 Local port:Int = 12345
@@ -159,16 +157,6 @@ WaitThread(entitycopythread)
 'DetachThread(WindowThread)
 ?
 EndIf
-If (exitapp=True)
-DetachThread(entitycopythread)
-Print("thread EntityCopyThread Detached")
-CloseGNetObject(me.GObj)
-Delay 500
-Print"PlayerNetobject closed"
-CloseGNetHost(Host)
-Print "host closed"
-EndGraphics
-EndIf
 'Repeat
 
 
@@ -212,9 +200,9 @@ CameraFunction()
 			EndIf
 	
 	'if left mouse button was hit
-	If MouseHit(1)
-	 Print CheckPick().ToString() ' entity pick
-	EndIf
+			If MouseHit(1)
+				entitykind(GetPick()) ' entity pick
+			EndIf
 
 
 	' Gravity and jumping function
@@ -273,6 +261,18 @@ EndIf
 		Text 20,20,"use mouse and WASD from keyboard to move"
 		Flip
 
+
+
+If (exitapp=True)
+DetachThread(entitycopythread)
+Print("thread EntityCopyThread Detached")
+CloseGNetObject(me.GObj)
+Delay 500
+Print"PlayerNetobject closed"
+CloseGNetHost(Host)
+Print "host closed"
+EndGraphics
+EndIf
 Wend ' End Main Loop
 
 ' Simplifies using Max2D with a resizable canvas (by Hezkore)
