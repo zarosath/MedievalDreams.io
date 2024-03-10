@@ -11,7 +11,7 @@ Field Username:String
 'Field y: Float
 Field PlayerIsOnGround:Int
 Field YAcceleration:Float
-Field playerentity:TEntity = CopyEntity(Playermodel)
+Field PlayerEntity:TEntity = CopyEntity(Playermodel)
 Field Pivot:TPivot=CreatePivot()
 Field GObj:TGNetObject
 Field Health:Int = 99
@@ -130,8 +130,12 @@ End Method
 	End Method
 	
 	Function Death(Player:tplayer)
-		PositionEntity(Player.pivot, 10,5.5,-5)
-		Player.Health = 99
+				PositionEntity(Player.Pivot, 10,5.5,-5)
+				?Debug
+				Print "Death, respawning - "+EntityName(Player.PlayerEntity)
+				Print Player.Health
+				?
+				Player.Health = 99
 		EndFunction
 
 	    Function Find:TPlayer( SearchEntity:TEntity)

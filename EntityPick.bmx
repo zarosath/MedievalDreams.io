@@ -8,11 +8,11 @@ If Pick = Null
 ?Debug
 Print "Returned Null: no entity was picked"
 ?
-Return null
+Return Null
 Else
 ?Debug
 Print EntityName(Picked)
-Print Picked.ToString()
+Print "Entity object to string: "+Picked.ToString()
 ?
 Return Picked
 EndIf

@@ -4,11 +4,12 @@ EndRem
 Strict
 
 Import openb3d.b3dglgraphics
-Import brl.map
+Import brl.Graphics
 Import Brl.Gnet
 Import brl.threads
 Import blide.deltatiming
 Import MaxGui.Drivers
+Import Pub.Enet
 Local flags%=GRAPHICS_BACKBUFFER|GRAPHICS_ALPHABUFFER|GRAPHICS_DEPTHBUFFER|GRAPHICS_STENCILBUFFER|GRAPHICS_ACCUMBUFFER
 Local width%=DesktopWidth()
 Local height%=DesktopHeight()
@@ -22,16 +23,19 @@ SetGraphicsDriver GLMax2DDriver(),flags ' set this so graphics look right
 	ActivateGadget(Canvas)
 	EnablePolledInput Canvas ' to activate mouse and keys
 	SetGraphics CanvasGraphics(Canvas)
-		Graphics3D(ClientWidth(Window),ClientHeight(Window),DesktopDepth(),0,0,-1,True)
+		Graphics3D(ClientWidth(Window),ClientHeight(Window),DesktopDepth(),0,GraphicsHertz(),-1,True)
 
 Include "createTerrain.bmx"
 Include "player.bmx"
 Include "net.bmx"
 
 Rem
-Add timer for event hooks
+Add timer for events, in screen hertz: TODO get system info to specify hertz refresh rate
 End Rem 
-CreateTimer(120)
+?Debug
+Print "refresh rate set to 144 but graphics hertz api says: "+GraphicsHertz()
+?
+CreateTimer(144)
 
 
 Local port:Int = 12345
@@ -208,7 +212,7 @@ CameraFunction()
 	' Gravity and jumping function
 If  PlayerTime<MilliSecs() And me.PlayerIsOnGround=False
 	PlayerTime = MilliSecs()+ MOTION
-	 	YAcceleration = YAcceleration - GRAVITY *Delta.factor()
+	 	YAcceleration = YAcceleration - GRAVITY 
 	MoveEntity me.Pivot, 0,YAcceleration,0
 	
 	If EntityY(me.Pivot)<0
