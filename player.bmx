@@ -2,10 +2,14 @@
 Global Playermodel:TMesh=LoadAnimMesh("Media/models/Player/player.b3d")
 HideEntity Playermodel
 
+
+
+
 Type TPlayer
 
 	Global all:TList = New TList
-
+	 Global PlayerIDmap:TMap = New TMap
+	
 Field Username:String
 'Field x: Float
 'Field y: Float
@@ -15,6 +19,18 @@ Field PlayerEntity:TEntity = CopyEntity(Playermodel)
 Field Pivot:TPivot=CreatePivot()
 Field GObj:TGNetObject
 Field Health:Int = 99
+  Field PlayerID:Int
+  Global lastplayerID:Int = 0
+
+  Method NewID()
+    lastplayerID :+ 1
+    Self.PlayerID = lastplayerID
+Return Self.PlayerID
+  End Method
+
+Method printID()
+Print Self.PlayerID
+End Method
 
     Function Addme:TPlayer(Name:String)
 			Local loc:TPlayer = New TPlayer
@@ -37,6 +53,7 @@ Field Health:Int = 99
 
     Function Addplayer(Obj:TGNetObject)
         Local loc:TPlayer = New TPlayer
+		PlayerIDmap.Insert(loc.playerentity, String(loc.NewID()))
         loc.GObj = Obj
         All.AddLast loc
 		NameEntity(loc.playerentity, "playerEntity")
@@ -138,9 +155,9 @@ End Method
 				Player.Health = 99
 		EndFunction
 
-	    Function Find:TPlayer( SearchEntity:TEntity)
+	    Function Find:TPlayer(id:Int)
         For Local loc:TPlayer = EachIn All
-             If loc.playerentity = SearchEntity
+             If loc.PlayerID = id
                  Return loc
              EndIf
         Next

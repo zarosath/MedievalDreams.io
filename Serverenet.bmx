@@ -41,7 +41,7 @@ Local inputthread:TThread=CreateThread(commandinput, "")
 Repeat
 
     'Print MilliSecs()
-Until shutdown=True
+Until shutdown=True Or AppTerminate()
 
 Function commandinput:Object(data:Object)
 Repeat

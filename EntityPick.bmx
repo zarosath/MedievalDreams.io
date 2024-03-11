@@ -1,7 +1,7 @@
 Global Pick:TEntity
 Global Picked:TEntity
 
-Function GetPick:TEntity()
+Function GetPick:Tentity()
 Pick = CameraPick(camera, MouseX(),MouseY())
 Picked = PickedEntity()
 If Pick = Null

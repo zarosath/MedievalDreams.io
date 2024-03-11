@@ -3,6 +3,7 @@ Rem
 EndRem
 Strict
 
+Import brl.map
 Import openb3d.b3dglgraphics
 Import brl.Graphics
 Import Brl.Gnet
@@ -161,9 +162,6 @@ WaitThread(entitycopythread)
 'DetachThread(WindowThread)
 ?
 EndIf
-'Repeat
-
-
 
 If Startmenu = True
 
@@ -205,14 +203,14 @@ CameraFunction()
 	
 	'if left mouse button was hit
 			If MouseHit(1)
-				entitykind(GetPick()) ' entity pick
+				entityaction(GetPick()) ' entity pick
 			EndIf
 
 
 	' Gravity and jumping function
 If  PlayerTime<MilliSecs() And me.PlayerIsOnGround=False
 	PlayerTime = MilliSecs()+ MOTION
-	 	YAcceleration = YAcceleration - GRAVITY 
+	 	YAcceleration = YAcceleration - GRAVITY
 	MoveEntity me.Pivot, 0,YAcceleration,0
 	
 	If EntityY(me.Pivot)<0
