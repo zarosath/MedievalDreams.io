@@ -29,6 +29,11 @@ RemiD.
  
 and everyone who has contributed their time and code to contributing to blitzmax and helping others.
 
+**how to compile & run**
+This project relies on a blitzmax module, blide.mod/deltatiming.mod located within the lib folder, this module must be added to the blitzmax mod folder to compile (blide.deltatiming)
+
+This project requires blitzmax NG to compile & run
+
 ### showcase
 ![screenshot](https://github.com/zarosath/MedievalDreams.io/assets/1097150/4cb6d902-8fc1-4c12-b341-e95278920883)
 
