@@ -11,6 +11,8 @@ Import brl.threads
 Import blide.deltatiming
 Import MaxGui.Drivers
 Import Pub.Enet
+
+
 Local flags%=GRAPHICS_BACKBUFFER|GRAPHICS_ALPHABUFFER|GRAPHICS_DEPTHBUFFER|GRAPHICS_STENCILBUFFER|GRAPHICS_ACCUMBUFFER
 Local width%=DesktopWidth()
 Local height%=DesktopHeight()
@@ -18,7 +20,7 @@ Local winx%=DesktopWidth()/2-width/2
 Local winy%=DesktopHeight()/2-height/2
 AppTitle="Username"
 SetGraphicsDriver GLMax2DDriver(),flags ' set this so graphics look right
-	Local Window:TGadget=CreateWindow("MedievalDreams",winx,winy,width,height, Null, 7)
+	Local Window:TGadget=CreateWindow(AppTitle,winx,winy,width,height, Null, 7)
 	Global Canvas:TGadget=CreateCanvas(0,0,ClientWidth(Window),ClientHeight(Window),Window,0)
 	SetGadgetLayout(Canvas, 1, 1, 1, 1)
 	ActivateGadget(Canvas)
@@ -105,7 +107,7 @@ Local entitycopythread:TThread=CreateThread(entitycopy, "")
 Function entitycopy:Object(data:Object)
 For Local i=1 To 200
 If (exitapp=True)
-Exit
+
 EndIf
 'Local bots:TPlayer = New TPlayer
 'bots.newID()
@@ -113,10 +115,6 @@ EndIf
 'Print "ModelPreload_"+i
 Next
 End Function
-
-?linux Or MacOS
-'Local WindowThread:TThread=CreateThread(Processwindow, "")
-?
 
 Function Processwindow:Object(data:Object)
 
@@ -158,9 +156,6 @@ If(AppTerminate() Or KeyHit(KEY_ESCAPE))
 exitapp=True
 ' wait thread because we need to be sure it exits the loop via exitapp=true so it does not segment fault
 WaitThread(entitycopythread)
-?Linux Or MacOS
-'DetachThread(WindowThread)
-?
 EndIf
 
 If Startmenu = True
@@ -210,7 +205,7 @@ CameraFunction()
 	' Gravity and jumping function
 If  PlayerTime<MilliSecs() And me.PlayerIsOnGround=False
 	PlayerTime = MilliSecs()+ MOTION
-	 	YAcceleration = YAcceleration - GRAVITY
+	 	YAcceleration = YAcceleration - GRAVITY * Delta.Factor()
 	MoveEntity me.Pivot, 0,YAcceleration,0
 	
 	If EntityY(me.Pivot)<0
