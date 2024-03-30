@@ -24,7 +24,7 @@ SetGraphicsDriver GLMax2DDriver(),flags ' set this so graphics look right
 	Global Canvas:TGadget=CreateCanvas(0,0,ClientWidth(Window),ClientHeight(Window),Window,0)
 	SetGadgetLayout(Canvas, 1, 1, 1, 1)
 	ActivateGadget(Canvas)
-	EnablePolledInput Canvas ' to activate mouse and keys
+	EnablePolledInput Canvas ' to enable polled input of mouse and keys via maxgui/game canvas
 	SetGraphics CanvasGraphics(Canvas)
 		Graphics3D(ClientWidth(Window),ClientHeight(Window),DesktopDepth(),0,GraphicsHertz(),-1,True)
 
