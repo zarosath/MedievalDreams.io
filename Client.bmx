@@ -42,7 +42,7 @@ CreateTimer(144)
 
 
 Local port:Int = 12345
-Local address:String = "medievaldreams.io"
+Local address:String = "localhost"
 'variables
 Const GroupEnvironment% = 2
 Const GroupCharacters% = 3
