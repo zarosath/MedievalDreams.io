@@ -2,14 +2,14 @@
 This is the MedievalDreams open source game project
 https://www.syntaxbomb.com/worklogs/medieval-dreams/
 
-worklog:
-todo use direct enet networking possibly peer to peer
-i may take this project closed-source.
-
 
 Attempting to impliment networking 10/8/23 - 11-26-2023, basic networking has been accomplished visa vi movement but more work needs to be done to accomplish smooth, possibly procedural movement with high latency
 
 Website: https://medievaldreams.io
+
+worklog:
+todo use direct enet networking possibly peer to peer
+i may take this project closed-source.
 
 
 ### Contribution
