@@ -8,7 +8,7 @@ Attempting to impliment networking 10/8/23 - 11-26-2023, basic networking has be
 Website: https://medievaldreams.io
 
 worklog:
-todo use direct enet networking possibly peer to peer
+todo use direct enet networking possibly peer to peer.
 i may take this project closed-source.
 
 
